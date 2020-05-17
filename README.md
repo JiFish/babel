@@ -54,7 +54,7 @@ babel.py --no-zombie
 You can add books to other loot tables using type `loot_table` and name `babel:books`.
 
 ### Dealing with datapack conflicts
-If any of your other datapacks modify loot tables used by babel, it might be possible to create a compatable pack. To do this, replace the loot tables in `base_loot_tables` with the ones from the conflicting datapack.
+If any of your other datapacks modify loot tables used by babel, it might be possible to create a compatible pack. To do this, replace the loot tables in `base_loot_tables` with the ones from the conflicting datapack.
 
 ### For use making your own datapacks
 If you just want to generate the loot table without the surrounding files, try:
