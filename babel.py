@@ -6,11 +6,11 @@ from sys import argv
 print ("Importing Books...")
 from build_lootable import loottable
 
-def addToLootTable(lootfilename, weight = 1):
+def addToLootTable(lootfilename, weight = 1, pool = 0):
     global indent
     with open('base_loot_tables/'+lootfilename, 'r') as lootfile:
         lootjson = json.loads(lootfile.read())
-    lootjson['pools'][0]['entries'].append({
+    lootjson['pools'][pool]['entries'].append({
         'type': 'loot_table',
         'weight': weight,
         "name": "babel:books"
@@ -24,6 +24,7 @@ parser.add_argument('--no-fishing', dest="fishing", help='Disable adding books t
 parser.add_argument('--no-village', dest="village", help='Disable adding books to village loot', action='store_false')
 parser.add_argument('--no-mansion', dest="mansion", help='Disable adding books to woodland mansion loot', action='store_false')
 parser.add_argument('--no-stronghold', dest="stronghold", help='Disable adding books to stronghold library loot', action='store_false')
+parser.add_argument('--no-zombie', dest="zombie", help='Disable adding books to zombie loot', action='store_false')
 args = parser.parse_args()
 
 if len(argv) < 2:
@@ -55,5 +56,7 @@ if args.village:
     zf.writestr('data/minecraft/loot_tables/chests/village/village_taiga_house.json', addToLootTable('village_taiga_house.json',3))
 if args.fishing:
     zf.writestr('data/minecraft/loot_tables/gameplay/fishing/treasure.json', addToLootTable('treasure.json',1))
+if args.zombie:
+    zf.writestr('data/minecraft/loot_tables/entities/zombie.json', addToLootTable('zombie.json',1,1))
 zf.close()
 print ("Complete.")
