@@ -32,5 +32,5 @@ The default collection of books was sourced from Project Gutenberg. https://www.
 #### Support for JSON text / formatting?
 Not at the moment. If enough people ask for it.
 
-#### The text is running of the page in Minecraft
+#### The text is running off the page in Minecraft
 It's down to you to figure out how much text you can fit on a each page. Calculating this automatically is not trivial. Your best bet is to use minecraft itself by copying text to and from a book.
