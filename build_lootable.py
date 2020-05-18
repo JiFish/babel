@@ -18,7 +18,7 @@ for file in os.listdir(directory):
     book['pages'] = []
     lines = lines[2:]
     for l in lines:
-        book['pages'].append('{"text":"'+l.replace('"','\"').strip()+'"}')
+        book['pages'].append('{"text":"'+l.replace('"','\\\"').strip()+'"}')
     entries.append({
         "type": "item",
         "name": "minecraft:written_book",
