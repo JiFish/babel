@@ -4,7 +4,7 @@ import argparse
 from sys import argv
 
 print ("Importing Books...")
-from build_lootable import loottable
+from build_loottable import loottable
 
 def addToLootTable(lootfilename, weight = 1, pool = 0):
     global indent
