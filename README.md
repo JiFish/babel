@@ -48,7 +48,7 @@ It's down to you to figure out how much text you can fit on a each page. Calcula
 ### Altering where books will be found
 You can disable various book drops using command line options. Use `babel.py -h` to see the complete list. An example where zombie do not drop books:
 ```
-babel.py --no-zombie
+babel.py -d zombie
 ````
 
 You can add books to other loot tables using type `loot_table` and name `babel:books`.
