@@ -6,19 +6,10 @@ entries = [];
 
 for file in os.listdir(directory):
     path = os.path.join(directory, file)
-    with open(path, 'r') as myfile:
-        lines = myfile.readlines()
-    if (len(lines) < 3):
-        print("Book "+file+" too short. Minimum 3 lines for Author, Title and Page 1. Skipping.")
-        continue
-    book = {}
-    book['author'] = lines[0].strip()
-    book['title'] = lines[1].strip()
+    with open(path, 'r') as thisfile:
+        book = json.load(thisfile)
     book['generation'] = 3
-    book['pages'] = []
-    lines = lines[2:]
-    for l in lines:
-        book['pages'].append('{"text":"'+l.replace('"','\"').strip()+'"}')
+
     entries.append({
         "type": "item",
         "name": "minecraft:written_book",
@@ -60,12 +51,12 @@ for file in os.listdir(directory):
             }
         ]
     })
-        
-        
+
+
 loottable = {
     'pools': [
         {
-            'rolls': 10,
+            'rolls': 1,
             'entries': entries
         }
     ]
