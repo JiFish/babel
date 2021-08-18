@@ -6,7 +6,7 @@ import sys
 isCompiled = getattr(sys, 'frozen', False)
 isUsingDefaults = (len(sys.argv) < 2)
 validLootTableList = ['fishing', 'village', 'mansion', 'stronghold', 'zombie']
-greeting = "Babel Book Loot Generator, v0.3%s" % (' (Windows)' if isCompiled else '')
+greeting = "Babel Book Loot Generator, v0.4%s" % (' (Windows)' if isCompiled else '')
 
 print("\n"+greeting)
 print("="*len(greeting)+"\n")
@@ -53,7 +53,7 @@ print ("Building datapack...")
 zf = zipfile.ZipFile(args.filename, mode='w')
 zf.writestr('pack.mcmeta', json.dumps({
     "pack": {
-        "pack_format": 5,
+        "pack_format": 7,
         "description": "Add pre-written books to your vanilla world"
     }
 }, indent=indent))
