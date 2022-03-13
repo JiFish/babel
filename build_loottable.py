@@ -6,7 +6,7 @@ entries = [];
 
 for file in os.listdir(directory):
     path = os.path.join(directory, file)
-    with open(path, 'r') as thisfile:
+    with open(path, 'r', encoding="utf-8") as thisfile:
         book = json.load(thisfile)
     book['generation'] = 3
 
@@ -17,7 +17,7 @@ for file in os.listdir(directory):
         "functions": [
             {
                 "function": "minecraft:set_nbt",
-                "tag": json.dumps(book)
+                "tag": json.dumps(book, ensure_ascii=False)
             },
             {
                 "function": "minecraft:set_nbt",
@@ -63,4 +63,4 @@ loottable = {
 }
 
 if __name__ == '__main__':
-    print(json.dumps(loottable, indent=4))
+    print(json.dumps(loottable, indent=4, ensure_ascii=False))

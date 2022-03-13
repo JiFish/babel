@@ -47,7 +47,7 @@ def addToLootTable(lootfilename, weight = 1, pool = 0):
         'weight': weight,
         "name": "babel:books"
     })
-    return json.dumps(lootjson, indent=indent)
+    return json.dumps(lootjson, indent=indent, ensure_ascii=False)
 
 print ("Building datapack...")
 zf = zipfile.ZipFile(args.filename, mode='w')
@@ -56,8 +56,8 @@ zf.writestr('pack.mcmeta', json.dumps({
         "pack_format": 7,
         "description": "Add pre-written books to your vanilla world"
     }
-}, indent=indent))
-zf.writestr('data/babel/loot_tables/books.json', json.dumps(loottable, indent=indent))
+}, indent=indent, ensure_ascii=False))
+zf.writestr('data/babel/loot_tables/books.json', json.dumps(loottable, indent=indent, ensure_ascii=False))
 if 'stronghold' not in args.loottable:
     print ("Adding to Stronghold Library loot table.")
     zf.writestr('data/minecraft/loot_tables/chests/stronghold_library.json', addToLootTable('stronghold_library.json',15))
