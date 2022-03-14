@@ -6,7 +6,7 @@ import sys
 isCompiled = getattr(sys, 'frozen', False)
 isUsingDefaults = (len(sys.argv) < 2)
 validLootTableList = ['fishing', 'village', 'mansion', 'stronghold', 'zombie']
-greeting = "Babel Book Loot Generator, v0.4%s" % (' (Windows)' if isCompiled else '')
+greeting = "Babel Book Loot Generator, v0.5%s" % (' (Windows)' if isCompiled else '')
 
 print("\n"+greeting)
 print("="*len(greeting)+"\n")
@@ -34,7 +34,7 @@ else:
 if isUsingDefaults:
     print("Using default configuration, for more options try %s -h\n" % sys.argv[0])
 
-print ("Importing Books...")
+print ("Importing Books... (This may take a while.)")
 from build_loottable import loottable
 print ("Found %d books." % len(loottable['pools'][0]['entries']))
 
@@ -47,17 +47,17 @@ def addToLootTable(lootfilename, weight = 1, pool = 0):
         'weight': weight,
         "name": "babel:books"
     })
-    return json.dumps(lootjson, indent=indent)
+    return json.dumps(lootjson, indent=indent, ensure_ascii=False)
 
 print ("Building datapack...")
 zf = zipfile.ZipFile(args.filename, mode='w')
 zf.writestr('pack.mcmeta', json.dumps({
     "pack": {
-        "pack_format": 7,
+        "pack_format": 9,
         "description": "Add pre-written books to your vanilla world"
     }
-}, indent=indent))
-zf.writestr('data/babel/loot_tables/books.json', json.dumps(loottable, indent=indent))
+}, indent=indent, ensure_ascii=False))
+zf.writestr('data/babel/loot_tables/books.json', json.dumps(loottable, indent=indent, ensure_ascii=False))
 if 'stronghold' not in args.loottable:
     print ("Adding to Stronghold Library loot table.")
     zf.writestr('data/minecraft/loot_tables/chests/stronghold_library.json', addToLootTable('stronghold_library.json',15))
