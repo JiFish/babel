@@ -53,7 +53,7 @@ print ("Building datapack...")
 zf = zipfile.ZipFile(args.filename, mode='w')
 zf.writestr('pack.mcmeta', json.dumps({
     "pack": {
-        "pack_format": 7,
+        "pack_format": 9,
         "description": "Add pre-written books to your vanilla world"
     }
 }, indent=indent, ensure_ascii=False))
