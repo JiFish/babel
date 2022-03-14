@@ -34,7 +34,7 @@ else:
 if isUsingDefaults:
     print("Using default configuration, for more options try %s -h\n" % sys.argv[0])
 
-print ("Importing Books...")
+print ("Importing Books... (This may take a while.)")
 from build_loottable import loottable
 print ("Found %d books." % len(loottable['pools'][0]['entries']))
 
