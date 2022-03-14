@@ -6,7 +6,7 @@ import sys
 isCompiled = getattr(sys, 'frozen', False)
 isUsingDefaults = (len(sys.argv) < 2)
 validLootTableList = ['fishing', 'village', 'mansion', 'stronghold', 'zombie']
-greeting = "Babel Book Loot Generator, v0.4%s" % (' (Windows)' if isCompiled else '')
+greeting = "Babel Book Loot Generator, v0.5%s" % (' (Windows)' if isCompiled else '')
 
 print("\n"+greeting)
 print("="*len(greeting)+"\n")

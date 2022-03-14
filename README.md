@@ -1,7 +1,9 @@
-# Babel Book Loot
+# Babel Book Loot v0.5
 ## A customisable pre-written book loot datapack for Minecraft
 
 Babel Book Loot adds over 100 pre-written books to various loot tables in Minecraft. The default library of books is a collection of public domain fairy tales. You can customise the library by adding your own text files.
+
+It was last updated for Minecraft 1.18.2, but it should work in a wide range of versions.
 
 ## Quick-start
 Run `babel.py`. It will generate babel.zip. Put that file in your Minecraft world's datapack directory.
