@@ -19,7 +19,7 @@ def decode_book(filename):
         with open(path, 'r', encoding="utf-8") as thisfile:
             book = thisfile.read()
         book = yaml.safe_load(book)
-        
+
         # Fix mis-decoded key/val
         keylist = book.keys()
         for key in keylist:
@@ -27,54 +27,70 @@ def decode_book(filename):
                 newkey, val = key.split(":")
                 del book[key]
                 book[newkey] = val
-                
+
         return book
-    except:
-        print("\nFailed to parse book: "+filename+". Check the markup is correct.")
-        if isCompiled:
-            input("\nPress ENTER or close this window.")
-        exit(1)
-        
+    except yaml.YAMLError as err:
+        raise RuntimeError("Failed to parse book: %s. Check the markup is correct." % filename)
+
 # Validate book. Books must have author, title and at least 1 page
 def validate_book(filename, book):
-    error = False
+    errors = []
     if 'author' not in book:
-        error = True
-        print("author not specified in "+filename)
+        errors.append("author not specified")
     elif type(book['author']) != str:
-        error = True
-        print("author is not a string in "+filename)
+        errors.append("author is not a string")
     if 'title' not in book:
-        error = True
-        print("title not specified in "+filename)
+        errors.append("title not specified")
     elif type(book['title']) != str:
-        error = True
-        print("title is not a string in "+filename)
+        errors.append("title is not a string")
     if 'pages' not in book:
-        error = True
-        print("pages not specified in "+filename)
+        errors.append("pages not specified")
     elif type(book['pages']) != list:
-        error = True
-        print("pages is not a list in "+filename)
+        errors.append("pages is not a list")
     elif len(book['pages']) < 1:
-        error = True
-        print("pages is empty in "+filename)
+        errors.append("pages is empty")
     else:
-        for p in book['pages']:
+        for i, p in enumerate(book['pages']):
             if type(p) != str:
-                error = True
-                print("single page is not a string in "+filename)
-                
-    if error:
-        if isCompiled:
-            input("\nPress ENTER or close this window.")
-        exit(1)
+                errors.append("page %s is not a string" % (i+1))
+
+    if len(errors) > 0:
+        raise RuntimeError("Validation problems in %s:\n- %s" % (filename, "\n- ".join(errors)))
+
+## https://stackoverflow.com/questions/3173320/text-progress-bar-in-terminal-with-block-characters
+def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
+    """
+    Call in a loop to create terminal progress bar
+    @params:
+        iteration   - Required  : current iteration (Int)
+        total       - Required  : total iterations (Int)
+        prefix      - Optional  : prefix string (Str)
+        suffix      - Optional  : suffix string (Str)
+        decimals    - Optional  : positive number of decimals in percent complete (Int)
+        length      - Optional  : character length of bar (Int)
+        fill        - Optional  : bar fill character (Str)
+        printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)
+    """
+    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+    filledLength = int(length * iteration // total)
+    bar = fill * filledLength + '-' * (length - filledLength)
+    print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
+    # Print New Line on Complete
+    if iteration == total:
+        print()
 
 # Loop through the books directory and add them all
-for file in os.listdir(directory):
+dirlist = os.listdir(directory)
+totalfiles = len(dirlist)
+
+if totalfiles < 1:
+    raise RuntimeError("No books were found!")
+
+printProgressBar(0, totalfiles, prefix='Importing Books...', length=35, decimals=0)
+for i, file in enumerate(dirlist):
     book = decode_book(file)
     validate_book(file, book)
-    
+
     # Generation 3 by default, but this can be replaced
     book['generation'] = 3
 
@@ -119,6 +135,7 @@ for file in os.listdir(directory):
             }
         ]
     })
+    printProgressBar(i+1, totalfiles, prefix='Importing Books...', length=35, decimals=0)
 
 
 loottable = {
