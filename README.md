@@ -7,9 +7,9 @@ It was last updated for Minecraft 1.21.
 
 ## Quick-start
 
-Download [babel_0.6.zip]() and place it in your Minecraft world's datapack directory.
+Download [babel_v1.0.zip](https://github.com/JiFish/babel/releases/download/v1.0/babel_v1.0.zip) and place it in your Minecraft world's datapack directory.
 
-If you don't want zombies dropping books, download [babel_0.6_no_zombies.zip]() instead.
+If you don't want zombies dropping books, download [babel-no-zombie-loot_v1.0.zip](https://github.com/JiFish/babel/releases/download/v1.0/babel-no-zombie-loot_v1.0.zip) instead.
 
 ## How the datapack works in-game
 
