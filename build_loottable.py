@@ -9,7 +9,7 @@ directory = 'books/'
 entries = [];
 
 # Use a YAML parser to decode books. This allows JSON, but also
-# allows looser formated JSON like the minecraft parser does.
+# allows looser formatted JSON like the minecraft parser does.
 # One place this fails is yaml expects a space after an unquoted key.
 # This function attempts to fix these key/val pairs after decode.
 # Only the top level is fixed, which is all that should be needed for this application.
@@ -49,10 +49,11 @@ def validate_book(filename, book):
         errors.append("pages is not a list")
     elif len(book['pages']) < 1:
         errors.append("pages is empty")
-    else:
-        for i, p in enumerate(book['pages']):
-            if type(p) != str:
-                errors.append("page %s is not a string" % (i+1))
+# TODO: page validation
+#    else:
+#        for i, p in enumerate(book['pages']):
+#            if type(p) != str:
+#                errors.append("page %s is not a string" % (i+1))
 
     if len(errors) > 0:
         raise RuntimeError("Validation problems in %s:\n- %s" % (filename, "\n- ".join(errors)))
@@ -83,59 +84,82 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
 dirlist = os.listdir(directory)
 totalfiles = len(dirlist)
 
+# Pre-create generation chance functions
+generationChances = {2: 0.3, 1: 0.01, 0: 0.003}
+generationFunctions = []
+for generation in generationChances:
+    generationFunctions.append({
+        "function": "minecraft:set_book_cover",
+        "generation": generation,
+        "conditions": [
+            {
+                'condition': "random_chance",
+                'chance': generationChances[generation]
+            }
+        ]
+    })
+
 if totalfiles < 1:
     raise RuntimeError("No books were found!")
 
-printProgressBar(0, totalfiles, prefix='Importing Books...', length=35, decimals=0)
+printProgressBar(0, totalfiles, prefix='Importing Books...', length=40, decimals=0)
 for i, file in enumerate(dirlist):
     book = decode_book(file)
     validate_book(file, book)
 
-    # Generation 3 by default, but this can be replaced
-    book['generation'] = 3
+    if 'weight' in book:
+        weight = book['weight']
+    else:
+        weight = 1
 
-    entries.append({
+    # Basic item and functions
+    thisBook = {
         "type": "item",
         "name": "minecraft:written_book",
-        "weight": 1,
+        "weight": weight,
         "functions": [
             {
-                "function": "minecraft:set_nbt",
-                "tag": json.dumps(book, ensure_ascii=False)
+                "function": "minecraft:set_written_book_pages",
+                "pages": book['pages'],
+                "mode": "replace_all"
             },
             {
-                "function": "minecraft:set_nbt",
-                "tag": json.dumps({'generation':2}),
-                "conditions": [
-                    {
-                        'condition': "random_chance",
-                        'chance': 0.3
-                    }
-                ]
-            },
-            {
-                "function": "minecraft:set_nbt",
-                "tag": json.dumps({'generation':1}),
-                "conditions": [
-                    {
-                        'condition': "random_chance",
-                        'chance': 0.01
-                    }
-                ]
-            },
-            {
-                "function": "minecraft:set_nbt",
-                "tag": json.dumps({'generation':0}),
-                "conditions": [
-                    {
-                        'condition': "random_chance",
-                        'chance': 0.003
-                    }
-                ]
+                "function": "minecraft:set_book_cover",
+                "author": book['author'],
+                "title": book['title'],
+                "generation": 3,
             }
         ]
-    })
-    printProgressBar(i+1, totalfiles, prefix='Importing Books...', length=35, decimals=0)
+    }
+
+    # Optional functions
+    if "lore" in book:
+        thisBook["functions"].append({
+            "function": "minecraft:set_lore",
+            "lore": book['lore'],
+            "mode": "replace_all"
+        })
+    if "custom_model_data" in book:
+        thisBook["functions"].append({
+            "function": "minecraft:set_custom_model_data",
+            "count": book['custom_model_data']
+        })
+    if "custom_data" in book:
+        if type(book['custom_data']) == str:
+            customData = book['customData']
+        else:
+            customData = json.dumps(book['customData'], ensure_ascii=False)
+        thisBook["functions"].append({
+            "function": "minecraft:set_custom_data",
+            "tag": book['custom_data']
+        })
+
+    # Generation functions
+    thisBook["functions"].extend(generationFunctions)
+
+    # Append to entries
+    entries.append(thisBook)
+    printProgressBar(i+1, totalfiles, prefix='Importing Books...', length=40, decimals=0)
 
 
 loottable = {
