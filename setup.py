@@ -13,7 +13,7 @@ executables = [
 ]
 
 setup(name='babel',
-      version = '0.5',
+      version = '1.0',
       description = '',
       options = dict(build_exe = buildOptions),
       executables = executables)

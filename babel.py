@@ -1,84 +1,64 @@
-import zipfile
-import json
 import argparse
 import sys
+from build_datapack import *
 
 isCompiled = getattr(sys, 'frozen', False)
 isUsingDefaults = (len(sys.argv) < 2)
 validLootTableList = ['fishing', 'village', 'mansion', 'stronghold', 'zombie']
-greeting = "Babel Book Loot Generator, v0.5%s" % (' (Windows)' if isCompiled else '')
+greeting = "Babel Book Loot Generator, v1.0%s" % (' (Windows)' if isCompiled else '')
 
-print("\n"+greeting)
-print("="*len(greeting)+"\n")
+def restricted_float(x):
+    error = "%r not a value between 0.0 and 1.0"
+    try:
+        x = float(x)
+    except ValueError:
+        raise argparse.ArgumentTypeError(error % x)
+
+    if x < 0.0 or x > 1.0:
+        raise argparse.ArgumentTypeError(error % x)
+    return x
 
 parser = argparse.ArgumentParser()
-parser.add_argument('filename', help='Optional output zip filename. Default: babel.zip', nargs='?', default='babel.zip')
-parser.add_argument('-d', dest="loottable", default=[], action='append', help='Disable adding books to one of the following loot tables: '+
-                    ', '.join(validLootTableList)+'. Can be repeated to disable more than one.')
-parser.add_argument('-c', '--clean', help='Indent output JSON files.', action='store_true')
+parser.add_argument('filename', help='Optional output zip filename. (default: %(default)s)', nargs='?', default='babel.zip')
+parser.add_argument('-v', '--version', action='version', version=greeting)
+parser.add_argument('-d', dest="loottable", default=[], action='append', choices=validLootTableList,
+                    help='Disable adding books to the given loot tables. Can be repeated to disable more than one.')
+# parser.add_argument('--gen2', action='store', type=restricted_float, default=0.3, metavar="CHANCE",
+                    # help="Chance a book will be marked as a 'Copy of a copy', between 0.0 and 1.0. (default: %(default)s)")
+# parser.add_argument('--gen1', action='store', type=restricted_float, default=0.01, metavar="CHANCE",
+                    # help="Chance a book will be marked as a 'Copy of original', between 0.0 and 1.0. (default: %(default)s)")
+# parser.add_argument('--gen0', action='store', type=restricted_float, default=0.003, metavar="CHANCE",
+                    # help="Chance a book will be marked as an 'Original', between 0.0 and 1.0. (default: %(default)s)")
+#parser.add_argument('-l', '--loottable', action='store_true',
+                    # help="Don't build the datapack, instead just output the loot table. The default filename is books.json.")
+parser.add_argument('-i', '--indent', help='Indent output JSON files.', action='store_true')
 if isCompiled:
-    parser.add_argument('-!', '--no-wait', help="Don't wait for user input at the end of the build. Triggered automatically by using any other argument.",
-                        action='store_true')
+    parser.add_argument('-!', '--no-wait', action='store_true',
+                        help="Don't wait for user input when finished. Triggered automatically by using any other argument.")
 args = parser.parse_args()
 
-if set(args.loottable).issubset(validLootTableList) == False:
-    print("ERROR: Invalid input on -d argument\n")
-    parser.print_help()
-    exit(1)
-
-if args.clean:
+if args.indent:
     indent = 4
 else:
     indent = None
 
+print("\n"+greeting)
+print("="*len(greeting)+"\n")
+
 if isUsingDefaults:
     print("Using default configuration, for more options try %s -h\n" % sys.argv[0])
 
-print ("Importing Books... (This may take a while.)")
-from build_loottable import loottable
-print ("Found %d books." % len(loottable['pools'][0]['entries']))
+try:
+    from build_loottable import loottable
+    print ("Found %d books." % len(loottable['pools'][0]['entries']))
 
-def addToLootTable(lootfilename, weight = 1, pool = 0):
-    global indent
-    with open('base_loot_tables/'+lootfilename, 'r') as lootfile:
-        lootjson = json.loads(lootfile.read())
-    lootjson['pools'][pool]['entries'].append({
-        'type': 'loot_table',
-        'weight': weight,
-        "name": "babel:books"
-    })
-    return json.dumps(lootjson, indent=indent, ensure_ascii=False)
+    print ("Building datapack...")
+    buildDatapack(args.filename, args.loottable, loottable, indent=indent)
+    print ("\nDatapack build complete! Copy %s to your world's datapack directory." % args.filename)
 
-print ("Building datapack...")
-zf = zipfile.ZipFile(args.filename, mode='w')
-zf.writestr('pack.mcmeta', json.dumps({
-    "pack": {
-        "pack_format": 9,
-        "description": "Add pre-written books to your vanilla world"
-    }
-}, indent=indent, ensure_ascii=False))
-zf.writestr('data/babel/loot_tables/books.json', json.dumps(loottable, indent=indent, ensure_ascii=False))
-if 'stronghold' not in args.loottable:
-    print ("Adding to Stronghold Library loot table.")
-    zf.writestr('data/minecraft/loot_tables/chests/stronghold_library.json', addToLootTable('stronghold_library.json',15))
-if 'mansion' not in args.loottable:
-    print ("Adding to Woodland Mansion loot table.")
-    zf.writestr('data/minecraft/loot_tables/chests/woodland_mansion.json', addToLootTable('woodland_mansion.json',5))
-if 'village' not in args.loottable:
-    print ("Adding to Village loot table.")
-    zf.writestr('data/minecraft/loot_tables/chests/village/village_desert_house.json', addToLootTable('village_desert_house.json',3))
-    zf.writestr('data/minecraft/loot_tables/chests/village/village_plains_house.json', addToLootTable('village_plains_house.json',3))
-    zf.writestr('data/minecraft/loot_tables/chests/village/village_savanna_house.json', addToLootTable('village_savanna_house.json',3))
-    zf.writestr('data/minecraft/loot_tables/chests/village/village_snowy_house.json', addToLootTable('village_snowy_house.json',3))
-    zf.writestr('data/minecraft/loot_tables/chests/village/village_taiga_house.json', addToLootTable('village_taiga_house.json',3))
-if 'fishing' not in args.loottable:
-    print ("Adding to Fishing Treasure loot table.")
-    zf.writestr('data/minecraft/loot_tables/gameplay/fishing/treasure.json', addToLootTable('treasure.json',1))
-if 'zombie' not in args.loottable:
-    print ("Adding to Zombie drop loot table.")
-    zf.writestr('data/minecraft/loot_tables/entities/zombie.json', addToLootTable('zombie.json',1,1))
-zf.close()
-print ("\nDatapack build complete! Copy %s to your world's datapack directory." % args.filename)
+except Exception as e:
+    print("\nError: "+str(e))
 
-if isCompiled and isUsingDefaults:
-    input("\nPress ENTER or close this window.")
+finally:
+    if isCompiled and isUsingDefaults:
+        input("\nPress ENTER or close this window.")
