@@ -23,6 +23,8 @@ The generation of the book is determined randomly:
 
 ## Customising Books
 
+First get babel-builder-windows_v1.0.zip or babel-builder-python_v1.0.zip from the [releases page](https://github.com/JiFish/babel/releases).
+
 Run `py babel.py` (or `babel.exe` in windows.) this will output `babel.zip`. Put that file in your Minecraft world's datapack directory. Run `babel.py -h` to see more options.
 
 Any books in the `books` directory will be included. You can add and remove books as you wish.
