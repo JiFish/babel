@@ -4,7 +4,7 @@ from build_datapack import *
 
 isCompiled = getattr(sys, 'frozen', False)
 isUsingDefaults = (len(sys.argv) < 2)
-validLootTableList = ['fishing', 'village', 'mansion', 'stronghold', 'zombie']
+validLootTableList = ['fishing', 'village', 'mansion', 'stronghold', 'zombie', 'herogift']
 greeting = "Babel Book Loot Generator, v1.0%s" % (' (Windows)' if isCompiled else '')
 
 def restricted_float(x):
@@ -23,7 +23,8 @@ parser.add_argument('filename', help='Optional output zip filename. (default: %(
 parser.add_argument('-v', '--version', action='version', version=greeting)
 parser.add_argument('-d', dest="loottable", default=[], action='append', choices=validLootTableList,
                     help='Disable adding books to the given loot tables. Can be repeated to disable more than one.')
-# parser.add_argument('--gen2', action='store', type=restricted_float, default=0.3, metavar="CHANCE",
+parser.add_argument('-r', '--recipe', help='Include crafting recipe. (Not included by default)', action='store_true')
+# parser.add_argument('--gen2', action='store', type=restricted_float, default=0.66, metavar="CHANCE",
                     # help="Chance a book will be marked as a 'Copy of a copy', between 0.0 and 1.0. (default: %(default)s)")
 # parser.add_argument('--gen1', action='store', type=restricted_float, default=0.01, metavar="CHANCE",
                     # help="Chance a book will be marked as a 'Copy of original', between 0.0 and 1.0. (default: %(default)s)")
@@ -38,7 +39,7 @@ if isCompiled:
 args = parser.parse_args()
 
 if args.indent:
-    indent = 4
+    indent = 2
 else:
     indent = None
 
@@ -53,7 +54,7 @@ try:
     print ("Found %d books." % len(loottable['pools'][0]['entries']))
 
     print ("Building datapack...")
-    buildDatapack(args.filename, args.loottable, loottable, indent=indent)
+    buildDatapack(args.filename, args.loottable, args.recipe, loottable, indent=indent)
     print ("\nDatapack build complete! Copy %s to your world's datapack directory." % args.filename)
 
 except Exception as e:

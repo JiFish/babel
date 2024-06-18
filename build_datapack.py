@@ -22,8 +22,12 @@ def addToLootTable(lootfilename, weight = 1, pool = 0, indent = None):
 
 def getBooksJsonString(loottable, indent = None):
     return json.dumps(loottable, indent=indent, ensure_ascii=False)
+    
+def getFileJson(filename, indent = None):
+    with open(filename) as jsonFile:
+        return json.dumps(json.load(jsonFile), indent=indent)
 
-def buildDatapack(filename, argsloottable, loottable, indent = None):
+def buildDatapack(filename, argsloottable, argsrecipe, loottable, indent = None):
     zf = zipfile.ZipFile(filename, mode='w', compression=compression)
     zf.writestr('pack.mcmeta', json.dumps({
         "pack": {
@@ -51,4 +55,12 @@ def buildDatapack(filename, argsloottable, loottable, indent = None):
     if 'zombie' not in argsloottable:
         print ("Adding to Zombie drop loot table.")
         zf.writestr('data/minecraft/loot_table/entities/zombie.json', addToLootTable('zombie.json',1,1, indent=indent))
+    if 'herogift' not in argsloottable:
+        print ("Replacing Librarian's Hero of the village gift.")
+        #zf.write('extras/librarian_gift.json', 'data/minecraft/loot_table/gameplay/hero_of_the_village/librarian_gift.json')
+        zf.writestr('data/minecraft/loot_table/gameplay/hero_of_the_village/librarian_gift.json', getFileJson('extras/librarian_gift.json', indent=indent))
+    if argsrecipe:
+        print ("Adding crafting recipe.")
+        #zf.write('extras/babel_book_recipe.json', 'data/babel/recipe/babel_book_recipe.json')
+        zf.writestr('data/babel/recipe/babel_book_recipe.json', getFileJson('extras/babel_book_recipe.json', indent=indent))
     zf.close()

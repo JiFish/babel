@@ -3,8 +3,6 @@ import yaml
 import os
 import sys
 
-isCompiled = getattr(sys, 'frozen', False)
-
 directory = 'books/'
 entries = [];
 
@@ -85,7 +83,7 @@ dirlist = os.listdir(directory)
 totalfiles = len(dirlist)
 
 # Pre-create generation chance functions
-generationChances = {2: 0.3, 1: 0.01, 0: 0.003}
+generationChances = {2: 0.66, 1: 0.01, 0: 0.003}
 generationFunctions = []
 for generation in generationChances:
     generationFunctions.append({
@@ -114,7 +112,7 @@ for i, file in enumerate(dirlist):
 
     # Basic item and functions
     thisBook = {
-        "type": "item",
+        "type": "minecraft:item",
         "name": "minecraft:written_book",
         "weight": weight,
         "functions": [
@@ -172,4 +170,4 @@ loottable = {
 }
 
 if __name__ == '__main__':
-    print(json.dumps(loottable, indent=4, ensure_ascii=False))
+    print(json.dumps(loottable, indent=2, ensure_ascii=False))

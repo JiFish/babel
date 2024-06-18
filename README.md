@@ -1,5 +1,5 @@
 # Babel Book Loot v1.0
-## A customisable pre-written book loot datapack for Minecraft
+## A customisable pre-written book loot data pack for Minecraft
 
 Babel Book Loot adds over 100 pre-written books to various loot tables in Minecraft. The default library of books is a collection of public domain fairy tales. You can customise the library by adding your own text files.
 
@@ -9,17 +9,32 @@ It was last updated for Minecraft 1.21.
 
 Download [babel_v1.0.zip](https://github.com/JiFish/babel/releases/download/v1.0/babel_v1.0.zip) and place it in your Minecraft world's datapack directory.
 
-If you don't want zombies dropping books, download [babel-no-zombie-loot_v1.0.zip](https://github.com/JiFish/babel/releases/download/v1.0/babel-no-zombie-loot_v1.0.zip) instead.
+Pre-created customised packs:
 
-## How the datapack works in-game
+- [babel-no-zombie-loot_v1.0.zip](https://github.com/JiFish/babel/releases/download/v1.0/babel-no-zombie-loot_v1.0.zip) - Zombies don't drop books.
+- [babel-recipe_v1.0.zip](https://github.com/JiFish/babel/releases/download/v1.0/babel-recipe_v1.0.zip) - Additionally includes a recipe to craft random books.
+
+## How the data pack works in-game
 
 Written books can be dropped by zombies if killed by a player, or fished up with a fishing rod. They can also be found in villages, stronghold libraries and woodland mansions in chests.
 
 The generation of the book is determined randomly:
-- 69% Tattered Book
-- 30% Copy of a copy
+- 33% Tattered Book
+- 65% Copy of a copy
 - 1% Copy of original
 - <1% Original
+
+If you are hero of the village, the librarian can throw a guaranteed duplicable book.
+
+### Optional Recipe
+
+If you got the version with the crafting recipe. B = Book and Quill, S = Soul Sand, C = Chest. This gives a chest which once placed will have a single random book inside.
+
+```
+ S 
+SBS
+ C 
+```
 
 ## Customising Books
 
@@ -113,27 +128,16 @@ The default collection of books was sourced from Project Gutenberg. https://www.
 ### Updating books from v0.5
 If you already have books in the v0.5 format, you can update them by running `update_books.py`. The books directory must only contain v0.5 format books. The script will also overwrite the originals, so keep a backup.
 
-## Advanced Customisation
-### Altering where books will be found
-You can disable various book drops using command line options. Use `babel.py -h` to see the complete list. An example where zombies do not drop books:
+## Customising where books can be found
+
+You can disable various book drops using command line options. An example where zombies do not drop books and you can't fish for them, but the optional recipe is included:
 ```
-babel.py -d zombie
+babel.py -d zombie -d fishing -recipe
 ````
-
-You can add books to other loot tables using type `minecraft:loot_table` and value `babel:books`.
-
-### Dealing with datapack conflicts
-If any of your other datapacks modify loot tables used by babel, it might be possible to create a compatible pack. To do this, replace the loot tables in the `base_loot_tables` with the ones from the conflicting datapack. This isn't guaranteed to work, and won't if the tables are much different from expected.
-
-### For use making your own datapacks
-If you just want to generate the loot table without the surrounding files, try:
-```
-build_loottable.py > books.json
-```
 
 ### Full argument list:
 ```
-usage: babel.py [-h] [-v] [-d {fishing,village,mansion,stronghold,zombie}]
+usage: babel.py [-h] [-v] [-d {fishing,village,mansion,stronghold,zombie,herogift}]
                 [-i] [-!] [filename]
 
 positional arguments:
@@ -145,21 +149,36 @@ optional arguments:
   -d {fishing,village,mansion,stronghold,zombie}
                         Disable adding books to the given loot tables. Can be
                         repeated to disable more than one.
+  -r, --recipe          Add crafting recipe for random books.
   -i, --indent          Indent output JSON files.
   -!, --no-wait         Don't wait for user input when finished. Triggered
                         automatically by using any other argument. (Windows
                         version only.)
 ```
 
+## Advanced Customisation
+
+### Dealing with data pack conflicts
+If any of your other data packs modify loot tables used by babel, it might be possible to create a compatible pack. To do this, replace the loot tables in the `base_loot_tables` with the ones from the conflicting datapack. This isn't guaranteed to work, and won't if the tables are much different from expected.
+
+### For use making your own data packs
+You can add books to other loot tables using type `minecraft:loot_table` and value `babel:books`.
+
+If you just want to generate the loot table without the surrounding files, try:
+
+```
+build_loottable.py > books.json
+```
+
 ## Comments, suggestions or contributions?
 Please use the Issue Tracker on GitHub, or send me a tweet [@JiFish](https://twitter.com/intent/tweet?text=.@JiFish) or Toot [@joe@social.jifish.co.uk](https://social.jifish.co.uk/@joe).
 
 ## Copyright & use in your own datapacks
-Assuming the books are your own work, loot tables outputted by babel belong to you. You can use them freely in your own datapack. A credit is very appreciated, but not required.
+Assuming the books are your own work, loot tables outputted by babel belong to you. You can use them freely in your own data pack. A credit is very appreciated, but not required.
 
 Books in the `books` directory are in the public domain. The `books.json` file created from them is also in the public domain.
 
-The babel tool and datapack is copyright Joseph Fowler.
+The babel tool and data pack is copyright Joseph Fowler.
 
 ## Disclaimer
 
