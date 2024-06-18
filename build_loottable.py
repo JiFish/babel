@@ -1,19 +1,15 @@
 import json
 import yaml
 import os
-import sys
-
-directory = 'books/'
-entries = [];
 
 # Use a YAML parser to decode books. This allows JSON, but also
 # allows looser formatted JSON like the minecraft parser does.
 # One place this fails is yaml expects a space after an unquoted key.
 # This function attempts to fix these key/val pairs after decode.
 # Only the top level is fixed, which is all that should be needed for this application.
-def decode_book(filename):
+def decode_book(directory, filename):
     try:
-        path = os.path.join(directory, file)
+        path = os.path.join(directory, filename)
         with open(path, 'r', encoding="utf-8") as thisfile:
             book = thisfile.read()
         book = yaml.safe_load(book)
@@ -78,96 +74,108 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
     if iteration == total:
         print()
 
-# Loop through the books directory and add them all
-dirlist = os.listdir(directory)
-totalfiles = len(dirlist)
+def buildLootTable(directory, config, progressBar = True):
+    entries = [];
 
-# Pre-create generation chance functions
-generationChances = {2: 0.66, 1: 0.01, 0: 0.003}
-generationFunctions = []
-for generation in generationChances:
-    generationFunctions.append({
-        "function": "minecraft:set_book_cover",
-        "generation": generation,
-        "conditions": [
-            {
-                'condition': "random_chance",
-                'chance': generationChances[generation]
-            }
-        ]
-    })
+    # Loop through the books directory and add them all
+    dirlist = os.listdir(directory)
+    totalfiles = len(dirlist)
 
-if totalfiles < 1:
-    raise RuntimeError("No books were found!")
+    # Pre-create generation chance functions
+    generationChances = {
+        2: config['copy-of-copy-chance'],
+        1: config['copy-of-original-chance'],
+        0: config['original-chance']
+    }
+    generationFunctions = []
+    for generation in generationChances:
+        generationFunctions.append({
+            "function": "minecraft:set_book_cover",
+            "generation": generation,
+            "conditions": [
+                {
+                    'condition': "random_chance",
+                    'chance': generationChances[generation]
+                }
+            ]
+        })
 
-printProgressBar(0, totalfiles, prefix='Importing Books...', length=40, decimals=0)
-for i, file in enumerate(dirlist):
-    book = decode_book(file)
-    validate_book(file, book)
+    if totalfiles < 1:
+        raise RuntimeError("No books were found!")
 
-    if 'weight' in book:
-        weight = book['weight']
-    else:
-        weight = 1
+    if progressBar:
+        printProgressBar(0, totalfiles, prefix='Importing Books...', length=40, decimals=0)
+    for i, file in enumerate(dirlist):
+        book = decode_book(directory, file)
+        validate_book(file, book)
 
-    # Basic item and functions
-    thisBook = {
-        "type": "minecraft:item",
-        "name": "minecraft:written_book",
-        "weight": weight,
-        "functions": [
-            {
-                "function": "minecraft:set_written_book_pages",
-                "pages": book['pages'],
+        if 'weight' in book:
+            weight = book['weight']
+        else:
+            weight = 1
+
+        # Basic item and functions
+        thisBook = {
+            "type": "minecraft:item",
+            "name": "minecraft:written_book",
+            "weight": weight,
+            "functions": [
+                {
+                    "function": "minecraft:set_written_book_pages",
+                    "pages": book['pages'],
+                    "mode": "replace_all"
+                },
+                {
+                    "function": "minecraft:set_book_cover",
+                    "author": book['author'],
+                    "title": book['title'],
+                    "generation": 3,
+                }
+            ]
+        }
+
+        # Optional functions
+        if "lore" in book:
+            thisBook["functions"].append({
+                "function": "minecraft:set_lore",
+                "lore": book['lore'],
                 "mode": "replace_all"
-            },
+            })
+        if "custom_model_data" in book:
+            thisBook["functions"].append({
+                "function": "minecraft:set_custom_model_data",
+                "count": book['custom_model_data']
+            })
+        if "custom_data" in book:
+            if type(book['custom_data']) == str:
+                customData = book['customData']
+            else:
+                customData = json.dumps(book['customData'], ensure_ascii=False)
+            thisBook["functions"].append({
+                "function": "minecraft:set_custom_data",
+                "tag": customData
+            })
+
+        # Generation functions
+        thisBook["functions"].extend(generationFunctions)
+
+        # Append to entries
+        entries.append(thisBook)
+        if progressBar:
+            printProgressBar(i+1, totalfiles, prefix='Importing Books...', length=40, decimals=0)
+
+
+    loottable = {
+        'pools': [
             {
-                "function": "minecraft:set_book_cover",
-                "author": book['author'],
-                "title": book['title'],
-                "generation": 3,
+                'rolls': 1,
+                'entries': entries
             }
         ]
     }
 
-    # Optional functions
-    if "lore" in book:
-        thisBook["functions"].append({
-            "function": "minecraft:set_lore",
-            "lore": book['lore'],
-            "mode": "replace_all"
-        })
-    if "custom_model_data" in book:
-        thisBook["functions"].append({
-            "function": "minecraft:set_custom_model_data",
-            "count": book['custom_model_data']
-        })
-    if "custom_data" in book:
-        if type(book['custom_data']) == str:
-            customData = book['customData']
-        else:
-            customData = json.dumps(book['customData'], ensure_ascii=False)
-        thisBook["functions"].append({
-            "function": "minecraft:set_custom_data",
-            "tag": book['custom_data']
-        })
-
-    # Generation functions
-    thisBook["functions"].extend(generationFunctions)
-
-    # Append to entries
-    entries.append(thisBook)
-    printProgressBar(i+1, totalfiles, prefix='Importing Books...', length=40, decimals=0)
-
-
-loottable = {
-    'pools': [
-        {
-            'rolls': 1,
-            'entries': entries
-        }
-    ]
-}
+    return loottable
 
 if __name__ == '__main__':
+    loottable = buildLootTable('books/', {'copy-of-copy-chance': 0.66, 'copy-of-original-chance': 0.1, 'original-chance': 0.003}, False)
     print(json.dumps(loottable, indent=2, ensure_ascii=False))

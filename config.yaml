@@ -1,0 +1,26 @@
+output-filename: babel.zip
+
+# Include a recipe to craft random pre-written books. See `README.md` for recipe.
+add-crafting-recipe: false
+
+# Find pre-written books while fishing
+add-fishing-loot: true
+# Find pre-written books in village chests
+add-village-loot: true
+# Find pre-written books in Woodland Mansions
+add-mansion-loot: true
+# Find pre-written books in Stronghold Libraries
+add-stronghold-loot: true
+# Zombies rarely drop pre-written books
+add-zombie-drop: true
+# If you are hero of the village, a librarian may gift you a pre-written book
+replace-hero-of-the-village-gift: true
+
+# By default books are "Tattered."
+# Each of these chances will be applied in this order, regardless of the outcome of previous rolls.
+copy-of-copy-chance: 0.66
+copy-of-original-chance: 0.1
+original-chance: 0.003
+
+# Indent output json files
+indent-output: false

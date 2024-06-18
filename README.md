@@ -1,4 +1,4 @@
-# Babel Book Loot v1.0
+# Babel Book Loot v1.1
 ## A customisable pre-written book loot data pack for Minecraft
 
 Babel Book Loot adds over 100 pre-written books to various loot tables in Minecraft. The default library of books is a collection of public domain fairy tales. You can customise the library by adding your own text files.
@@ -7,12 +7,12 @@ It was last updated for Minecraft 1.21.
 
 ## Quick-start
 
-Download [babel_v1.0.zip](https://github.com/JiFish/babel/releases/download/v1.0/babel_v1.0.zip) and place it in your Minecraft world's datapack directory.
+Download [babel_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel_v1.1.zip) and place it in your Minecraft world's data pack directory.
 
 Pre-created customised packs:
 
-- [babel-no-zombie-loot_v1.0.zip](https://github.com/JiFish/babel/releases/download/v1.0/babel-no-zombie-loot_v1.0.zip) - Zombies don't drop books.
-- [babel-recipe_v1.0.zip](https://github.com/JiFish/babel/releases/download/v1.0/babel-recipe_v1.0.zip) - Additionally includes a recipe to craft random books.
+- [babel-no-zombie-loot_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-no-zombie-loot_v1.1.zip) - Zombies don't drop books.
+- [babel-recipe_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-recipe_v1.1.zip) - Additionally includes a recipe to craft random books.
 
 ## How the data pack works in-game
 
@@ -36,9 +36,9 @@ SBS
  C 
 ```
 
-## Customising Books
+## Customising Included Books
 
-First get babel-builder-windows_v1.0.zip or babel-builder-python_v1.0.zip from the [releases page](https://github.com/JiFish/babel/releases).
+First get babel-builder-windows_v1.1.zip or babel-builder-python_v1.1.zip from the [releases page](https://github.com/JiFish/babel/releases).
 
 Run `py babel.py` (or `babel.exe` in windows.) this will output `babel.zip`. Put that file in your Minecraft world's datapack directory. Run `babel.py -h` to see more options.
 
@@ -128,29 +128,20 @@ The default collection of books was sourced from Project Gutenberg. https://www.
 ### Updating books from v0.5
 If you already have books in the v0.5 format, you can update them by running `update_books.py`. The books directory must only contain v0.5 format books. The script will also overwrite the originals, so keep a backup.
 
-## Customising where books can be found
+## Customising Pack Settings
 
-You can disable various book drops using command line options. An example where zombies do not drop books and you can't fish for them, but the optional recipe is included:
-```
-babel.py -d zombie -d fishing -recipe
-````
+You can disable various loot drops, change generation chances, and make other customisations by editing `config.yaml`.
 
 ### Full argument list:
 ```
-usage: babel.py [-h] [-v] [-d {fishing,village,mansion,stronghold,zombie,herogift}]
-                [-i] [-!] [filename]
+usage: babel.py [-h] [-v] [-!] [filename]
 
 positional arguments:
-  filename              Optional output zip filename. (default: babel.zip)
+  filename              Configuration filename. (default: config.yaml)
 
 optional arguments:
   -h, --help            show this help message and exit
   -v, --version         show program's version number and exit
-  -d {fishing,village,mansion,stronghold,zombie}
-                        Disable adding books to the given loot tables. Can be
-                        repeated to disable more than one.
-  -r, --recipe          Add crafting recipe for random books.
-  -i, --indent          Indent output JSON files.
   -!, --no-wait         Don't wait for user input when finished. Triggered
                         automatically by using any other argument. (Windows
                         version only.)

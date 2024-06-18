@@ -4,7 +4,16 @@ from cx_Freeze import setup, Executable
 # fine tuning.
 buildOptions = dict(packages = [],
                     excludes = ['email', 'html', 'http', 'logging', 'pydoc_data', 'unittest', 'urllib', 'xml'],
-                    include_files = ['books/', 'base_loot_tables/', 'README.md', 'LICENSE.txt'])
+                    include_files = [
+                        'books/',
+                        'base_loot_tables/',
+                        'extras/',
+                        'config.yaml',
+                        'config_no_zombies.yaml',
+                        'config_with_recipe.yaml',
+                        'README.md',
+                        'LICENSE.txt'
+                    ])
 
 base = 'Console'
 
@@ -13,7 +22,7 @@ executables = [
 ]
 
 setup(name='babel',
-      version = '1.0',
+      version = '1.1',
       description = '',
       options = dict(build_exe = buildOptions),
       executables = executables)
