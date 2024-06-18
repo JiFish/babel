@@ -4,7 +4,7 @@ from cx_Freeze import setup, Executable
 # fine tuning.
 buildOptions = dict(packages = [],
                     excludes = ['email', 'html', 'http', 'logging', 'pydoc_data', 'unittest', 'urllib', 'xml'],
-                    include_files = ['books/', 'base_loot_tables/', 'README.md'])
+                    include_files = ['books/', 'base_loot_tables/', 'README.md', 'LICENSE.txt'])
 
 base = 'Console'
 
