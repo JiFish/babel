@@ -1,21 +1,20 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " S ",
-    "SWS",
-    " C "
-  ],
-  "key": {
-    "S": {
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "minecraft:emerald"
+    },
+    {
       "item": "minecraft:soul_sand"
     },
-    "W": {
+    {
       "item": "minecraft:writable_book"
-    },
-    "C": {
-      "item": "minecraft:chest"
     }
-  },
+  ],
   "result": {
     "id": "minecraft:chest",
     "count": 1,

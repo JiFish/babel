@@ -1,6 +1,9 @@
+# Outputted data pack file
 output-filename: babel.zip
+# Path containing the book json / yaml files
+books-path: books
 
-# Include a recipe to craft random pre-written books. See `README.md` for recipe.
+# Include a recipe to craft random pre-written books. See `README.md` for the recipe.
 add-crafting-recipe: false
 
 # Find pre-written books while fishing
@@ -14,6 +17,7 @@ add-stronghold-loot: true
 # Zombies rarely drop pre-written books
 add-zombie-drop: true
 # If you are hero of the village, a librarian may gift you a pre-written book
+# This ignores the below chances and gives a copy-of-original 90% of the time, and an original 10%.
 replace-hero-of-the-village-gift: true
 
 # By default books are "Tattered."

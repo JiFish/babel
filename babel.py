@@ -12,6 +12,7 @@ def loadAndValidateYaml(yamlFilePath):
     # Define the required fields and their types
     requiredFields = {
         'output-filename': str,
+        'books-path': str,
         'add-crafting-recipe': bool,
         'add-fishing-loot': bool,
         'add-village-loot': bool,
@@ -35,8 +36,11 @@ def loadAndValidateYaml(yamlFilePath):
         if field not in data:
             raise ValueError(f"Missing required field: {field}")
         
-        value = data[field]
+        # Floats can also be ints, convert now
+        if type(data[field]) == int:
+            data[field] = float(data[field])
         
+        value = data[field]
         if not isinstance(value, fieldType):
             raise TypeError(f"Incorrect type for field '{field}'. Expected {fieldType.__name__}, got {type(value).__name__}.")
         
@@ -47,29 +51,42 @@ def loadAndValidateYaml(yamlFilePath):
     return data
 
 isCompiled = getattr(sys, 'frozen', False)
-greeting = "Babel Book Loot Generator, v1.1%s" % (' (Windows)' if isCompiled else '')
+version = "v1.1%s" % (' (Windows)' if isCompiled else '')
 
 parser = argparse.ArgumentParser()
 parser.add_argument('filename', help='Optional config filename. (default: %(default)s)', nargs='?', default='config.yaml')
-parser.add_argument('-v', '--version', action='version', version=greeting)
+parser.add_argument('-v', '--version', action='version', version=version)
+parser.add_argument('-i', '--indent', action='store_true', help="Indent output json files. Overrides config field.")
+
 if isCompiled:
     parser.add_argument('-!', '--no-wait', action='store_true',
                         help="Don't wait for user input when finished.")
+    # Handle windows style help arg
+    if len(sys.argv) == 2 and sys.argv[1] == '/?':
+        sys.argv[1] = '--help'
+
 args = parser.parse_args()
 
-print("\n"+greeting)
-print("="*len(greeting)+"\n")
+print("")
+print("░█▀▄░█▀█░█▀▄░█▀▀░█░░░░░█▀▄░█▀█░█▀█░█░█░░░█░░░█▀█░█▀█░▀█▀")
+print("░█▀▄░█▀█░█▀▄░█▀▀░█░░░░░█▀▄░█░█░█░█░█▀▄░░░█░░░█░█░█░█░░█░")
+print("░▀▀░░▀░▀░▀▀░░▀▀▀░▀▀▀░░░▀▀░░▀▀▀░▀▀▀░▀░▀░░░▀▀▀░▀▀▀░▀▀▀░░▀░ " + version)
+print('By JiFish. email: %s' % 'ku.oc.hsifij@eoj'[::-1])
+print("")
 
-print("Using configuration: %s." % args.filename)
+print("Using configuration: %s.\n" % args.filename)
 config = loadAndValidateYaml(args.filename)
 
-try:
-    loottable = buildLootTable('books/', config)
-    print ("Found %d books." % len(loottable['pools'][0]['entries']))
+# indent arg overrides config field
+if args.indent:
+    config['indent-output'] = True
 
-    print ("Building datapack...")
+try:
+    loottable = buildLootTable(config)
+
+    print ("\nBuilding data pack...")
     buildDatapack(config, loottable)
-    print ("\nDatapack build complete! Copy %s to your world's datapack directory." % config['output-filename'])
+    print ("Data pack build complete!\n\nCopy %s to your world's data pack directory." % config['output-filename'])
 
 except Exception as e:
     print("\nError: "+str(e))

@@ -74,36 +74,46 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
     if iteration == total:
         print()
 
-def buildLootTable(directory, config, progressBar = True):
+def buildLootTable(config, progressBar = True):
     entries = [];
 
     # Loop through the books directory and add them all
+    directory = config['books-path']
     dirlist = os.listdir(directory)
     totalfiles = len(dirlist)
 
-    # Pre-create generation chance functions
+    # Pre-create generation chance functions, and figure out default generation
     generationChances = {
         2: config['copy-of-copy-chance'],
         1: config['copy-of-original-chance'],
         0: config['original-chance']
     }
     generationFunctions = []
-    for generation in generationChances:
-        generationFunctions.append({
-            "function": "minecraft:set_book_cover",
-            "generation": generation,
-            "conditions": [
-                {
-                    'condition': "random_chance",
-                    'chance': generationChances[generation]
-                }
-            ]
-        })
+    defaultGeneration = 3
+    for generation, generationChance in generationChances.items():
+        # If 1, this is the new default generation
+        if generationChance == 1:
+            defaultGeneration = generation
+            # Clear out any previous functions so they don't overwrite the new default
+            generationFunctions = []
+        # Only add functions with a chance above 0
+        elif generationChance > 0:
+            generationFunctions.append({
+                "function": "minecraft:set_book_cover",
+                "generation": generation,
+                "conditions": [
+                    {
+                        'condition': "random_chance",
+                        'chance': generationChance
+                    }
+                ]
+            })
 
     if totalfiles < 1:
         raise RuntimeError("No books were found!")
 
     if progressBar:
+        print ("Found %d books." % totalfiles)
         printProgressBar(0, totalfiles, prefix='Importing Books...', length=40, decimals=0)
     for i, file in enumerate(dirlist):
         book = decode_book(directory, file)
@@ -129,7 +139,7 @@ def buildLootTable(directory, config, progressBar = True):
                     "function": "minecraft:set_book_cover",
                     "author": book['author'],
                     "title": book['title'],
-                    "generation": 3,
+                    "generation": defaultGeneration,
                 }
             ]
         }

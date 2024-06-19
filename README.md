@@ -28,13 +28,7 @@ If you are hero of the village, the librarian can throw a guaranteed duplicable 
 
 ### Optional Recipe
 
-If you got the version with the crafting recipe. B = Book and Quill, S = Soul Sand, C = Chest. This gives a chest which once placed will have a single random book inside.
-
-```
- S 
-SBS
- C 
-```
+If you got the version with the crafting recipe. Just combine 1 Book and Quill, 1 Soul Sand Block, 1 Chest, and 1 Emerald. (The recipe is shapeless.) This gives a chest which once placed will have a single random book inside.
 
 ## Customising Included Books
 
@@ -70,6 +64,8 @@ pages:
 ```
 
 Minecraft accepts strictly non-valid JSON, so babel tries to too. Babel does it's best to read the books, but if it's having issues your best bet is to ensure the file is valid JSON.
+
+**Important note**: There is no easy way to find out how much text will fit on a page and Minecraft will allow pages longer than it can display. The simplest way to figure out the correct page lengths is to write the pages in minecraft itself, then copy the text out. Another option is to use an online tool such as [GamerGeek's Book Tool](https://www.gamergeeks.net/apps/minecraft/give-command-generator/written-books).
 
 ### Advanced Books
 
@@ -134,7 +130,7 @@ You can disable various loot drops, change generation chances, and make other cu
 
 ### Full argument list:
 ```
-usage: babel.py [-h] [-v] [-!] [filename]
+usage: babel.py [-h] [-v] [-!] [-i] [filename]
 
 positional arguments:
   filename              Configuration filename. (default: config.yaml)
@@ -142,9 +138,8 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   -v, --version         show program's version number and exit
-  -!, --no-wait         Don't wait for user input when finished. Triggered
-                        automatically by using any other argument. (Windows
-                        version only.)
+  -!, --no-wait         Don't wait for user input when finished. (Windows version only.)
+  -i, --indent          Indent output json files. Overrides config field.
 ```
 
 ## Advanced Customisation

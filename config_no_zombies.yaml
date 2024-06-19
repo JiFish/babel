@@ -1,4 +1,5 @@
 output-filename: babel-no-zombie-loot.zip
+books-path: books
 
 add-crafting-recipe: false
 
