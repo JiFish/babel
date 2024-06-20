@@ -9,11 +9,6 @@ It was last updated for Minecraft 1.21.
 
 Download [babel_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel_v1.1.zip) and place it in your Minecraft world's data pack directory.
 
-Pre-created customised packs:
-
-- [babel-no-zombie-loot_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-no-zombie-loot_v1.1.zip) - Zombies don't drop books.
-- [babel-recipe_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-recipe_v1.1.zip) - Additionally includes a recipe to craft random books.
-
 ## How the data pack works in-game
 
 Written books can be dropped by zombies if killed by a player, or fished up with a fishing rod. They can also be found in villages, stronghold libraries and woodland mansions in chests.
@@ -24,17 +19,28 @@ The generation of the book is determined randomly:
 - 1% Copy of original
 - <1% Original
 
-If you are hero of the village, the librarian can throw a guaranteed duplicable book.
+If you are hero of the village, the librarian can throw a guaranteed copyable book.
+
+## Pre-customised Packs
+
+These packs are variations with tweaked rules for obtaining pre-written books:
+
+- [babel-no-copying_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-no-copying_v1.1.zip) - Dropped books cannot be duplicated. Also disables hero of the village reward.
+- [babel-no-zombie-loot_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-no-zombie-loot_v1.1.zip) - Zombies don't drop books.
+- [babel-only-chests_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-only-chests_v1.1.zip) - Books can only be found in chests. No zombie drops, fishing, or hero of the village reward.
+- [babel-recipe_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-recipe_v1.1.zip) - Additionally includes a recipe to craft random books.
 
 ### Optional Recipe
 
 If you got the version with the crafting recipe. Just combine 1 Book and Quill, 1 Soul Sand Block, 1 Chest, and 1 Emerald. (The recipe is shapeless.) This gives a chest which once placed will have a single random book inside.
 
-## Customising Included Books
+## Advanced Customisation Using Babel Builder Tool
 
 First get babel-builder-windows_v1.1.zip or babel-builder-python_v1.1.zip from the [releases page](https://github.com/JiFish/babel/releases).
 
 Run `py babel.py` (or `babel.exe` in windows.) this will output `babel.zip`. Put that file in your Minecraft world's datapack directory. Run `babel.py -h` to see more options.
+
+### Customising Included Books
 
 Any books in the `books` directory will be included. You can add and remove books as you wish.
 
@@ -67,13 +73,11 @@ Minecraft accepts strictly non-valid JSON, so babel tries to too. Babel does it'
 
 **Important note**: There is no easy way to find out how much text will fit on a page and Minecraft will allow pages longer than it can display. The simplest way to figure out the correct page lengths is to write the pages in minecraft itself, then copy the text out. [Text2Book](https://thewilley.github.io/Text2Book/) can assist you with splitting up your text.
 
-### Advanced Books
+**If you've made book files and the text is in the public domain, please consider submitting them back here!**
 
-You can do more advanced stuff with books if you need it.
+### Colors, formatting, etc.
 
-#### Colors, formatting, etc.
-
-Your pages can be in [Raw JSON text format](https://minecraft.wiki/w/Raw_JSON_text_format) e.g.
+Your book pages can be in [Raw JSON text format](https://minecraft.wiki/w/Raw_JSON_text_format) e.g.
 
 ```
 {
@@ -85,7 +89,7 @@ Your pages can be in [Raw JSON text format](https://minecraft.wiki/w/Raw_JSON_te
 }
 ```
 
-#### Optional parameters
+### Optional book parameters
 
 Book files can contain the following optional parameters:
 - `weight` - The chance this book will be selected vs others in the table. Default is `1`, so a value of `2` would mean the book is twice as likely to be selected.
@@ -115,16 +119,10 @@ An example using all optional parameters:
 }
 ```
 
-### Submitting books
-If you've made some books and the text is in the public domain, please consider submitting them back here!
-
-### Default library
-The default collection of books was sourced from Project Gutenberg. https://www.gutenberg.org/
-
 ### Updating books from v0.5
 If you already have books in the v0.5 format, you can update them by running `update_books.py`. The books directory must only contain v0.5 format books. The script will also overwrite the originals, so keep a backup.
 
-## Customising Pack Settings
+### Customising Pack Settings
 
 You can disable various loot drops, change generation chances, and make other customisations by editing `config.yaml`.
 
@@ -143,19 +141,15 @@ optional arguments:
   -a, --append-version  Append babel version number to output filename.
 ```
 
-## Advanced Customisation
+## Use With Other Data Packs
+
+### Using as part of your own data packs
+You can add books to other loot tables using type `minecraft:loot_table` and value `babel:books`.
+
+If you just want to generate the loot table without the surrounding files, try running: `py build_loottable.py > books.json`
 
 ### Dealing with data pack conflicts
 If any of your other data packs modify loot tables used by babel, it might be possible to create a compatible pack. To do this, replace the loot tables in the `base_loot_tables` with the ones from the conflicting datapack. This isn't guaranteed to work, and won't if the tables are much different from expected.
-
-### For use making your own data packs
-You can add books to other loot tables using type `minecraft:loot_table` and value `babel:books`.
-
-If you just want to generate the loot table without the surrounding files, try:
-
-```
-build_loottable.py > books.json
-```
 
 ## Comments, suggestions or contributions?
 Please use the Issue Tracker on GitHub, or send me a tweet [@JiFish](https://twitter.com/intent/tweet?text=.@JiFish) or Toot [@joe@social.jifish.co.uk](https://social.jifish.co.uk/@joe).
@@ -163,7 +157,7 @@ Please use the Issue Tracker on GitHub, or send me a tweet [@JiFish](https://twi
 ## Copyright & use in your own datapacks
 Assuming the books are your own work, loot tables outputted by babel belong to you. You can use them freely in your own data pack. A credit is very appreciated, but not required.
 
-Books in the `books` directory are in the public domain. The `books.json` file created from them is also in the public domain.
+Books in the `books` directory are in the public domain, sourced from [Project Gutenberg](https://www.gutenberg.org/). The `books.json` file created from them is also in the public domain.
 
 The babel tool and data pack is copyright Joseph Fowler.
 
