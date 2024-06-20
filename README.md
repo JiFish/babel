@@ -65,7 +65,7 @@ pages:
 
 Minecraft accepts strictly non-valid JSON, so babel tries to too. Babel does it's best to read the books, but if it's having issues your best bet is to ensure the file is valid JSON.
 
-**Important note**: There is no easy way to find out how much text will fit on a page and Minecraft will allow pages longer than it can display. The simplest way to figure out the correct page lengths is to write the pages in minecraft itself, then copy the text out. Another option is to use an online tool such as [GamerGeek's Book Tool](https://www.gamergeeks.net/apps/minecraft/give-command-generator/written-books).
+**Important note**: There is no easy way to find out how much text will fit on a page and Minecraft will allow pages longer than it can display. The simplest way to figure out the correct page lengths is to write the pages in minecraft itself, then copy the text out. [Text2Book](https://thewilley.github.io/Text2Book/) can assist you with splitting up your text.
 
 ### Advanced Books
 
@@ -130,7 +130,7 @@ You can disable various loot drops, change generation chances, and make other cu
 
 ### Full argument list:
 ```
-usage: babel.py [-h] [-v] [-!] [-i] [filename]
+usage: babel.py [-h] [-v] [-!] [-i] [-a] [filename]
 
 positional arguments:
   filename              Configuration filename. (default: config.yaml)
@@ -140,6 +140,7 @@ optional arguments:
   -v, --version         show program's version number and exit
   -!, --no-wait         Don't wait for user input when finished. (Windows version only.)
   -i, --indent          Indent output json files. Overrides config field.
+  -a, --append-version  Append babel version number to output filename.
 ```
 
 ## Advanced Customisation

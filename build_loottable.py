@@ -1,3 +1,5 @@
+# By Joseph "JiFish" Fowler. All rights reserved.
+
 import json
 import yaml
 import os

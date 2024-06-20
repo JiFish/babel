@@ -1,3 +1,5 @@
+# By Joseph "JiFish" Fowler. All rights reserved.
+
 import zipfile
 import json
 
@@ -8,6 +10,7 @@ try:
 except ImportError:
     compression = zipfile.ZIP_STORED
 
+min_pack_format = 45
 pack_format = 48
 
 def addToLootTable(lootfilename, weight = 1, pool = 0, guaranteedFind = False, indent = None):
@@ -38,19 +41,23 @@ def addToLootTable(lootfilename, weight = 1, pool = 0, guaranteedFind = False, i
 
 def getBooksJsonString(loottable, indent = None):
     return json.dumps(loottable, indent=indent, ensure_ascii=False)
-    
+
+# Load the file, parse json then spit back out
+# Re-indents (or minimizes) the json as requested
+# Also checks the json is valid   
 def getFileJson(filename, indent = None):
     with open(filename) as jsonFile:
         return json.dumps(json.load(jsonFile), indent=indent)
 
-def buildDatapack(config, loottable):
+def buildDatapack(config, loottable, version):
     indent = 2 if config['indent-output'] else None
 
     zf = zipfile.ZipFile(config['output-filename'], mode='w', compression=compression)
     zf.writestr('pack.mcmeta', json.dumps({
         "pack": {
+            "description": version + ". Adds pre-written books to loot. https://github.com/JiFish/babel",
             "pack_format": pack_format,
-            "description": "Add pre-written books to your vanilla world. https://github.com/JiFish/babel"
+            "supported_formats": [min_pack_format, pack_format]
         }
     }, indent=indent, ensure_ascii=False))
     print("Creating babel:books loot table.")

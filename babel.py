@@ -1,6 +1,9 @@
+# By Joseph "JiFish" Fowler. All rights reserved.
+
 import argparse
 import sys
 import yaml;
+import os;
 from build_datapack import *
 from build_loottable import *
 
@@ -57,6 +60,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('filename', help='Optional config filename. (default: %(default)s)', nargs='?', default='config.yaml')
 parser.add_argument('-v', '--version', action='version', version=version)
 parser.add_argument('-i', '--indent', action='store_true', help="Indent output json files. Overrides config field.")
+parser.add_argument('-a', '--append-version', action='store_true', help="Append babel version number to output filename.")
 
 if isCompiled:
     parser.add_argument('-!', '--no-wait', action='store_true',
@@ -81,12 +85,17 @@ config = loadAndValidateYaml(args.filename)
 if args.indent:
     config['indent-output'] = True
 
+# Append version alters 'output-filename'
+if args.append_version:
+    filename, extension = os.path.splitext(config['output-filename'])
+    config['output-filename'] = filename + '_' + version + extension
+
 try:
     loottable = buildLootTable(config)
 
     print ("\nBuilding data pack...")
-    buildDatapack(config, loottable)
-    print ("Data pack build complete!\n\nCopy %s to your world's data pack directory." % config['output-filename'])
+    buildDatapack(config, loottable, version)
+    print ("Data pack build complete!\n\nCopy %s to your world's 'datapacks' directory." % config['output-filename'])
 
 except Exception as e:
     print("\nError: "+str(e))
