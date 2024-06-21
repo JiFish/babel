@@ -14,7 +14,7 @@ min_pack_format = 45
 pack_format = 48
 
 def addToLootTable(lootfilename, weight = 1, pool = 0, guaranteedFind = False, indent = None):
-    with open('base_loot_tables/'+lootfilename, 'r') as lootfile:
+    with open('data/base_loot_tables/'+lootfilename, 'r') as lootfile:
         lootjson = json.loads(lootfile.read())
 
     # Add to loot specified pool
@@ -60,6 +60,7 @@ def buildDatapack(config, loottable, version):
             "supported_formats": [min_pack_format, pack_format]
         }
     }, indent=indent, ensure_ascii=False))
+    zf.write('pack.png', 'pack.png')
     print("Creating babel:books loot table.")
     zf.writestr('data/babel/loot_table/books.json', getBooksJsonString(loottable, indent=indent))
     if config['add-stronghold-loot']:
@@ -83,8 +84,8 @@ def buildDatapack(config, loottable, version):
         zf.writestr('data/minecraft/loot_table/entities/zombie.json', addToLootTable('zombie.json',1,1, indent=indent))
     if config['replace-hero-of-the-village-gift']:
         print("Replacing Librarian's Hero of the village gift.")
-        zf.writestr('data/minecraft/loot_table/gameplay/hero_of_the_village/librarian_gift.json', getFileJson('extras/librarian_gift.json', indent=indent))
+        zf.writestr('data/minecraft/loot_table/gameplay/hero_of_the_village/librarian_gift.json', getFileJson('data/librarian_gift.json', indent=indent))
     if config['add-crafting-recipe']:
         print("Adding crafting recipe.")
-        zf.writestr('data/babel/recipe/babel_book_recipe.json', getFileJson('extras/babel_book_recipe.json', indent=indent))
+        zf.writestr('data/babel/recipe/babel_book_recipe.json', getFileJson('data/babel_book_recipe.json', indent=indent))
     zf.close()

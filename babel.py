@@ -79,18 +79,19 @@ print('By JiFish. email: %s' % 'ku.oc.hsifij@eoj'[::-1])
 print("")
 
 print("Using configuration: %s.\n" % args.filename)
-config = loadAndValidateYaml(args.filename)
-
-# indent arg overrides config field
-if args.indent:
-    config['indent-output'] = True
-
-# Append version alters 'output-filename'
-if args.append_version:
-    filename, extension = os.path.splitext(config['output-filename'])
-    config['output-filename'] = filename + '_' + version + extension
 
 try:
+    config = loadAndValidateYaml(args.filename)
+
+    # indent arg overrides config field
+    if args.indent:
+        config['indent-output'] = True
+
+    # Append version alters 'output-filename'
+    if args.append_version:
+        filename, extension = os.path.splitext(config['output-filename'])
+        config['output-filename'] = filename + '_' + version + extension
+
     loottable = buildLootTable(config)
 
     print ("\nBuilding data pack...")

@@ -1,5 +1,9 @@
+![Logo](readme_images/logo.png)
+
+![Demo](readme_images/babel.gif)
+
 # Babel Book Loot v1.1
-## A customisable pre-written book loot data pack for Minecraft
+## A customizable pre-written book loot data pack for Minecraft
 
 Babel Book Loot adds over 100 pre-written books to various loot tables in Minecraft. The default library of books is a collection of public domain fairy tales. You can customise the library by adding your own text files.
 
@@ -14,25 +18,27 @@ Download [babel_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1
 Written books can be dropped by zombies if killed by a player, or fished up with a fishing rod. They can also be found in villages, stronghold libraries and woodland mansions in chests.
 
 The generation of the book is determined randomly:
-- 33% Tattered Book
-- 65% Copy of a copy
+- 33% Tattered Book (not copyable)
+- 65% Copy of a copy (not copyable)
 - 1% Copy of original
 - <1% Original
 
-If you are hero of the village, the librarian can throw a guaranteed copyable book.
+If you are hero of the village, librarians throw a guaranteed copyable book.
 
-## Pre-customised Packs
+## Pre-customized Options
 
-These packs are variations with tweaked rules for obtaining pre-written books:
+These data packs are variations with tweaked rules for obtaining the books:
 
-- [babel-no-copying_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-no-copying_v1.1.zip) - Dropped books cannot be duplicated. Also disables hero of the village reward.
+- [babel-no-copying_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-no-copying_v1.1.zip) - All books are "copy of a copy" and can't be duplicated. Also disables hero of the village reward.
 - [babel-no-zombie-loot_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-no-zombie-loot_v1.1.zip) - Zombies don't drop books.
 - [babel-only-chests_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-only-chests_v1.1.zip) - Books can only be found in chests. No zombie drops, fishing, or hero of the village reward.
-- [babel-recipe_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-recipe_v1.1.zip) - Additionally includes a recipe to craft random books.
+- [babel-recipe_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-recipe_v1.1.zip) - Includes the below recipe to craft random books.
 
-### Optional Recipe
+#### Optional Recipe
 
 If you got the version with the crafting recipe. Just combine 1 Book and Quill, 1 Soul Sand Block, 1 Chest, and 1 Emerald. (The recipe is shapeless.) This gives a chest which once placed will have a single random book inside.
+
+![Recipe Image](readme_images/optional_recipe.png)
 
 ## Advanced Customisation Using Babel Builder Tool
 
