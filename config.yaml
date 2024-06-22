@@ -14,7 +14,7 @@ add-village-loot: true
 add-mansion-loot: true
 # Find pre-written books in Stronghold Libraries
 add-stronghold-loot: true
-# Zombies rarely drop pre-written books
+# Zombies rarely drop pre-written books, if killed by a player
 add-zombie-drop: true
 # If you are hero of the village, a librarian may gift you a pre-written book
 # This ignores the below chances and gives a copy-of-original 90% of the time, and an original 10%.
