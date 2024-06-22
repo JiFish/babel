@@ -1,0 +1,17 @@
+output-filename: babel-recipe.zip
+books-path: books
+
+add-crafting-recipe: true
+
+add-fishing-loot: true
+add-village-loot: true
+add-mansion-loot: true
+add-stronghold-loot: true
+add-zombie-drop: true
+replace-hero-of-the-village-gift: true
+
+copy-of-copy-chance: 0.66
+copy-of-original-chance: 0.1
+original-chance: 0.003
+
+indent-output: false
