@@ -54,7 +54,7 @@ def loadAndValidateYaml(yamlFilePath):
     return data
 
 isCompiled = getattr(sys, 'frozen', False)
-version = "v1.1%s" % (' (Windows)' if isCompiled else '')
+version = "v1.2%s" % (' (Windows)' if isCompiled else '')
 
 parser = argparse.ArgumentParser()
 parser.add_argument('filename', help='Optional config filename. (default: %(default)s)', nargs='?', default='config.yaml')

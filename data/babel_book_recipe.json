@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:chest"
-    },
-    {
-      "item": "minecraft:emerald"
-    },
-    {
-      "item": "minecraft:soul_sand"
-    },
-    {
-      "item": "minecraft:writable_book"
-    }
+    "minecraft:chest",
+    "minecraft:emerald",
+    "minecraft:soul_sand",
+    "minecraft:writable_book"
   ],
   "result": {
     "id": "minecraft:chest",
