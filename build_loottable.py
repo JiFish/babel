@@ -189,5 +189,5 @@ def buildLootTable(config, progressBar = True):
     return loottable
 
 if __name__ == '__main__':
-    loottable = buildLootTable('books/', {'copy-of-copy-chance': 0.66, 'copy-of-original-chance': 0.1, 'original-chance': 0.003}, False)
+    loottable = buildLootTable({'books-path': 'books/', 'copy-of-copy-chance': 0.66, 'copy-of-original-chance': 0.1, 'original-chance': 0.003}, False)
     print(json.dumps(loottable, indent=2, ensure_ascii=False))
