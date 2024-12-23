@@ -2,16 +2,16 @@
 
 ![Demo](readme_images/babel.gif)
 
-# Babel Book Loot v1.2
+# Babel Book Loot v1.2.1
 ## A customizable pre-written book loot data pack for Minecraft
 
 Babel Book Loot adds over 100 pre-written books to various loot tables in Minecraft. The default library of books is a collection of public domain fairy tales. You can customize the library by adding your own books.
 
-It was last updated for Minecraft 1.21.
+It was last updated for Minecraft 1.21.4. (But should work in a wide range of previous versions.)
 
 ## Quick-start
 
-Download [babel_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel_v1.1.zip) and place it in your Minecraft world's `datapacks` directory.
+Download [babel_v1.2.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel_v1.2.1.zip) and place it in your Minecraft world's `datapacks` directory.
 
 ## How the data pack works in-game
 
@@ -29,10 +29,10 @@ If you are hero of the village, librarians throw a guaranteed copyable book.
 
 These data packs are variations with tweaked rules for obtaining the books:
 
-- [babel-no-copying_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-no-copying_v1.1.zip) - All books are "copy of a copy" and can't be duplicated. Also disables hero of the village reward.
+- [babel-no-copying_v1.2.1.zip](https://github.com/JiFish/babel/releases/download/v1.2.1/babel-no-copying_v1.2.1.zip) - All books are "copy of a copy" and can't be duplicated. Also disables hero of the village reward.
 - [babel-bookish-zombies_v1.2.1.zip](https://github.com/JiFish/babel/releases/download/v1.2.1/babel-bookish-zombies_v1.1.zip) - Zombies drop books.
-- [babel-only-chests_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-only-chests_v1.1.zip) - Books can only be found in chests. No zombie drops, fishing, or hero of the village reward.
-- [babel-recipe_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-recipe_v1.1.zip) - Includes the below recipe to craft random books.
+- [babel-only-chests_v1.2.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-only-chests_v1.1.zip) - Books can only be found in chests. No fishing, or hero of the village reward.
+- [babel-recipe_v1.2.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-recipe_v1.1.zip) - Includes the below recipe to craft random books.
 
 #### Optional recipe
 
