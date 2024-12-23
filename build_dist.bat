@@ -42,7 +42,7 @@ echo Python builder done.
 setlocal enabledelayedexpansion
 :: Find all files matching the pattern config*.yaml in the current directory
 for %%f in (config*.yaml) do (
-    py babel.py -a %%f
+    python babel.py -a %%f
 )
 endlocal
 
