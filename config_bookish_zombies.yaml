@@ -1,4 +1,4 @@
-output-filename: babel-no-zombie-loot.zip
+output-filename: babel-bookish-zombies.zip
 books-path: books
 
 add-crafting-recipe: false
@@ -7,7 +7,7 @@ add-fishing-loot: true
 add-village-loot: true
 add-mansion-loot: true
 add-stronghold-loot: true
-add-zombie-drop: false
+add-zombie-drop: true
 replace-hero-of-the-village-gift: true
 
 copy-of-copy-chance: 0.66

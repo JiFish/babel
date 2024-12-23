@@ -15,7 +15,7 @@ Download [babel_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1
 
 ## How the data pack works in-game
 
-Written books can be dropped by zombies if killed by a player, or fished up with a fishing rod. They can also be found in villages, stronghold libraries and woodland mansions in chests.
+Written books can be fished up with a fishing rod, or found in villages, stronghold libraries and woodland mansions in chests.
 
 The generation of the book is determined randomly:
 - 33% Tattered Book (not copyable)
@@ -30,7 +30,7 @@ If you are hero of the village, librarians throw a guaranteed copyable book.
 These data packs are variations with tweaked rules for obtaining the books:
 
 - [babel-no-copying_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-no-copying_v1.1.zip) - All books are "copy of a copy" and can't be duplicated. Also disables hero of the village reward.
-- [babel-no-zombie-loot_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-no-zombie-loot_v1.1.zip) - Zombies don't drop books.
+- [babel-bookish-zombies_v1.2.1.zip](https://github.com/JiFish/babel/releases/download/v1.2.1/babel-bookish-zombies_v1.1.zip) - Zombies drop books.
 - [babel-only-chests_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-only-chests_v1.1.zip) - Books can only be found in chests. No zombie drops, fishing, or hero of the village reward.
 - [babel-recipe_v1.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-recipe_v1.1.zip) - Includes the below recipe to craft random books.
 

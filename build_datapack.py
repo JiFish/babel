@@ -11,7 +11,7 @@ except ImportError:
     compression = zipfile.ZIP_STORED
 
 min_pack_format = 57
-pack_format = 57
+pack_format = 61
 
 def addToLootTable(lootfilename, weight = 1, pool = 0, guaranteedFind = False, indent = None):
     with open('data/base_loot_tables/'+lootfilename, 'r') as lootfile:
