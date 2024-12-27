@@ -1,0 +1,12 @@
+{
+    "title": "Automated Farm",
+    "author": "Prof. Blockworth",
+    "pages": [
+        "Automating farms is a splendid way to maximize efficiency.",
+        "A key component is the observer block, detecting changes nearby.",
+        "When it sees a crop grow, it sends a redstone signal.",
+        "Use pistons to harvest crops when triggered by the observer.",
+        "Collection systems often employ hoppers to transport items.",
+        "Align them beneath the crops to funnel items to a storage chest."
+    ]
+}

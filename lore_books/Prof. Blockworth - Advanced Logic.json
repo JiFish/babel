@@ -1,0 +1,12 @@
+{
+    "title": "Advanced Logic",
+    "author": "Prof. Blockworth",
+    "pages": [
+        "Logic gates are the building bricks of complex redstone circuits.",
+        "The basic types are AND, OR, NOT, NOR, NAND, XOR, and XNOR.",
+        "Each gate manipulates input signals to produce a desired output.",
+        "An AND gate requires both inputs to be 'on' for the output to activate.",
+        "Use a NOT gate to invert a signal, turning 'on' to 'off' or vice versa.",
+        "Experiment by using combinations of gates to create automated systems."
+    ]
+}

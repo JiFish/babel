@@ -1,14 +1,14 @@
-output-filename: babel-only-chests.zip
-books-path: lore_books
+output-filename: babel-fairytales.zip
+books-path: fairytale_books
 
 add-crafting-recipe: false
 
-add-fishing-loot: false
+add-fishing-loot: true
 add-village-loot: true
 add-mansion-loot: true
 add-stronghold-loot: true
 add-zombie-drop: false
-replace-hero-of-the-village-gift: false
+replace-hero-of-the-village-gift: true
 add-lost-libraries: true
 
 copy-of-copy-chance: 0.66

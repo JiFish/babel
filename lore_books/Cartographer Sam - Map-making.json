@@ -1,0 +1,12 @@
+{
+    "title": "Map-making",
+    "author": "Cartographer Sam",
+    "pages": [
+        "Crafting a map requires both paper and the precious compass. A map begins blank but fills as areas are explored.",
+        "Understanding scale is vital. A map covers an area of 128x128 blocks and can be expanded up to several times.",
+        "Item frames can display maps or mark important locations. Envision an atlas of interconnected framed maps as a legacy.",
+        "Maps do not update naturally; new journeys require new maps. Regularly record changes, especially in villages and forests.",
+        "Locked maps are invaluable when depicting history or preserving delicate landscapes. Duplicate maps with a cartography table.",
+        "A skilled cartographer always shares their discoveries. Leave map copies in libraries or with traveling merchants."
+    ]
+}

@@ -1,5 +1,5 @@
 output-filename: babel-recipe.zip
-books-path: books
+books-path: lore_books
 
 add-crafting-recipe: true
 
