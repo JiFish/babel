@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:crafting_transmute",
-  "category": "equipment",
-  "group": "bundle_dye",
-  "input": "#minecraft:bundles",
-  "material": "minecraft:light_blue_dye",
-  "result": "minecraft:light_blue_bundle"
-}
