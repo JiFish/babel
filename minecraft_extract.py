@@ -35,7 +35,7 @@ def get_minecraft_jar_path(version: str) -> Path:
         return jar_file
     else:
         print(f"Minecraft jar file for version {version} not found.")
-        return None
+        os._exit(1)
 
 def extract_files_from_jar(jar_path: Path, sources, destination: Path, title) -> None:
     """
