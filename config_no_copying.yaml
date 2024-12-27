@@ -10,6 +10,7 @@ add-stronghold-loot: true
 add-zombie-drop: true
 # Disable hero of village, since it gives duplicable books
 replace-hero-of-the-village-gift: false
+add-lost-libraries: true
 
 # Books are always copy-of-copy
 copy-of-copy-chance: 1
