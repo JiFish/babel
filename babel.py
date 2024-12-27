@@ -6,6 +6,7 @@ import yaml;
 import os;
 from build_datapack import *
 from build_loottable import *
+from minecraft_extract import extractFilesFromJar
 
 def loadAndValidateYaml(yamlFilePath):
     # Load the YAML file
@@ -92,6 +93,8 @@ try:
     if args.append_version:
         filename, extension = os.path.splitext(config['output-filename'])
         config['output-filename'] = filename + '_' + version + extension
+
+    extractFilesFromJar(minecraft_version)
 
     loottable = buildLootTable(config)
 
