@@ -55,6 +55,18 @@ def loadAndValidateYaml(yamlFilePath):
     
     return data
 
+def chance_calculation(config):
+    chance_tattered = round(((1-config['copy-of-copy-chance']) * (1-config['copy-of-original-chance']) * (1-config['original-chance'])) * 100, 1)
+    chance_coc = round( ((config['copy-of-copy-chance']) * (1-config['copy-of-original-chance']) * (1-config['original-chance'])) * 100, 1)
+    chance_coo = round( ((config['copy-of-original-chance']) * (1-config['original-chance'])) * 100, 1)
+    chance_o = round( config['original-chance'] * 100, 1)
+    chance_total = chance_tattered + chance_coc + chance_coo + chance_o
+    print(f"Real chances calculation (applying chances sequentially):\nTattered chance: {chance_tattered}%")
+    print(f"Copy of copy chance: {chance_coc}%")
+    print(f"Copy of orginal chance: {chance_coo}%")
+    print(f"Orginal chance: {chance_o}%")
+    print(f"Total: {chance_total}%\n")
+
 isCompiled = getattr(sys, 'frozen', False)
 version = "v2-be%s" % (' (Windows)' if isCompiled else '')
 minecraft_version = "1.21.4"
@@ -64,6 +76,7 @@ parser.add_argument('filename', help='Optional config filename. (default: %(defa
 parser.add_argument('-v', '--version', action='version', version=version)
 parser.add_argument('-i', '--indent', action='store_true', help="Indent output json files. Overrides config field.")
 parser.add_argument('-a', '--append-version', action='store_true', help="Append babel version number to output filename.")
+parser.add_argument('-c', '--chance-calc', action='store_true', help="Calculate real chances of various book generations and exit.")
 
 if isCompiled:
     parser.add_argument('-!', '--no-wait', action='store_true',
@@ -86,22 +99,26 @@ print("Using configuration: %s.\n" % args.filename)
 try:
     config = loadAndValidateYaml(args.filename)
 
-    # indent arg overrides config field
-    if args.indent:
-        config['indent-output'] = True
+    if args.chance_calc:
+        chance_calculation(config)
+    
+    else:
+        # indent arg overrides config field
+        if args.indent:
+            config['indent-output'] = True
 
-    # Append version alters 'output-filename'
-    if args.append_version:
-        filename, extension = os.path.splitext(config['output-filename'])
-        config['output-filename'] = filename + '_' + version + extension
+        # Append version alters 'output-filename'
+        if args.append_version:
+            filename, extension = os.path.splitext(config['output-filename'])
+            config['output-filename'] = filename + '_' + version + extension
 
-    extractFilesFromJar(minecraft_version, config['add-lost-libraries'])
+        extractFilesFromJar(minecraft_version, config['add-lost-libraries'])
 
-    loottable = buildLootTable(config)
+        loottable = buildLootTable(config)
 
-    print ("\nBuilding data pack...")
-    buildDatapack(config, loottable, version)
-    print ("Data pack build complete!\n\nCopy %s to your world's 'datapacks' directory." % config['output-filename'])
+        print ("\nBuilding data pack...")
+        buildDatapack(config, loottable, version)
+        print ("Data pack build complete!\n\nCopy %s to your world's 'datapacks' directory." % config['output-filename'])
 
 except Exception as e:
     print("\nError: "+str(e))
