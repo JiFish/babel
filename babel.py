@@ -95,7 +95,7 @@ try:
         filename, extension = os.path.splitext(config['output-filename'])
         config['output-filename'] = filename + '_' + version + extension
 
-    extractFilesFromJar(minecraft_version)
+    extractFilesFromJar(minecraft_version, config['add-lost-libraries'])
 
     loottable = buildLootTable(config)
 

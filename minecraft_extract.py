@@ -86,13 +86,14 @@ def extract_files_from_jar(jar_path: Path, sources, destination: Path, title) ->
 
 
     
-def extractFilesFromJar(minecraft_version):
-    print("Locating Minecraft jar file.")
+def extractFilesFromJar(minecraft_version, include_recipes):
     jar_path = get_minecraft_jar_path(minecraft_version)
+    print(f"Found Minecraft {minecraft_version} jar file: {jar_path}")
 
-    destination = Path('data_extracted/base_recipe')
-    source_pattern = 'data/minecraft/recipe/*'
-    extract_files_from_jar(jar_path, source_pattern, destination, "Extracting minecraft recipies...")
+    if include_recipes:
+        destination = Path('data_extracted/base_recipe')
+        source_pattern = 'data/minecraft/recipe/*'
+        extract_files_from_jar(jar_path, source_pattern, destination, "Extracting recipies...")
 
     destination = Path('data_extracted/base_loot_tables')
     sources = [
@@ -106,6 +107,6 @@ def extractFilesFromJar(minecraft_version):
         'data/minecraft/loot_table/chests/village/village_snowy_house.json',
         'data/minecraft/loot_table/chests/village/village_taiga_house.json',
     ]
-    extract_files_from_jar(jar_path, sources, destination, "Extracting minecraft base loot tables...")
+    extract_files_from_jar(jar_path, sources, destination, "Extracting base loot tables...")
 
     print("")
