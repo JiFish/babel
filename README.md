@@ -147,6 +147,7 @@ optional arguments:
   -!, --no-wait         Don't wait for user input when finished. (Windows version only.)
   -i, --indent          Indent output json files. Overrides config field.
   -a, --append-version  Append babel version number to output filename.
+  -c, --chance-calc     Calculate real chances of various book generations and exit.
 ```
 
 ## Use with other data packs
