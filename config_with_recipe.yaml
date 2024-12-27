@@ -11,8 +11,8 @@ add-zombie-drop: true
 replace-hero-of-the-village-gift: true
 add-lost-libraries: true
 
-copy-of-copy-chance: 0.66
-copy-of-original-chance: 0.1
+copy-of-copy-chance: 0.9
+copy-of-original-chance: 0.05
 original-chance: 0.003
 
 indent-output: false
