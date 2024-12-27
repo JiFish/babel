@@ -1,0 +1,12 @@
+{
+    "title": "Redstone Basics",
+    "author": "Prof. Blockworth",
+    "pages": [
+        "Welcome to redstone! This magical dust is the foundation of many contraptions.",
+        "First, gather redstone dust from mining redstone ore with an iron pickaxe or better.",
+        "To place redstone, right-click on blocks. It acts as a conduit for energy signals.",
+        "Connecting a redstone device to a switch will let you control its activation.",
+        "Remember, redstone signals travel up to 15 blocks before needing a repeater.",
+        "Experiment with combining redstone dust, torches, repeaters, and comparators."
+    ]
+}

@@ -1,7 +1,7 @@
 # Outputted data pack file
 output-filename: babel.zip
 # Path containing the book json / yaml files
-books-path: books
+books-path: lore_books
 
 # Include a recipe to craft random pre-written books. See `README.md` for the recipe.
 add-crafting-recipe: false

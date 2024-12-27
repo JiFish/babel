@@ -1,5 +1,5 @@
 output-filename: babel-bookish-zombies.zip
-books-path: books
+books-path: lore_books
 
 add-crafting-recipe: false
 
