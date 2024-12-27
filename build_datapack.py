@@ -16,7 +16,7 @@ min_pack_format = 57
 pack_format = 61
 
 def addToLootTable(lootfilename, weight = 1, pool = 0, guaranteedFind = False, indent = None):
-    with open('data/base_loot_tables/'+lootfilename, 'r') as lootfile:
+    with open('data_extracted/base_loot_tables/'+lootfilename, 'r') as lootfile:
         lootjson = json.loads(lootfile.read())
 
     # Add to loot specified pool
@@ -101,7 +101,7 @@ def buildDatapack(config, loottable, version):
             kb = json.load(jsonFile)
         item = kb["pools"][0]["entries"][0]
         newpool = {}
-        for recp in glob('data/base_recipe/*.json'):
+        for recp in glob('data_extracted/base_recipe/*.json'):
             name = recp.replace('\\', '/').split('/')[-1]  # Get the file name with extension
             name = name[:-5]  # Remove the last 5 characters (".json")
             with open(recp) as jsonFile:

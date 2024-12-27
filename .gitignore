@@ -135,5 +135,4 @@ dmypy.json
 *.zip
 
 # Babel extracted minecraft files
-data/base_recipe/
-data/base_loot_tables/
+data_extracted/

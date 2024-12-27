@@ -90,11 +90,11 @@ def extractFilesFromJar(minecraft_version):
     print("Locating Minecraft jar file.")
     jar_path = get_minecraft_jar_path(minecraft_version)
 
-    destination = Path('data/base_recipe')
+    destination = Path('data_extracted/base_recipe')
     source_pattern = 'data/minecraft/recipe/*'
     extract_files_from_jar(jar_path, source_pattern, destination, "Extracting minecraft recipies...")
 
-    destination = Path('data/base_loot_tables')
+    destination = Path('data_extracted/base_loot_tables')
     sources = [
         'data/minecraft/loot_table/gameplay/fishing/treasure.json',
         'data/minecraft/loot_table/entities/zombie.json',
