@@ -25,7 +25,7 @@ add-lost-libraries: true
 
 # By default books are "Tattered."
 # Each of these chances will be applied in this order, regardless of the outcome of previous rolls.
-copy-of-copy-chance: 0.9
+copy-of-copy-chance: 0.95
 copy-of-original-chance: 0.05
 original-chance: 0.003
 
