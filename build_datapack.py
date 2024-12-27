@@ -15,27 +15,32 @@ except ImportError:
 min_pack_format = 57
 pack_format = 61
 
-def addToLootTable(lootfilename, weight = 1, pool = 0, guaranteedFind = False, indent = None):
+def addToLootTable(lootfilename, weight = 1, pool = 0, guaranteedFind = False, forceTattered = False, indent = None):
     with open('data_extracted/base_loot_tables/'+lootfilename, 'r') as lootfile:
         lootjson = json.loads(lootfile.read())
 
-    # Add to loot specified pool
-    lootjson['pools'][pool]['entries'].append({
+    # Basic loot pool entry
+    loot_pool_entry = {
         'type': 'minecraft:loot_table',
         'weight': weight,
         "value": "babel:books"
-    })
+    }
+
+    # Force the book to be tattered
+    if forceTattered:
+        loot_pool_entry["functions"] = [{
+            "function": "minecraft:set_book_cover",
+            "generation": 3
+        }]
+
+    # Add to loot specified pool
+    lootjson['pools'][pool]['entries'].append(loot_pool_entry)
 
     # Add a new, guaranteed pool
     if guaranteedFind:
         lootjson['pools'].append({
             "bonus_rolls": 0.0,
-            "entries": [
-                {
-                    "type": "minecraft:loot_table",
-                    "value": "babel:books"
-                }
-            ],
+            "entries": [loot_pool_entry],
             "rolls": 1.0
         })
 
@@ -80,7 +85,7 @@ def buildDatapack(config, loottable, version):
         zf.writestr('data/minecraft/loot_table/chests/village/village_taiga_house.json', addToLootTable('village_taiga_house.json',3, indent=indent))
     if config['add-fishing-loot']:
         print("Adding to Fishing Treasure loot table.")
-        zf.writestr('data/minecraft/loot_table/gameplay/fishing/treasure.json', addToLootTable('treasure.json',1, indent=indent))
+        zf.writestr('data/minecraft/loot_table/gameplay/fishing/treasure.json', addToLootTable('treasure.json',1, forceTattered=True, indent=indent))
     if config['add-zombie-drop']:
         print("Adding to Zombie drop loot table.")
         zf.writestr('data/minecraft/loot_table/entities/zombie.json', addToLootTable('zombie.json',1,1, indent=indent))
