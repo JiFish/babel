@@ -56,16 +56,17 @@ def loadAndValidateYaml(yamlFilePath):
     return data
 
 def chance_calculation(config):
-    chance_tattered = round(((1-config['copy-of-copy-chance']) * (1-config['copy-of-original-chance']) * (1-config['original-chance'])) * 100, 1)
-    chance_coc = round( ((config['copy-of-copy-chance']) * (1-config['copy-of-original-chance']) * (1-config['original-chance'])) * 100, 1)
-    chance_coo = round( ((config['copy-of-original-chance']) * (1-config['original-chance'])) * 100, 1)
-    chance_o = round( config['original-chance'] * 100, 1)
+    chance_tattered = ((1-config['copy-of-copy-chance']) * (1-config['copy-of-original-chance']) * (1-config['original-chance'])) * 100
+    chance_coc = ((config['copy-of-copy-chance']) * (1-config['copy-of-original-chance']) * (1-config['original-chance'])) * 100
+    chance_coo = ((config['copy-of-original-chance']) * (1-config['original-chance'])) * 100
+    chance_o = config['original-chance'] * 100
     chance_total = chance_tattered + chance_coc + chance_coo + chance_o
-    print(f"Real chances calculation (applying chances sequentially):\nTattered chance: {chance_tattered}%")
-    print(f"Copy of copy chance: {chance_coc}%")
-    print(f"Copy of orginal chance: {chance_coo}%")
-    print(f"Orginal chance: {chance_o}%")
-    print(f"Total: {chance_total}%\n")
+    print(f"Real chances calculation (applying chances sequentially):")
+    print(f"Tattered chance:        {chance_tattered:.1f}%")
+    print(f"Copy of copy chance:    {chance_coc:.1f}%")
+    print(f"Copy of orginal chance: {chance_coo:.1f}%")
+    print(f"Orginal chance:         {chance_o:.1f}%")
+    print(f"Total:                  {chance_total:.1f}%")
 
 isCompiled = getattr(sys, 'frozen', False)
 version = "v2-be%s" % (' (Windows)' if isCompiled else '')
