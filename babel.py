@@ -57,6 +57,7 @@ def loadAndValidateYaml(yamlFilePath):
 
 isCompiled = getattr(sys, 'frozen', False)
 version = "v2-be%s" % (' (Windows)' if isCompiled else '')
+minecraft_version = "1.21.4"
 
 parser = argparse.ArgumentParser()
 parser.add_argument('filename', help='Optional config filename. (default: %(default)s)', nargs='?', default='config.yaml')
