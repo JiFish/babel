@@ -2,6 +2,8 @@
 
 import zipfile
 import json
+import copy
+from glob import glob
 
 # Use zlib if we have it
 try:
@@ -88,4 +90,37 @@ def buildDatapack(config, loottable, version):
     if config['add-crafting-recipe']:
         print("Adding crafting recipe.")
         zf.writestr('data/babel/recipe/babel_book_recipe.json', getFileJson('data/babel_book_recipe.json', indent=indent))
+    if config['add-lost-libraries']:
+        print("Adding Lost Libraries to worldgen.")
+        zf.writestr('data/babel/loot_table/lost_library_chest.json', getFileJson('data/lost_library_chest.json', indent=indent))
+        zf.writestr('data/babel/worldgen/structure_set/lost_library_set.json', getFileJson('data/lost_library_set.json', indent=indent))
+        zf.writestr('data/babel/worldgen/template_pool/lost_library_pool.json', getFileJson('data/lost_library_pool.json', indent=indent))
+        zf.writestr('data/babel/worldgen/structure/lost_library.json', getFileJson('data/lost_library.json', indent=indent))
+        zf.write('data/lost_library.nbt', 'data/babel/structure/lost_library.nbt')
+        with open('data/knowlege_book.json') as jsonFile:
+            kb = json.load(jsonFile)
+        item = kb["pools"][0]["entries"][0]
+        newpool = {}
+        for recp in glob('data/base_recipe/*.json'):
+            name = recp.replace('\\', '/').split('/')[-1]  # Get the file name with extension
+            name = name[:-5]  # Remove the last 5 characters (".json")
+            with open(recp) as jsonFile:
+                recp_json = json.load(jsonFile)
+            if recp_json['type'] not in ['minecraft:crafting_shaped', 'minecraft:crafting_shapeless']:
+                continue
+                
+            if 'group' in recp_json:
+                group_name = recp_json['group']
+            else:
+                group_name = name
+            
+            if group_name not in newpool:
+                newitem = copy.deepcopy(item)
+                newitem["functions"][0]["components"]["minecraft:recipes"][0] = "minecraft:" + name
+                newitem["functions"][0]["components"]["minecraft:lore"][0] = "\""+group_name.replace("_", " ").title()+"\""
+                newpool[group_name] = newitem
+            else:
+                newpool[group_name]["functions"][0]["components"]["minecraft:recipes"].append("minecraft:" + name)
+        kb["pools"][0]["entries"] = list(newpool.values())
+        zf.writestr('data/babel/loot_table/knowlege_book.json', json.dumps(kb, indent=indent))
     zf.close()

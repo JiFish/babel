@@ -19,6 +19,8 @@ add-zombie-drop: false
 # If you are hero of the village, a librarian may gift you a pre-written book
 # This ignores the below chances and gives a copy-of-original 90% of the time, and an original 10%.
 replace-hero-of-the-village-gift: true
+# Add lost lost libraries with book loot to world generation
+add-lost-libraries: true
 
 # By default books are "Tattered."
 # Each of these chances will be applied in this order, regardless of the outcome of previous rolls.

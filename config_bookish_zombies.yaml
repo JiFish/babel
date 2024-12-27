@@ -9,6 +9,7 @@ add-mansion-loot: true
 add-stronghold-loot: true
 add-zombie-drop: true
 replace-hero-of-the-village-gift: true
+add-lost-libraries: true
 
 copy-of-copy-chance: 0.66
 copy-of-original-chance: 0.1

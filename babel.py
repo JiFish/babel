@@ -23,6 +23,7 @@ def loadAndValidateYaml(yamlFilePath):
         'add-stronghold-loot': bool,
         'add-zombie-drop': bool,
         'replace-hero-of-the-village-gift': bool,
+        'add-lost-libraries': bool,
         'indent-output': bool,
         'copy-of-copy-chance': float,
         'copy-of-original-chance': float,
@@ -54,7 +55,7 @@ def loadAndValidateYaml(yamlFilePath):
     return data
 
 isCompiled = getattr(sys, 'frozen', False)
-version = "v1.2.1%s" % (' (Windows)' if isCompiled else '')
+version = "v2-be%s" % (' (Windows)' if isCompiled else '')
 
 parser = argparse.ArgumentParser()
 parser.add_argument('filename', help='Optional config filename. (default: %(default)s)', nargs='?', default='config.yaml')
