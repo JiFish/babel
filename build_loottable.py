@@ -94,7 +94,7 @@ def buildLootTable(config, progressBar = True):
         raise RuntimeError("No books were found!")
 
     if progressBar:
-        print ("Found %d books." % totalfiles)
+        print (f"Found {totalfiles} books in {directory}.")
         printProgressBar(0, totalfiles, prefix='Importing Books...', length=40, decimals=0)
     for i, file in enumerate(dirlist):
         book = decode_book(directory, file)
