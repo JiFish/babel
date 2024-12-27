@@ -46,6 +46,8 @@ First get babel-builder-windows_v1.1.zip or babel-builder-python_v1.1.zip from t
 
 Run `py babel.py` (or `babel.exe` in windows.) this will output `babel.zip`. Put that file in your Minecraft world's `datapacks` directory.
 
+You will need the above version of minecraft installed.
+
 ### Changing included books
 
 Any books in the `books` directory will be included. You can add and remove books as you wish.
