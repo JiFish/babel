@@ -12,7 +12,7 @@
     "count": 1,
     "components": {
       "minecraft:container_loot": {
-        "loot_table": "babel:books"
+        "loot_table": "babel:crafted_chest"
       },
       "minecraft:item_name": "{\"text\":\"Random Book Chest\"}"
     }
