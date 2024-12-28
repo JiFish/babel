@@ -3,6 +3,7 @@ import copy
 from glob import glob
 from progress_bar import printProgressBar
 
+
 def parse_recipe_file(recp):
     """Parses a recipe file and returns its JSON data and name."""
     name = recp.replace('\\', '/').split('/')[-1][:-5]  # Extract file name without extension
@@ -10,11 +11,12 @@ def parse_recipe_file(recp):
         recp_json = json.load(jsonFile)
     return name, recp_json
 
+
 def should_skip_recipe(recp_json):
     """Determines if a recipe should be skipped based on its output and keys."""
     if recp_json['type'] not in ['minecraft:crafting_shaped', 'minecraft:crafting_shapeless']:
         return True
-    
+
     if recp_json['result']['id'].startswith("minecraft:waxed"):
         return True
 
@@ -27,6 +29,7 @@ def should_skip_recipe(recp_json):
                 return True
     return False
 
+
 def update_loot_pool(newpool, item, name, group_name):
     """Updates the loot pool with a new or existing group."""
     if group_name not in newpool:
@@ -36,6 +39,7 @@ def update_loot_pool(newpool, item, name, group_name):
         newpool[group_name] = newitem
     else:
         newpool[group_name]["functions"][0]["components"]["minecraft:recipes"].append("minecraft:" + name)
+
 
 def process_recipes(recipes, item):
     """Processes all recipes and updates the loot pool."""
@@ -53,6 +57,7 @@ def process_recipes(recipes, item):
         update_loot_pool(newpool, item, name, group_name)
 
     return newpool
+
 
 def buildKnowledgeBooksTable(baseloot, extracted_data_directory):
     """Creates the knowledge books loot table."""

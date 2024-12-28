@@ -4,6 +4,7 @@ from pathlib import Path
 import zipfile
 from progress_bar import printProgressBar
 
+
 def get_minecraft_jar_path(version: str) -> Path:
     """
     Locate the Minecraft .jar file for a given version across different operating systems.
@@ -16,7 +17,7 @@ def get_minecraft_jar_path(version: str) -> Path:
     """
     # Determine the Minecraft directory based on the OS
     system = platform.system()
-    
+
     if system == "Windows":
         minecraft_dir = Path(os.getenv("APPDATA")) / ".minecraft" / "versions"
     elif system == "Darwin":  # macOS
@@ -36,6 +37,7 @@ def get_minecraft_jar_path(version: str) -> Path:
     else:
         print(f"Minecraft jar file for version {version} not found.")
         os._exit(1)
+
 
 def extract_files_from_jar(jar_path: Path, sources, destination: Path, title) -> None:
     """
@@ -85,7 +87,6 @@ def extract_files_from_jar(jar_path: Path, sources, destination: Path, title) ->
             printProgressBar(i, totalfiles, prefix=title, length=40, decimals=0)
 
 
-    
 def extractFilesFromJar(minecraft_version, include_recipes):
     if Path(f"data_extracted/{minecraft_version}").exists():
         print(f"Minercaft {minecraft_version} files already extracted. Skipping...\n")
