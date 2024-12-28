@@ -2,7 +2,7 @@
   "type": "minecraft:jigsaw",
   "biomes": "#minecraft:has_structure/pillager_outpost",
   "step": "surface_structures",
-  "terrain_adaptation": "none",
+  "terrain_adaptation": "beard_thin",
   "spawn_overrides": {},
   "start_pool": "babel:lost_library_pool",
   "size": 1,
