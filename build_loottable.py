@@ -149,9 +149,6 @@ def buildLootTable(config, progressBar = True):
                 "tag": customData
             })
 
-        # Generation functions
-        thisBook["functions"].extend(generationFunctions)
-
         # Append to entries
         entries.append(thisBook)
         if progressBar:
@@ -162,7 +159,8 @@ def buildLootTable(config, progressBar = True):
         'pools': [
             {
                 'rolls': 1,
-                'entries': entries
+                'entries': entries,
+                'functions': generationFunctions
             }
         ]
     }
