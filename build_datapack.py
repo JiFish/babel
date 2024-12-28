@@ -2,10 +2,8 @@
 
 import zipfile
 import json
-import copy
-from glob import glob
-from progress_bar import printProgressBar
 from build_loottable import buildLootTable
+from build_knowlege_books import buildKnowledgeBooksTable
 
 # Use zlib if we have it
 try:
@@ -17,8 +15,10 @@ except ImportError:
 min_pack_format = 57
 pack_format = 61
 
+extracted_data_directory = None
+
 def addToLootTable(lootfilename, weight = 1, pool = 0, guaranteedFind = False, quality = False, indent = None):
-    with open('data_extracted/base_loot_tables/'+lootfilename, 'r') as lootfile:
+    with open(f"{extracted_data_directory}/base_loot_tables/{lootfilename}", 'r') as lootfile:
         lootjson = json.loads(lootfile.read())
 
     # Basic loot pool entry
@@ -64,68 +64,10 @@ def getFileJson(filename, indent = None):
     with open(filename) as jsonFile:
         return json.dumps(json.load(jsonFile), indent=indent)
 
-def parse_recipe_file(recp):
-    """Parses a recipe file and returns its JSON data and name."""
-    name = recp.replace('\\', '/').split('/')[-1][:-5]  # Extract file name without extension
-    with open(recp) as jsonFile:
-        recp_json = json.load(jsonFile)
-    return name, recp_json
+def buildDatapack(config, loottable, version, extracted_data_dir):
+    global extracted_data_directory
+    extracted_data_directory = extracted_data_dir
 
-def should_skip_recipe(recp_json):
-    """Determines if a recipe should be skipped based on its output and keys."""
-    if recp_json['type'] not in ['minecraft:crafting_shaped', 'minecraft:crafting_shapeless']:
-        return True
-    
-    if recp_json['result']['id'].startswith("minecraft:waxed"):
-        return True
-
-    if recp_json['type'] == 'minecraft:crafting_shaped':
-        output_item = recp_json['result']['id']
-        for items in recp_json['key'].values():
-            if isinstance(items, str):
-                items = [items]
-            if output_item in items:
-                return True
-    return False
-
-def update_loot_pool(newpool, item, name, group_name):
-    """Updates the loot pool with a new or existing group."""
-    if group_name not in newpool:
-        newitem = copy.deepcopy(item)
-        newitem["functions"][0]["components"]["minecraft:recipes"][0] = "minecraft:" + name
-        newitem["functions"][0]["components"]["minecraft:lore"][0] = f'"{group_name.replace("_", " ").title()}"'
-        newpool[group_name] = newitem
-    else:
-        newpool[group_name]["functions"][0]["components"]["minecraft:recipes"].append("minecraft:" + name)
-
-def process_recipes(recipes, item):
-    """Processes all recipes and updates the loot pool."""
-    newpool = {}
-    total_recipes = len(recipes)
-
-    for i, recp in enumerate(recipes, start=1):
-        printProgressBar(i, total_recipes, "Creating knowledge books loot table...", length=40, decimals=0)
-        name, recp_json = parse_recipe_file(recp)
-
-        if should_skip_recipe(recp_json):
-            continue
-
-        group_name = recp_json.get('group', name)
-        update_loot_pool(newpool, item, name, group_name)
-
-    return newpool
-
-def create_knowledge_books_loot_table(baseloot):
-    """Creates the knowledge books loot table."""
-    with open(baseloot) as jsonFile:
-        kb = json.load(jsonFile)
-    item = kb["pools"][0]["entries"][0]
-    recipes = glob('data_extracted/base_recipe/*.json')
-    newpool = process_recipes(recipes, item)
-    kb["pools"][0]["entries"] = list(newpool.values())
-    return kb
-
-def buildDatapack(config, loottable, version):
     indent = 2 if config['indent-output'] else None
 
     zf = zipfile.ZipFile(config['output-filename'], mode='w', compression=compression)
@@ -167,6 +109,7 @@ def buildDatapack(config, loottable, version):
         zf.writestr('data/babel/recipe/babel_book_recipe.json', getFileJson('data/babel_book_recipe.json', indent=indent))
     if config['add-lost-libraries']:
         print("Adding Lost Libraries to worldgen.")
+        print("Building junk books loot table...")
         loottable = buildLootTable({'books-path': 'junk_books/', 'copy-of-copy-chance': 0, 'copy-of-original-chance': 0, 'original-chance': 0}, True)
         zf.writestr('data/babel/loot_table/junk_books.json', json.dumps(loottable, indent=indent))
         zf.writestr('data/babel/loot_table/lost_library_chest.json', getFileJson('data/lost_library_chest.json', indent=indent))
@@ -177,6 +120,6 @@ def buildDatapack(config, loottable, version):
         zf.writestr('data/babel/worldgen/template_pool/lost_library_pool.json', getFileJson('data/lost_library_pool.json', indent=indent))
         zf.writestr('data/babel/worldgen/structure/lost_library.json', getFileJson('data/lost_library.json', indent=indent))
         zf.write('data/lost_library.nbt', 'data/babel/structure/lost_library.nbt')
-        knowlege_book = create_knowledge_books_loot_table('data/knowlege_book.json')
+        knowlege_book = buildKnowledgeBooksTable('data/knowlege_book.json', extracted_data_directory)
         zf.writestr('data/babel/loot_table/knowlege_book.json', json.dumps(knowlege_book, indent=indent))
     zf.close()

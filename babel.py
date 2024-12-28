@@ -3,8 +3,8 @@
 import argparse
 import sys
 import os;
-from build_datapack import *
-from build_loottable import *
+from build_datapack import buildDatapack
+from build_loottable import buildLootTable
 from minecraft_extract import extractFilesFromJar
 from config import loadAndValidateYaml
 
@@ -71,7 +71,7 @@ try:
         loottable = buildLootTable(config)
 
         print ("\nBuilding data pack...")
-        buildDatapack(config, loottable, version)
+        buildDatapack(config, loottable, version, f"data_extracted/{minecraft_version}")
         print ("Data pack build complete!\n\nCopy %s to your world's 'datapacks' directory." % config['output-filename'])
 
 except Exception as e:
