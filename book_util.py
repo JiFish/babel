@@ -2,6 +2,7 @@ import os
 import json
 import argparse
 
+
 def save_dicts_to_files(json_data, output_dir="lore_books"):
     """
     Splits a JSON list of dictionaries and saves each dictionary as a separate file.
@@ -42,6 +43,7 @@ def save_dicts_to_files(json_data, output_dir="lore_books"):
     except Exception as e:
         print(f"An error occurred: {e}")
 
+
 def combine_json_files(input_dir="lore_books", output_file="combined_books.json"):
     """
     Combines all JSON files in the specified directory into a single list,
@@ -78,16 +80,17 @@ def combine_json_files(input_dir="lore_books", output_file="combined_books.json"
     except Exception as e:
         print(f"Error saving to {output_file}: {e}")
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Split or combine JSON files."
     )
-    
+
     subparsers = parser.add_subparsers(dest="command", help="Commands")
 
     # Subparser for splitting
     split_parser = subparsers.add_parser(
-        "split", 
+        "split",
         help="Split a JSON list into individual files.",
         description="Split a JSON list into individual files."
     )
@@ -96,7 +99,7 @@ if __name__ == "__main__":
 
     # Subparser for combining
     combine_parser = subparsers.add_parser(
-        "combine", 
+        "combine",
         help="Combine individual JSON files into a single file.",
         description="Combine individual JSON files into a single file."
     )

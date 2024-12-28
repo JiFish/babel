@@ -57,8 +57,9 @@ def validate_book(filename, book):
     if len(errors) > 0:
         raise RuntimeError("Validation problems in %s:\n- %s" % (filename, "\n- ".join(errors)))
 
-def buildLootTable(config, progressBar = True):
-    entries = [];
+
+def buildLootTable(config, progressBar=True):
+    entries = []
 
     # Loop through the books directory and add them all
     directory = config['books-path']
@@ -96,7 +97,7 @@ def buildLootTable(config, progressBar = True):
         raise RuntimeError("No books were found!")
 
     if progressBar:
-        print (f"Found {totalfiles} books in {directory}.")
+        print(f"Found {totalfiles} books in {directory}.")
         printProgressBar(0, totalfiles, prefix='Importing Books...', length=40, decimals=0)
     for i, file in enumerate(dirlist):
         book = decode_book(directory, file)
@@ -152,8 +153,7 @@ def buildLootTable(config, progressBar = True):
         # Append to entries
         entries.append(thisBook)
         if progressBar:
-            printProgressBar(i+1, totalfiles, prefix='Importing Books...', length=40, decimals=0)
-
+            printProgressBar(i + 1, totalfiles, prefix='Importing Books...', length=40, decimals=0)
 
     loottable = {
         'pools': [
@@ -166,6 +166,7 @@ def buildLootTable(config, progressBar = True):
     }
 
     return loottable
+
 
 if __name__ == '__main__':
     config = loadAndValidateYaml(argv[1] if argv[1] else 'config.yaml')

@@ -2,16 +2,17 @@
 
 import argparse
 import sys
-import os;
+import os
 from build_datapack import buildDatapack
 from build_loottable import buildLootTable
 from minecraft_extract import extractFilesFromJar
 from config import loadAndValidateYaml
 
+
 def chance_calculation(config):
-    chance_tattered = ((1-config['copy-of-copy-chance']) * (1-config['copy-of-original-chance']) * (1-config['original-chance'])) * 100
-    chance_coc = ((config['copy-of-copy-chance']) * (1-config['copy-of-original-chance']) * (1-config['original-chance'])) * 100
-    chance_coo = ((config['copy-of-original-chance']) * (1-config['original-chance'])) * 100
+    chance_tattered = ((1 - config['copy-of-copy-chance']) * (1 - config['copy-of-original-chance']) * (1 - config['original-chance'])) * 100
+    chance_coc = ((config['copy-of-copy-chance']) * (1 - config['copy-of-original-chance']) * (1 - config['original-chance'])) * 100
+    chance_coo = ((config['copy-of-original-chance']) * (1 - config['original-chance'])) * 100
     chance_o = config['original-chance'] * 100
     chance_total = chance_tattered + chance_coc + chance_coo + chance_o
     print(f"Real chances calculation (applying chances sequentially):")
@@ -20,6 +21,7 @@ def chance_calculation(config):
     print(f"Copy of orginal chance: {chance_coo:.1f}%")
     print(f"Orginal chance:         {chance_o:.1f}%")
     print(f"Total:                  {chance_total:.1f}%")
+
 
 isCompiled = getattr(sys, 'frozen', False)
 version = "v2-be%s" % (' (Windows)' if isCompiled else '')
@@ -55,7 +57,7 @@ try:
 
     if args.chance_calc:
         chance_calculation(config)
-    
+
     else:
         # indent arg overrides config field
         if args.indent:
@@ -70,12 +72,12 @@ try:
 
         loottable = buildLootTable(config)
 
-        print ("\nBuilding data pack...")
+        print("\nBuilding data pack...")
         buildDatapack(config, loottable, version, f"data_extracted/{minecraft_version}")
-        print ("Data pack build complete!\n\nCopy %s to your world's 'datapacks' directory." % config['output-filename'])
+        print("Data pack build complete!\n\nCopy %s to your world's 'datapacks' directory." % config['output-filename'])
 
 except Exception as e:
-    print("\nError: "+str(e))
+    print("\nError: " + str(e))
 
 finally:
     if isCompiled and not args.no_wait:
