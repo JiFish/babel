@@ -94,6 +94,7 @@ def buildDatapack(config, loottable, version):
         zf.writestr('data/minecraft/loot_table/gameplay/hero_of_the_village/librarian_gift.json', getFileJson('data/librarian_gift.json', indent=indent))
     if config['add-crafting-recipe']:
         print("Adding crafting recipe.")
+        zf.writestr('data/babel/loot_table/crafted_chest.json', getFileJson('data/crafted_chest.json', indent=indent))
         zf.writestr('data/babel/recipe/babel_book_recipe.json', getFileJson('data/babel_book_recipe.json', indent=indent))
     if config['add-lost-libraries']:
         print("Adding Lost Libraries to worldgen.")
