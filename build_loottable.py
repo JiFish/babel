@@ -4,6 +4,8 @@ import json
 import yaml
 import os
 from progress_bar import printProgressBar
+from sys import argv
+from config import loadAndValidateYaml
 
 # Use a YAML parser to decode books. This allows JSON, but also
 # allows looser formatted JSON like the minecraft parser does.
@@ -168,5 +170,6 @@ def buildLootTable(config, progressBar = True):
     return loottable
 
 if __name__ == '__main__':
-    loottable = buildLootTable({'books-path': 'books/', 'copy-of-copy-chance': 0.66, 'copy-of-original-chance': 0.1, 'original-chance': 0.003}, False)
+    config = loadAndValidateYaml(argv[1] if argv[1] else 'config.yaml')
+    loottable = buildLootTable(config, False)
     print(json.dumps(loottable, indent=2, ensure_ascii=False))
