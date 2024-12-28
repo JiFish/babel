@@ -12,10 +12,10 @@
               "function": "minecraft:set_components",
               "components": {
                 "minecraft:recipes": [
-                  "minecraft:acacia_boat"
+                  "minecraft:example_recipie"
                 ],
                 "minecraft:lore": [
-                  "Acacia Boat"
+                  "Example Recipie"
                 ]
               }
             }

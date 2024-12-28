@@ -6,7 +6,7 @@
       "other_set": "minecraft:villages"
     },
     "frequency": 0.2,
-    "frequency_reduction_method": "legacy_type_1",
+    "frequency_reduction_method": "default",
     "salt": 5141134,
     "separation": 8,
     "spacing": 32
