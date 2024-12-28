@@ -4,6 +4,7 @@ import zipfile
 import json
 import copy
 from glob import glob
+from build_loottable import buildLootTable
 
 # Use zlib if we have it
 try:
