@@ -1,83 +1,83 @@
 {
-    "type": "minecraft:chest",
-    "pools": [
-      {
-        "rolls": {
-          "type": "minecraft:constant",
-          "value": 1
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "type": "minecraft:constant",
+        "value": 1
+      },
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 60
         },
-        "entries": [
-          {
-            "type": "minecraft:empty",
-            "weight": 60
-          },
-          {
-            "type": "minecraft:item",
-            "name": "minecraft:paper",
-            "weight": 10,
-            "functions": [
-              {
-                "function": "minecraft:set_count",
-                "count": {
-                  "type": "minecraft:uniform",
-                  "min": 1,
-                  "max": 3
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:paper",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:feather",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:book",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:ink_sac",
+              "weight": 10,
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.8
                 }
-              }
-            ]
-          },
-          {
-            "type": "minecraft:item",
-            "name": "minecraft:feather",
-            "weight": 10
-          },
-          {
-            "type": "minecraft:item",
-            "name": "minecraft:book",
-            "weight": 10
-          },
-          {
-            "type": "minecraft:alternatives",
-            "children": [
-              {
-                "type": "minecraft:item",
-                "name": "minecraft:ink_sac",
-                "weight": 10,
-                "conditions": [
-                  {
-                    "condition": "minecraft:random_chance",
-                    "chance": 0.8
-                  }
-                ]
-              },
-              {
-                "type": "minecraft:item",
-                "name": "minecraft:glow_ink_sac",
-                "weight": 10
-              }
-            ]
-          },
-          {
-            "type": "minecraft:item",
-            "name": "minecraft:writable_book",
-            "weight": 10
-          },
-          {
-            "type": "minecraft:loot_table",
-            "value": "babel:books",
-            "weight": 1
-          },
-          {
-            "type": "minecraft:loot_table",
-            "value": "babel:junk_books",
-            "weight": 5
-          },
-          {
-            "type": "minecraft:loot_table",
-            "value": "babel:knowlege_book",
-            "weight": 5
-          }
-        ]
-      }
-    ]
-  }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:glow_ink_sac",
+              "weight": 10
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:writable_book",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": "babel:books",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": "babel:junk_books",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": "babel:knowlege_book",
+          "weight": 5
+        }
+      ]
+    }
+  ]
+}

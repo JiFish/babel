@@ -1,77 +1,77 @@
 {
-    "type": "minecraft:chest",
-    "pools": [
-      {
-        "rolls": {
-          "type": "minecraft:uniform",
-          "min": 12,
-          "max": 18
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 12,
+        "max": 18
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:paper",
+          "weight": 3
         },
-        "entries": [
-          {
-            "type": "minecraft:item",
-            "name": "minecraft:paper",
-            "weight": 3
-          },
-          {
-            "type": "minecraft:item",
-            "name": "minecraft:cobweb"
-          }
-        ]
-      },
-      {
-        "rolls": 1,
-        "entries": [
-          {
-            "type": "minecraft:loot_table",
-            "value": "babel:books",
-            "functions": [
-              {
-                "function": "minecraft:set_book_cover",
-                "generation": 1
-              },
-              {
-                "function": "minecraft:set_book_cover",
-                "generation": 0,
-                "conditions": [
-                  {
-                    "condition": "random_chance",
-                    "chance": 0.1
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "rolls": 1,
-        "entries": [
-          {
-            "type": "minecraft:item",
-            "name": "minecraft:book",
-            "functions": [
-              {
-                "function": "minecraft:enchant_with_levels",
-                "levels": {
-                  "type": "minecraft:uniform",
-                  "min": 15,
-                  "max": 25
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cobweb"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "babel:books",
+          "functions": [
+            {
+              "function": "minecraft:set_book_cover",
+              "generation": 1
+            },
+            {
+              "function": "minecraft:set_book_cover",
+              "generation": 0,
+              "conditions": [
+                {
+                  "condition": "random_chance",
+                  "chance": 0.1
                 }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:book",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "min": 15,
+                "max": 25
               }
-            ]
-          }
-        ]
-      },
-      {
-        "rolls": 1,
-        "entries": [
-          {
-            "type": "minecraft:loot_table",
-            "name": "minecraft:knowledge_book",
-            "value": "babel:knowlege_book"
-          }
-        ]
-      }
-    ]
-  }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "minecraft:knowledge_book",
+          "value": "babel:knowlege_book"
+        }
+      ]
+    }
+  ]
+}
