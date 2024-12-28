@@ -97,6 +97,8 @@ def buildDatapack(config, loottable, version):
         zf.writestr('data/babel/recipe/babel_book_recipe.json', getFileJson('data/babel_book_recipe.json', indent=indent))
     if config['add-lost-libraries']:
         print("Adding Lost Libraries to worldgen.")
+        loottable = buildLootTable({'books-path': 'junk_books/', 'copy-of-copy-chance': 0, 'copy-of-original-chance': 0, 'original-chance': 0}, True)
+        zf.writestr('data/babel/loot_table/junk_books.json', json.dumps(loottable, indent=indent))
         zf.writestr('data/babel/loot_table/lost_library_chest.json', getFileJson('data/lost_library_chest.json', indent=indent))
         zf.writestr('data/babel/worldgen/structure_set/lost_library_set.json', getFileJson('data/lost_library_set.json', indent=indent))
         zf.writestr('data/babel/worldgen/template_pool/lost_library_pool.json', getFileJson('data/lost_library_pool.json', indent=indent))
