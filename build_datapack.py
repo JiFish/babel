@@ -2,7 +2,7 @@
 
 import zipfile
 import json
-from build_loottable import buildLootTable
+from build_loottable import buildLootTable, buildTestLootTables
 from build_knowlege_books import buildKnowledgeBooksTable
 
 # Use zlib if we have it
@@ -67,12 +67,13 @@ def getFileJson(filename, indent = None):
         return json.dumps(json.load(jsonFile), indent=indent)
 
 
-def buildDatapack(config, loottable, version, extracted_data_dir):
+def buildDatapack(config, version, extracted_data_dir):
     global extracted_data_directory
     extracted_data_directory = extracted_data_dir
 
     indent = 2 if config['indent-output'] else None
 
+    print("Adding pack meta data.")
     zf = zipfile.ZipFile(config['output-filename'], mode='w', compression=compression)
     zf.writestr('pack.mcmeta', json.dumps({
         "pack": {
@@ -82,8 +83,13 @@ def buildDatapack(config, loottable, version, extracted_data_dir):
         }
     }, indent=indent, ensure_ascii=False))
     zf.write('pack.png', 'pack.png')
-    print("Creating babel:books loot table.")
+
+    loottable = buildLootTable(config)
     zf.writestr('data/babel/loot_table/books.json', getBooksJsonString(loottable, indent=indent))
+
+    if config['add-test-tables']:
+        for i, testtable in enumerate(buildTestLootTables(config)):
+            zf.writestr(f"data/babel/loot_table/test_books_{i+1}.json", getBooksJsonString(testtable, indent=indent))
     if config['add-stronghold-loot']:
         print("Adding to Stronghold Library loot table.")
         zf.writestr('data/minecraft/loot_table/chests/stronghold_library.json', addToLootTable('stronghold_library.json', 15, guaranteedFind=True, indent=indent))
@@ -112,8 +118,7 @@ def buildDatapack(config, loottable, version, extracted_data_dir):
         zf.writestr('data/babel/recipe/babel_book_recipe.json', getFileJson('data/babel_book_recipe.json', indent=indent))
     if config['add-lost-libraries']:
         print("Adding Lost Libraries to worldgen.")
-        print("Building junk books loot table...")
-        loottable = buildLootTable({'books-path': 'junk_books/', 'copy-of-copy-chance': 0, 'copy-of-original-chance': 0, 'original-chance': 0}, True)
+        loottable = buildLootTable({'books-path': 'junk_books/', 'copy-of-copy-chance': 0, 'copy-of-original-chance': 0, 'original-chance': 0}, 'Creating junk loot table...')
         zf.writestr('data/babel/loot_table/junk_books.json', json.dumps(loottable, indent=indent))
         zf.writestr('data/babel/loot_table/lost_library_chest.json', getFileJson('data/lost_library_chest.json', indent=indent))
         zf.writestr('data/babel/loot_table/lost_library_chest_poor.json', getFileJson('data/lost_library_chest_poor.json', indent=indent))

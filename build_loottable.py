@@ -58,7 +58,7 @@ def validate_book(filename, book):
         raise RuntimeError("Validation problems in %s:\n- %s" % (filename, "\n- ".join(errors)))
 
 
-def buildLootTable(config, progressBar=True):
+def buildLootTable(config, progressBar='Creating main loot table...'):
     entries = []
 
     # Loop through the books directory and add them all
@@ -98,7 +98,7 @@ def buildLootTable(config, progressBar=True):
 
     if progressBar:
         print(f"Found {totalfiles} books in {directory}.")
-        printProgressBar(0, totalfiles, prefix='Importing Books...', length=40, decimals=0)
+        printProgressBar(0, totalfiles, prefix=progressBar, length=40, decimals=0)
     for i, file in enumerate(dirlist):
         book = decode_book(directory, file)
         validate_book(file, book)
@@ -148,7 +148,7 @@ def buildLootTable(config, progressBar=True):
         # Append to entries
         entries.append(thisBook)
         if progressBar:
-            printProgressBar(i + 1, totalfiles, prefix='Importing Books...', length=40, decimals=0)
+            printProgressBar(i + 1, totalfiles, prefix=progressBar, length=40, decimals=0)
 
     loottable = {
         'pools': [
@@ -161,6 +161,79 @@ def buildLootTable(config, progressBar=True):
     }
 
     return loottable
+
+
+def buildTestLootTables(config, progressBar=True):
+    entries = []
+
+    # Loop through the books directory and add them all
+    directory = config['books-path']
+    dirlist = os.listdir(directory)
+    totalfiles = len(dirlist)
+
+    if totalfiles < 1:
+        raise RuntimeError("No books were found!")
+
+    if progressBar:
+        printProgressBar(0, totalfiles, prefix='Creating test loot tables...', length=40, decimals=0)
+    for i, file in enumerate(dirlist):
+        book = decode_book(directory, file)
+        validate_book(file, book)
+
+        if 'weight' in book:
+            weight = book['weight']
+        else:
+            weight = 1
+
+        # Basic item and functions
+        thisBook = {
+            "type": "minecraft:item",
+            "name": "minecraft:written_book",
+            "weight": weight,
+            "functions": [
+                {
+                    "function": "minecraft:set_written_book_pages",
+                    "pages": book['pages'],
+                    "mode": "replace_all"
+                },
+                {
+                    "function": "minecraft:set_book_cover",
+                    "author": book['author'],
+                    "title": book['title'],
+                    "generation": 0,
+                }
+            ]
+        }
+
+        # Optional functions
+        if "lore" in book:
+            thisBook["functions"].append({
+                "function": "minecraft:set_lore",
+                "lore": book['lore'],
+                "mode": "replace_all"
+            })
+        if "custom_data" in book:
+            if type(book['custom_data']) == str:
+                customData = book['customData']
+            else:
+                customData = json.dumps(book['customData'], ensure_ascii=False)
+            thisBook["functions"].append({
+                "function": "minecraft:set_custom_data",
+                "tag": customData
+            })
+
+        # Append to entries
+        entries.append(thisBook)
+        if progressBar:
+            printProgressBar(i + 1, totalfiles, prefix='Creating test loot tables...', length=40, decimals=0)
+
+    # Split entries into multiple loot tables with up to 27 pools each
+    lootTables = []
+    for i in range(0, len(entries), 27):
+        pools = [{'rolls': 1, 'entries': [entry]} for entry in entries[i:i + 27]]
+        lootTables.append({'pools': pools})
+
+    return lootTables
 
 
 if __name__ == '__main__':

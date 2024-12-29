@@ -4,7 +4,6 @@ import argparse
 import sys
 import os
 from build_datapack import buildDatapack
-from build_loottable import buildLootTable
 from minecraft_extract import extractFilesFromJar
 from config import loadAndValidateYaml
 
@@ -31,6 +30,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('filename', help='Optional config filename. (default: %(default)s)', nargs='?', default='config.yaml')
 parser.add_argument('-v', '--version', action='version', version=version)
 parser.add_argument('-i', '--indent', action='store_true', help="Indent output json files. Overrides config field.")
+parser.add_argument('-t', '--test-tables', action='store_true', help="Add test loot tables. Overrides config field.")
 parser.add_argument('-a', '--append-version', action='store_true', help="Append babel version number to output filename.")
 parser.add_argument('-c', '--chance-calc', action='store_true', help="Calculate real chances of various book generations and exit.")
 
@@ -59,9 +59,11 @@ try:
         chance_calculation(config)
 
     else:
-        # indent arg overrides config field
+        # args that overrides config fields
         if args.indent:
             config['indent-output'] = True
+        if args.test_tables:
+            config['add-test-tables'] = True
 
         # Append version alters 'output-filename'
         if args.append_version:
@@ -70,10 +72,8 @@ try:
 
         extractFilesFromJar(minecraft_version, config['add-lost-libraries'])
 
-        loottable = buildLootTable(config)
-
-        print("\nBuilding data pack...")
-        buildDatapack(config, loottable, version, f"data_extracted/{minecraft_version}")
+        print("Building data pack...")
+        buildDatapack(config, version, f"data_extracted/{minecraft_version}")
         print("Data pack build complete!\n\nCopy %s to your world's 'datapacks' directory." % config['output-filename'])
 
 except Exception as e:
