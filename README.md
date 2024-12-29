@@ -80,7 +80,6 @@ Minecraft accepts slightly non-standard JSON, and Babel does its best to handle 
 Books can include additional attributes:
 - **`weight`**: Affects selection probability (default: `1`).
 - **`lore`**: Adds lore text, similar to `pages`.
-- **`custom_model_data`**: Assigns custom textures via a resource pack.
 - **`custom_data`**: Adds custom NBT tags.
 
 Example with optional parameters:
@@ -91,7 +90,6 @@ Example with optional parameters:
   "pages": ["Hello World!"],
   "weight": 2,
   "lore": [[{"text":"Lore line 1","color":"blue"}], "Lore line 2"],
-  "custom_model_data": 42,
   "custom_data": {"foo": "bar", "number": 16}
 }
 ```
