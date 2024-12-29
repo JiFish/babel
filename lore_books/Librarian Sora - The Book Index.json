@@ -8,7 +8,8 @@
                 "bold": true
             },
             {
-                "text": "- Bone Combat\n- Bone's Guide\n- Defense Tips\n- Life as Bones\n- Skelly's Tale"
+                "text": "- Bone Combat\n- Bone's Guide\n- Defense Tips\n- Life as Bones\n- Skelly's Tale",
+                "bold": false
             }
         ],
         [
@@ -17,7 +18,8 @@
                 "bold": true
             },
             {
-                "text": "- Beacon's Call 1\n- Beacon's Call 2\n- Beacon's Call 3\n- Beacon's Call 4\n- Beacon's Call 5\n- Beacon's Call 6"
+                "text": "- Beacon's Call 1\n- Beacon's Call 2\n- Beacon's Call 3\n- Beacon's Call 4\n- Beacon's Call 5\n- Beacon's Call 6",
+                "bold": false
             }
         ],
         [
@@ -26,7 +28,8 @@
                 "bold": true
             },
             {
-                "text": "- Desert Temples\n- Jungle Temples\n- Ocean Ruins\n- Stronghold"
+                "text": "- Desert Temples\n- Jungle Temples\n- Ocean Ruins\n- Stronghold",
+                "bold": false
             }
         ],
         [
@@ -35,7 +38,8 @@
                 "bold": true
             },
             {
-                "text": "- Block Basics\n- Boat Build\n- Bridge Build\n- Castle Craft\n- Garden Magic\n- Interior Deco\n- Roof Designs"
+                "text": "- Block Basics\n- Boat Build\n- Bridge Build\n- Castle Craft\n- Garden Magic\n- Interior Deco\n- Roof Designs",
+                "bold": false
             }
         ],
         [
@@ -44,7 +48,8 @@
                 "bold": true
             },
             {
-                "text": "- Desert Sands\n- Forest Echo\n- Map-making\n- Ocean Depths\n- Tundra Tales"
+                "text": "- Desert Sands\n- Forest Echo\n- Map-making\n- Ocean Depths\n- Tundra Tales",
+                "bold": false
             }
         ],
         [
@@ -53,7 +58,8 @@
                 "bold": true
             },
             {
-                "text": "- Fishing Feasts\n- Herbivore's Delight\n- Nether Eats\n- The Baker's Alchemy"
+                "text": "- Fishing Feasts\n- Herbivore's Delight\n- Nether Eats\n- The Baker's Alchemy",
+                "bold": false
             }
         ],
         [
@@ -62,7 +68,8 @@
                 "bold": true
             },
             {
-                "text": "- Drenna's Diary #1\n- Drenna's Diary #2\n- Drenna's Diary #3\n- Drenna's Diary #4\n- Drenna's Diary #5"
+                "text": "- Drenna's Diary #1\n- Drenna's Diary #2\n- Drenna's Diary #3\n- Drenna's Diary #4\n- Drenna's Diary #5",
+                "bold": false
             }
         ],
         [
@@ -71,7 +78,8 @@
                 "bold": true
             },
             {
-                "text": "- Hidden Paths\n- The Locket\n- The Old Mine\n- Truth Unbound\n- Whispering\n- Whispers Grow"
+                "text": "- Hidden Paths\n- The Locket\n- The Old Mine\n- Truth Unbound\n- Whispering\n- Whispers Grow",
+                "bold": false
             }
         ],
         [
@@ -80,7 +88,8 @@
                 "bold": true
             },
             {
-                "text": "- Erina's Log #1\n- Erina's Log #2\n- Erina's Log #3\n- Erina's Log #4\n- Erina's Log #5\n- Erina's Log #6\n- Erina's Log #7"
+                "text": "- Erina's Log #1\n- Erina's Log #2\n- Erina's Log #3\n- Erina's Log #4\n- Erina's Log #5\n- Erina's Log #6\n- Erina's Log #7",
+                "bold": false
             }
         ],
         [
@@ -89,7 +98,8 @@
                 "bold": true
             },
             {
-                "text": "- Clownfish Tales\n- Mysterious Squid\n- Salmon Chronicles\n- The Cod Codex\n- Tropical Puffer"
+                "text": "- Clownfish Tales\n- Mysterious Squid\n- Salmon Chronicles\n- The Cod Codex\n- Tropical Puffer",
+                "bold": false
             }
         ],
         [
@@ -98,7 +108,8 @@
                 "bold": true
             },
             {
-                "text": "- When I Blew Up LeChuck"
+                "text": "- When I Blew Up LeChuck",
+                "bold": false
             }
         ],
         [
@@ -107,7 +118,8 @@
                 "bold": true
             },
             {
-                "text": "- Artifacts\n- Exotic Foods\n- Music Discs\n- Potions Complete\n- Rare Ores"
+                "text": "- Artifacts\n- Exotic Foods\n- Music Discs\n- Potions Complete\n- Rare Ores",
+                "bold": false
             }
         ],
         [
@@ -116,7 +128,8 @@
                 "bold": true
             },
             {
-                "text": "- Mansion Woes\n- Redstone Wreck\n- Sandy Shack\n- The Maze\n- Wooden Disaster"
+                "text": "- Mansion Woes\n- Redstone Wreck\n- Sandy Shack\n- The Maze\n- Wooden Disaster",
+                "bold": false
             }
         ],
         [
@@ -125,7 +138,8 @@
                 "bold": true
             },
             {
-                "text": "- The Blaze\n- The Creeper\n- The Enderman\n- The Ghast\n- The Phantom\n- The Skeleton\n- The Witch\n- The Zombie"
+                "text": "- The Blaze\n- The Creeper\n- The Enderman\n- The Ghast\n- The Phantom\n- The Skeleton\n- The Witch\n- The Zombie",
+                "bold": false
             }
         ],
         [
@@ -134,7 +148,8 @@
                 "bold": true
             },
             {
-                "text": "- Ink and Quill\n- Lore & Feats\n- The Book Index\n- The Book Quest\n- Writing Tools"
+                "text": "- Ink and Quill\n- Lore & Feats\n- The Book Index\n- The Book Quest\n- Writing Tools",
+                "bold": false
             }
         ],
         [
@@ -143,7 +158,8 @@
                 "bold": true
             },
             {
-                "text": "- Lava Limericks\n- Monsters' Night\n- Ode to Biomes\n- Ode to Pickaxe\n- Villagers' Tales"
+                "text": "- Lava Limericks\n- Monsters' Night\n- Ode to Biomes\n- Ode to Pickaxe\n- Villagers' Tales",
+                "bold": false
             }
         ],
         [
@@ -152,7 +168,8 @@
                 "bold": true
             },
             {
-                "text": "- A Crafty Day\n- Fiery Dreams\n- Hide Seek Fun\n- Paws'N'Tails\n- Taming Begins\n- The Fishy Day"
+                "text": "- A Crafty Day\n- Fiery Dreams\n- Hide Seek Fun\n- Paws'N'Tails\n- Taming Begins\n- The Fishy Day",
+                "bold": false
             }
         ],
         [
@@ -161,7 +178,8 @@
                 "bold": true
             },
             {
-                "text": "- Daybreak's Glow\n- Forest Lullaby\n- Ocean's Whispers\n- River's Echo\n- Starlight Poems\n- The Mine's Song"
+                "text": "- Daybreak's Glow\n- Forest Lullaby\n- Ocean's Whispers\n- River's Echo\n- Starlight Poems\n- The Mine's Song",
+                "bold": false
             }
         ],
         [
@@ -170,7 +188,8 @@
                 "bold": true
             },
             {
-                "text": "- Creeper Tea\n- Echo Echo\n- Fish's Wish\n- Sapling Code\n- Skyy's Flames\n- The Void's Hug"
+                "text": "- Creeper Tea\n- Echo Echo\n- Fish's Wish\n- Sapling Code\n- Skyy's Flames\n- The Void's Hug",
+                "bold": false
             }
         ],
         [
@@ -179,7 +198,18 @@
                 "bold": true
             },
             {
-                "text": "- Desolate Hope 4/5\n- Fiery Trials 3/5\n- Nether Journey 1/5\n- Nether Tales 2/5\n- Return Home 5/5"
+                "text": "- Nether Journey 1/5\n- Nether Tales 2/5\n- Fiery Trials 3/5\n- Desolate Hope 4/5\n- Return Home 5/5",
+                "bold": false
+            }
+        ],
+        [
+            {
+                "text": "Ol' Nugget Ned:\n",
+                "bold": true
+            },
+            {
+                "text": "- Emerald Fever\n- Near Doom",
+                "bold": false
             }
         ],
         [
@@ -188,7 +218,8 @@
                 "bold": true
             },
             {
-                "text": "- Is the World Infinite?\n- The Block's Way\n- The Night\u2019s Echo\n- The Silent Void\n- Village Life"
+                "text": "- Is the World Infinite?\n- The Block's Way\n- The Night\u2019s Echo\n- The Silent Void\n- Village Life",
+                "bold": false
             }
         ],
         [
@@ -197,7 +228,8 @@
                 "bold": true
             },
             {
-                "text": "- Arrival #1\n- First Night #2\n- Fortification #5\n- Garden Grows #4\n- New Beginnings #6\n- New Skills #3"
+                "text": "- Arrival #1\n- First Night #2\n- New Skills #3\n- Garden Grows #4\n- Fortification #5\n- New Beginnings #6",
+                "bold": false
             }
         ],
         [
@@ -206,7 +238,8 @@
                 "bold": true
             },
             {
-                "text": "- Advanced Logic\n- Automated Farm\n- Crafty Traps\n- Redstone Basics\n- Secrets of Light"
+                "text": "- Advanced Logic\n- Automated Farm\n- Crafty Traps\n- Redstone Basics\n- Secrets of Light",
+                "bold": false
             }
         ],
         [
@@ -215,7 +248,8 @@
                 "bold": true
             },
             {
-                "text": "- Crypt of Shadows\n- Eyes in the Fog\n- Haunted Forest\n- The Abandoned\n- The Deep Mine\n- The Forgotten Well\n- The Silent Shore"
+                "text": "- Crypt of Shadows\n- Eyes in the Fog\n- Haunted Forest\n- The Abandoned\n- The Deep Mine\n- The Forgotten Well\n- The Silent Shore",
+                "bold": false
             }
         ],
         [
@@ -224,7 +258,8 @@
                 "bold": true
             },
             {
-                "text": "- Below Bedrock\n- Caves Deep\n- Stronghold Lore\n- Underworld Saga"
+                "text": "- Below Bedrock\n- Caves Deep\n- Stronghold Lore\n- Underworld Saga",
+                "bold": false
             }
         ],
         [
@@ -233,7 +268,8 @@
                 "bold": true
             },
             {
-                "text": "- Architect's Guide\n- Botanical Bliss\n- Mineral Marvels\n- Ode to Fauna\n- Tools & Talents"
+                "text": "- Architect's Guide\n- Botanical Bliss\n- Mineral Marvels\n- Ode to Fauna\n- Tools & Talents",
+                "bold": false
             }
         ],
         [
@@ -242,7 +278,8 @@
                 "bold": true
             },
             {
-                "text": "- Desert Wanders\n- Forest Musings\n- Journey Above\n- Tales of Travel"
+                "text": "- Desert Wanders\n- Forest Musings\n- Journey Above\n- Tales of Travel",
+                "bold": false
             }
         ],
         [
@@ -251,7 +288,8 @@
                 "bold": true
             },
             {
-                "text": "- Dialogue 1/6\n- Dialogue 2/6\n- Endgame 5/6\n- Existence 3/6\n- Existence 4/6\n- Final 6/6"
+                "text": "- Dialogue 1/6\n- Dialogue 2/6\n- Existence 3/6\n- Existence 4/6\n- Endgame 5/6\n- Final 6/6",
+                "bold": false
             }
         ],
         [
@@ -260,7 +298,8 @@
                 "bold": true
             },
             {
-                "text": "- Curse Of Bane\n- Mystic Arts\n- Power Unleash\n- Spirits of Soul\n- Ward's Wisdom"
+                "text": "- Curse Of Bane\n- Mystic Arts\n- Power Unleash\n- Spirits of Soul\n- Ward's Wisdom",
+                "bold": false
             }
         ],
         [
@@ -269,7 +308,8 @@
                 "bold": true
             },
             {
-                "text": "- Potion of Fire Resistance\n- Potion of Healing\n- Potion of Invisibility\n- Potion of Night Vision\n- Potion of Regeneration\n- Potion of Strength\n- Potion of Swiftness\n- Potion of Water Breathing"
+                "text": "- Potion of Fire Resistance\n- Potion of Healing\n- Potion of Invisibility\n- Potion of Night Vision\n- Potion of Regeneration\n- Potion of Strength\n- Potion of Swiftness\n- Potion of Water Breathing",
+                "bold": false
             }
         ],
         [
@@ -278,7 +318,8 @@
                 "bold": true
             },
             {
-                "text": "- Aquatic Realm\n- Beasts of Nether\n- Drifters of Air\n- Lands of Peace"
+                "text": "- Aquatic Realm\n- Beasts of Nether\n- Drifters of Air\n- Lands of Peace",
+                "bold": false
             }
         ]
     ]
