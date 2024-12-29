@@ -135,11 +135,6 @@ def buildLootTable(config, progressBar=True):
                 "lore": book['lore'],
                 "mode": "replace_all"
             })
-        if "custom_model_data" in book:
-            thisBook["functions"].append({
-                "function": "minecraft:set_custom_model_data",
-                "count": book['custom_model_data']
-            })
         if "custom_data" in book:
             if type(book['custom_data']) == str:
                 customData = book['customData']
