@@ -76,6 +76,15 @@
         ],
         [
             {
+                "text": "Erina Ventris:\n",
+                "bold": true
+            },
+            {
+                "text": "- Erina's Log #1\n- Erina's Log #2\n- Erina's Log #3\n- Erina's Log #4\n- Erina's Log #5\n- Erina's Log #6\n- Erina's Log #7"
+            }
+        ],
+        [
+            {
                 "text": "Fin Katherine:\n",
                 "bold": true
             },
@@ -180,15 +189,6 @@
             },
             {
                 "text": "- Is the World Infinite?\n- The Block's Way\n- The Night\u2019s Echo\n- The Silent Void\n- Village Life"
-            }
-        ],
-        [
-            {
-                "text": "Pixel Finder:\n",
-                "bold": true
-            },
-            {
-                "text": "- Where's Uni?\n- Where's Uni? at Sea\n- Where's Uni? in Space\n- Where's Uni? on the farm"
             }
         ],
         [
