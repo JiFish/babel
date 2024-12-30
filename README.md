@@ -1,9 +1,10 @@
 # Babel Book Loot v2.0-bleeding-edge
 
-## Overview
-Babel Book Loot is a customizable Minecraft data pack that adds over 130 pre-written lore books to various loot tables. You can expand the library by adding your own books. The pack is compatible with Minecraft 1.21.4 and likely works with older versions.
-
 ![Logo](readme_images/logo.png)
+
+Babel Book Loot is a customizable Minecraft data pack that adds over 160 pre-written lore books to various loot tables. You can expand the library by adding your own books.
+
+The pack is compatible with Minecraft 1.21.4 and likely works with older versions.
 
 ![Demo](readme_images/babel_demo.webp)
 
@@ -20,21 +21,18 @@ Babel Book Loot is a customizable Minecraft data pack that adds over 130 pre-wri
 Additional variations of the pack offer tweaked mechanics:
 - **[babel-bookish-zombies_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-bookish-zombies_v2.0.zip)**: Zombies can drop books when killed by a player.
 - **[babel-only-chests_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-only-chests_v2.0.zip)**: Books are chest-exclusive (no fishing or raid reward).
-- **[babel-recipe_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-recipe_v2.0.zip)**: Adds a crafting recipe for random books.
 - **[babel-no-libraries_2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-no-libraries_v2.0.zip)**: Removes Lost Libraries.
 - **[babel-fairytales_2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-fairytales_v2.0.zip)**: Replaces lore books with public domain fairy tales.
+- **[babel-recipe_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-recipe_v2.0.zip)**: Adds the below crafting recipe for random books.
 
-#### Optional Crafting Recipe
-If enabled, you can craft random books using: 1 Book and Quill, 1 Soul Sand Block, 1 Chest, and 1 Emerald. This recipe is shapeless and outputs a chest containing a single random book (and rarely something back...)
-
-![Recipe Image](readme_images/optional_recipe.png)
+![Using: 1 Book and Quill, 1 Soul Sand Block, 1 Chest, and 1 Emerald.](readme_images/optional_recipe.png)
 
 ## Advanced Customization with Babel Builder
 The Babel Builder tool lets you customize your pack further:
 
 1. **Download the Tool**:
-   - [babel-builder-windows_v1.1.zip](https://github.com/JiFish/babel/releases) (Windows)
-   - [babel-builder-python_v1.1.zip](https://github.com/JiFish/babel/releases) (Python)
+   - [babel-builder-windows_v2.0.zip](https://github.com/JiFish/babel/releases) (Windows)
+   - [babel-builder-python_v2.0.zip](https://github.com/JiFish/babel/releases) (Python)
 2. **Run the Tool**:
    - Windows: `babel.exe`
    - Python: `python babel.py`
