@@ -35,7 +35,7 @@ def get_minecraft_jar_path(version: str) -> Path:
     if jar_file.is_file():
         return jar_file
     else:
-        print(f"Minecraft jar file for version {version} not found.")
+        print(f"Minecraft jar file for version {version} not found. You must have Minecraft v{version} installed to use the tool.")
         os._exit(1)
 
 
@@ -88,7 +88,8 @@ def extract_files_from_jar(jar_path: Path, sources, destination: Path, title) ->
 
 
 def extractFilesFromJar(minecraft_version, include_recipes):
-    if Path(f"data_extracted/{minecraft_version}").exists():
+    checkPath = ("/base_recipe" if include_recipes else "/base_loot_tables")
+    if Path(f"data_extracted/{minecraft_version}/{checkPath}").exists():
         print(f"Minercaft {minecraft_version} files already extracted. Skipping...\n")
         return
 
