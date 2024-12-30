@@ -105,7 +105,7 @@ options:
   -h, --help            show this help message and exit
   -v, --version         show program's version number and exit
   -i, --indent          Indent output json files. Overrides config field.
-  -t, --test-tables     Add test loot tables. Overrides config field.
+  -m, -t, --metabox     Add test loot tables. Overrides config field.
   -a, --append-version  Append babel version number to output filename.
   -c, --chance-calc     Calculate real chances of various book generations and exit.
 ```

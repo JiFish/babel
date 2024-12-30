@@ -16,7 +16,7 @@ def loadAndValidateYaml(yamlFilePath):
         'add-mansion-loot': bool,
         'add-stronghold-loot': bool,
         'add-zombie-drop': bool,
-        'add-test-tables': bool,
+        'add-metabox': bool,
         'replace-hero-of-the-village-gift': bool,
         'add-lost-libraries': bool,
         'indent-output': bool,

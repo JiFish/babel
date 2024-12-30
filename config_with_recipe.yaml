@@ -10,7 +10,7 @@ add-stronghold-loot: true
 add-zombie-drop: false
 replace-hero-of-the-village-gift: true
 add-lost-libraries: true
-add-test-tables: false
+add-metabox: false
 
 copy-of-copy-chance: 0.95
 copy-of-original-chance: 0.05

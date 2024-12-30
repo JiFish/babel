@@ -30,7 +30,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('filename', help='Optional config filename. (default: %(default)s)', nargs='?', default='config.yaml')
 parser.add_argument('-v', '--version', action='version', version=version)
 parser.add_argument('-i', '--indent', action='store_true', help="Indent output json files. Overrides config field.")
-parser.add_argument('-t', '--test-tables', action='store_true', help="Add test loot tables. Overrides config field.")
+parser.add_argument('-m', '-t', '--metabox', action='store_true', help="Add test loot tables. Overrides config field.")
 parser.add_argument('-a', '--append-version', action='store_true', help="Append babel version number to output filename.")
 parser.add_argument('-c', '--chance-calc', action='store_true', help="Calculate real chances of various book generations and exit.")
 
@@ -62,8 +62,8 @@ try:
         # args that overrides config fields
         if args.indent:
             config['indent-output'] = True
-        if args.test_tables:
-            config['add-test-tables'] = True
+        if args.metabox:
+            config['add-metabox'] = True
 
         # Append version alters 'output-filename'
         if args.append_version:
