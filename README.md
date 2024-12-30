@@ -8,27 +8,21 @@ Babel Book Loot is a customizable Minecraft data pack that adds over 130 pre-wri
 ![Demo](readme_images/babel_demo.webp)
 
 ## Quick Start
-1. **Download the Data Pack**: [Download babel_v1.2.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel_v1.2.1.zip).
+1. **Download the Data Pack**: [Download babel_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel_v2.0.zip).
 2. **Install**: Place the downloaded `.zip` file in your Minecraft world's `datapacks` directory.
 
 ## Gameplay Features
 - **Book Sources**: Find books in village and stronghold chests, woodland mansions, fish them up, or get them from a librarian as a raid reward. The pack also introduces a new structure, the Lost Library, filled with book-related loot.
 - **Books to be found**: Includes lore, mechanics, fiction, and more, written by "in-universe" authors.
-- **Book Rarity**:
-  - 4.7%: Tattered Book (not copyable)
-  - 90%: Copy of a copy (not copyable)
-  - 5%: Copy of original
-  - 0.3%: Original
-
-  (Some loot, such as raid reward uses different values.)
+- **Book Rarity**: You'll normally find books that are a "copy of a copy." But you'll rarely find books of other types.
 
 ## Pre-Customized Versions
 Additional variations of the pack offer tweaked mechanics:
-- **[babel-bookish-zombies_v1.2.1.zip](https://github.com/JiFish/babel/releases/download/v1.2.1/babel-bookish-zombies_v1.1.zip)**: Zombies can drop books when killed by a player.
-- **[babel-only-chests_v1.2.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-only-chests_v1.1.zip)**: Books are chest-exclusive (no fishing or raid reward).
-- **[babel-recipe_v1.2.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel-recipe_v1.1.zip)**: Adds a crafting recipe for random books.
-- **[babel-no-libraries_v2-be]()**: Removes Lost Libraries.
-- **[babel-fairytales_v2-be]()**: Replaces lore books with public domain fairy tales.
+- **[babel-bookish-zombies_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-bookish-zombies_v2.0.zip)**: Zombies can drop books when killed by a player.
+- **[babel-only-chests_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-only-chests_v2.0.zip)**: Books are chest-exclusive (no fishing or raid reward).
+- **[babel-recipe_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-recipe_v2.0.zip)**: Adds a crafting recipe for random books.
+- **[babel-no-libraries_2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-no-libraries_v2.0.zip)**: Removes Lost Libraries.
+- **[babel-fairytales_2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-fairytales_v2.0.zip)**: Replaces lore books with public domain fairy tales.
 
 #### Optional Crafting Recipe
 If enabled, you can craft random books using: 1 Book and Quill, 1 Soul Sand Block, 1 Chest, and 1 Emerald. This recipe is shapeless and outputs a chest containing a single random book (and rarely something back...)
