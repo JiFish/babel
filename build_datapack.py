@@ -87,9 +87,9 @@ def buildDatapack(config, version, extracted_data_dir):
     loottable = buildLootTable(config)
     zf.writestr('data/babel/loot_table/books.json', getBooksJsonString(loottable, indent=indent))
 
-    if config['add-test-tables']:
-        for i, testtable in enumerate(buildTestLootTables(config)):
-            zf.writestr(f"data/babel/loot_table/test_books_{i+1}.json", getBooksJsonString(testtable, indent=indent))
+    if config['add-metabox']:
+        for name, testtable in buildTestLootTables(config).items():
+            zf.writestr(f"data/babel/loot_table/{name}.json", getBooksJsonString(testtable, indent=indent))
     if config['add-stronghold-loot']:
         print("Adding to Stronghold Library loot table.")
         zf.writestr('data/minecraft/loot_table/chests/stronghold_library.json', addToLootTable('stronghold_library.json', 15, guaranteedFind=True, indent=indent))

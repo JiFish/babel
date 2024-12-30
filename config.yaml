@@ -22,8 +22,9 @@ add-zombie-drop: false
 replace-hero-of-the-village-gift: true
 # Add lost lost libraries with book loot to world generation
 add-lost-libraries: true
-# Add testing loot tables called babel:test_books_1 etc. containing one of each book
-add-test-tables: false
+# Add test loot tables. To get a copy of every book in shulker boxes, run the command:
+# /loot give @s loot babel:metabox
+add-metabox: false
 
 # By default books are "Tattered."
 # Each of these chances will be applied in this order, regardless of the outcome of previous rolls.

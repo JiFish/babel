@@ -164,20 +164,48 @@ def buildTestLootTables(config, progressBar=True):
 
     entries = []
     if progressBar:
-        printProgressBar(0, totalfiles, prefix='Creating test loot tables...', length=40, decimals=0)
+        printProgressBar(0, totalfiles, prefix='Creating test loot tables (metabox)...', length=40, decimals=0)
     for i, file in enumerate(dirlist):
         book = decode_book(directory, file)
         validate_book(file, book)
         thisBook = buildBookEntry(book)
         entries.append(thisBook)
         if progressBar:
-            printProgressBar(i + 1, totalfiles, prefix='Creating test loot tables...', length=40, decimals=0)
+            printProgressBar(i + 1, totalfiles, prefix='Creating test loot tables (metabox)...', length=40, decimals=0)
 
     # Split entries into multiple loot tables with up to 27 pools each
-    lootTables = []
+    lootTables = {}
+    tableNum = 0
     for i in range(0, len(entries), 27):
         pools = [{'rolls': 1, 'entries': [entry]} for entry in entries[i:i + 27]]
-        lootTables.append({'pools': pools})
+        tableNum += 1
+        lootTables[f"test_books_{tableNum}"] = {'pools': pools}
+
+    # Meta box
+    metaBoxPools = []
+    for name in lootTables:
+        metaBoxPools.append({
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "minecraft:light_gray_shulker_box"
+                }
+            ],
+            "functions": [
+                {
+                    "function": "minecraft:set_name",
+                    "name": lootTables[name]['pools'][0]["entries"][0]["functions"][1]["author"] +
+                            " - " + lootTables[name]['pools'][-1]["entries"][0]["functions"][1]["author"]
+                },
+                {
+                    "function": "minecraft:set_loot_table",
+                    "type": "minecraft:shulker_box",
+                    "name": f"babel:{name}"
+                }
+            ]
+        })
+    lootTables['metabox'] = {'pools':metaBoxPools}
 
     return lootTables
 
