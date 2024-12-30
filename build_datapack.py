@@ -128,6 +128,6 @@ def buildDatapack(config, version, extracted_data_dir):
         zf.writestr('data/babel/worldgen/template_pool/lost_library_pool.json', getFileJson('data/lost_library_pool.json', indent=indent))
         zf.writestr('data/babel/worldgen/structure/lost_library.json', getFileJson('data/lost_library.json', indent=indent))
         zf.write('data/lost_library.nbt', 'data/babel/structure/lost_library.nbt')
-        knowlege_book = buildKnowledgeBooksTable('data/knowlege_book.json', extracted_data_directory)
+        knowlege_book = buildKnowledgeBooksTable(extracted_data_directory)
         zf.writestr('data/babel/loot_table/knowlege_book.json', json.dumps(knowlege_book, indent=indent))
     zf.close()
