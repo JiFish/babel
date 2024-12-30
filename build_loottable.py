@@ -57,14 +57,50 @@ def validate_book(filename, book):
     if len(errors) > 0:
         raise RuntimeError("Validation problems in %s:\n- %s" % (filename, "\n- ".join(errors)))
 
+def buildBookEntry(book, defaultGeneration=0):
+    thisBook = {
+        "type": "minecraft:item",
+        "name": "minecraft:written_book",
+        "functions": [
+            {
+                "function": "minecraft:set_written_book_pages",
+                "pages": book['pages'],
+                "mode": "replace_all"
+            },
+            {
+                "function": "minecraft:set_book_cover",
+                "author": book['author'],
+                "title": book['title'],
+                "generation": defaultGeneration,
+            }
+        ]
+    }
+
+    # Optional parameters
+    if "weight" in book:
+        thisBook["weight"] = book["weight"]
+    if "lore" in book:
+        thisBook["functions"].append({
+            "function": "minecraft:set_lore",
+            "lore": book['lore'],
+            "mode": "replace_all"
+        })
+    if "custom_data" in book:
+        customData = book['custom_data'] if isinstance(book['custom_data'], str) else json.dumps(book['custom_data'], ensure_ascii=False)
+        thisBook["functions"].append({
+            "function": "minecraft:set_custom_data",
+            "tag": customData
+        })
+
+    return thisBook
 
 def buildLootTable(config, progressBar='Creating main loot table...'):
-    entries = []
-
-    # Loop through the books directory and add them all
     directory = config['books-path']
     dirlist = os.listdir(directory)
     totalfiles = len(dirlist)
+
+    if totalfiles < 1:
+        raise RuntimeError("No books were found!")
 
     # Pre-create generation chance functions, and figure out default generation
     generationChances = {
@@ -93,59 +129,15 @@ def buildLootTable(config, progressBar='Creating main loot table...'):
                 ]
             })
 
-    if totalfiles < 1:
-        raise RuntimeError("No books were found!")
-
+    # Loop through the books directory and add them all
+    entries = []
     if progressBar:
         print(f"Found {totalfiles} books in {directory}.")
         printProgressBar(0, totalfiles, prefix=progressBar, length=40, decimals=0)
     for i, file in enumerate(dirlist):
         book = decode_book(directory, file)
         validate_book(file, book)
-
-        if 'weight' in book:
-            weight = book['weight']
-        else:
-            weight = 1
-
-        # Basic item and functions
-        thisBook = {
-            "type": "minecraft:item",
-            "name": "minecraft:written_book",
-            "weight": weight,
-            "functions": [
-                {
-                    "function": "minecraft:set_written_book_pages",
-                    "pages": book['pages'],
-                    "mode": "replace_all"
-                },
-                {
-                    "function": "minecraft:set_book_cover",
-                    "author": book['author'],
-                    "title": book['title'],
-                    "generation": defaultGeneration,
-                }
-            ]
-        }
-
-        # Optional functions
-        if "lore" in book:
-            thisBook["functions"].append({
-                "function": "minecraft:set_lore",
-                "lore": book['lore'],
-                "mode": "replace_all"
-            })
-        if "custom_data" in book:
-            if type(book['custom_data']) == str:
-                customData = book['customData']
-            else:
-                customData = json.dumps(book['customData'], ensure_ascii=False)
-            thisBook["functions"].append({
-                "function": "minecraft:set_custom_data",
-                "tag": customData
-            })
-
-        # Append to entries
+        thisBook = buildBookEntry(book, defaultGeneration)
         entries.append(thisBook)
         if progressBar:
             printProgressBar(i + 1, totalfiles, prefix=progressBar, length=40, decimals=0)
@@ -162,11 +154,7 @@ def buildLootTable(config, progressBar='Creating main loot table...'):
 
     return loottable
 
-
 def buildTestLootTables(config, progressBar=True):
-    entries = []
-
-    # Loop through the books directory and add them all
     directory = config['books-path']
     dirlist = os.listdir(directory)
     totalfiles = len(dirlist)
@@ -174,55 +162,13 @@ def buildTestLootTables(config, progressBar=True):
     if totalfiles < 1:
         raise RuntimeError("No books were found!")
 
+    entries = []
     if progressBar:
         printProgressBar(0, totalfiles, prefix='Creating test loot tables...', length=40, decimals=0)
     for i, file in enumerate(dirlist):
         book = decode_book(directory, file)
         validate_book(file, book)
-
-        if 'weight' in book:
-            weight = book['weight']
-        else:
-            weight = 1
-
-        # Basic item and functions
-        thisBook = {
-            "type": "minecraft:item",
-            "name": "minecraft:written_book",
-            "weight": weight,
-            "functions": [
-                {
-                    "function": "minecraft:set_written_book_pages",
-                    "pages": book['pages'],
-                    "mode": "replace_all"
-                },
-                {
-                    "function": "minecraft:set_book_cover",
-                    "author": book['author'],
-                    "title": book['title'],
-                    "generation": 0,
-                }
-            ]
-        }
-
-        # Optional functions
-        if "lore" in book:
-            thisBook["functions"].append({
-                "function": "minecraft:set_lore",
-                "lore": book['lore'],
-                "mode": "replace_all"
-            })
-        if "custom_data" in book:
-            if type(book['custom_data']) == str:
-                customData = book['customData']
-            else:
-                customData = json.dumps(book['customData'], ensure_ascii=False)
-            thisBook["functions"].append({
-                "function": "minecraft:set_custom_data",
-                "tag": customData
-            })
-
-        # Append to entries
+        thisBook = buildBookEntry(book)
         entries.append(thisBook)
         if progressBar:
             printProgressBar(i + 1, totalfiles, prefix='Creating test loot tables...', length=40, decimals=0)
