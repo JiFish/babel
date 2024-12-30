@@ -7,7 +7,7 @@ add-fishing-loot: true
 add-village-loot: true
 add-mansion-loot: true
 add-stronghold-loot: true
-add-zombie-drop: true
+add-zombie-drop: false
 replace-hero-of-the-village-gift: true
 add-lost-libraries: true
 add-test-tables: false
