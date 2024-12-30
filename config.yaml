@@ -4,10 +4,11 @@ output-filename: babel.zip
 books-path: lore_books
 
 # Include a recipe to craft random pre-written books. See `README.md` for the recipe.
+# Crafted books have the special lore text "Soulwritten"
 add-crafting-recipe: false
 
 # Find pre-written books while fishing
-# This ignores the below chances and always gives a tattered book.
+# Fished books have the special lore text "Waterlogged"
 add-fishing-loot: true
 # Find pre-written books in village chests
 add-village-loot: true
