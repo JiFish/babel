@@ -37,6 +37,7 @@ parser.add_argument('-c', '--chance-calc', action='store_true', help="Calculate 
 if isCompiled:
     parser.add_argument('-!', '--no-wait', action='store_true',
                         help="Don't wait for user input when finished.")
+    parser.add_argument('-d', '--debug', action='store_true', help=argparse.SUPPRESS)
     # Handle windows style help arg
     if len(sys.argv) == 2 and sys.argv[1] == '/?':
         sys.argv[1] = '--help'
@@ -77,7 +78,12 @@ try:
         print("Data pack build complete!\n\nCopy %s to your world's 'datapacks' directory." % config['output-filename'])
 
 except Exception as e:
-    print("\nError: " + str(e))
+    print("\nBUILD FAILED!")
+    print(str(e))
+    if not isCompiled or args.debug:
+        from traceback import print_exc
+        print("\nDetails:")
+        print_exc()
 
 finally:
     if isCompiled and not args.no_wait:
