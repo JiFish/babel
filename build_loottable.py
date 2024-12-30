@@ -237,6 +237,6 @@ def buildTestLootTables(config, progressBar=True):
 
 
 if __name__ == '__main__':
-    config = loadAndValidateYaml(argv[1] if argv[1] else 'config.yaml')
+    config = loadAndValidateYaml(argv[1] if len(argv) > 1 else 'config.yaml')
     loottable = buildLootTable(config, False)
     print(json.dumps(loottable, indent=2, ensure_ascii=False))
