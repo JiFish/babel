@@ -5,7 +5,7 @@ Babel Book Loot is a customizable Minecraft data pack that adds over 130 pre-wri
 
 ![Logo](readme_images/logo.png)
 
-![Demo](readme_images/babel.gif)
+![Demo](readme_images/babel_demo.webp)
 
 ## Quick Start
 1. **Download the Data Pack**: [Download babel_v1.2.1.zip](https://github.com/JiFish/babel/releases/download/v1.1/babel_v1.2.1.zip).
@@ -31,7 +31,7 @@ Additional variations of the pack offer tweaked mechanics:
 - **[babel-fairytales_v2-be]()**: Replaces lore books with public domain fairy tales.
 
 #### Optional Crafting Recipe
-If enabled, you can craft random books using: 1 Book and Quill, 1 Soul Sand Block, 1 Chest, and 1 Emerald. This recipe is shapeless and outputs a chest containing a single random book.
+If enabled, you can craft random books using: 1 Book and Quill, 1 Soul Sand Block, 1 Chest, and 1 Emerald. This recipe is shapeless and outputs a chest containing a single random book (and rarely something back...)
 
 ![Recipe Image](readme_images/optional_recipe.png)
 
@@ -102,18 +102,18 @@ Edit `config.yaml` to:
 
 ### Full Command Options
 ```
-usage: python babel.py [-h] [-v] [-!] [-i] [-a] [filename]
+usage: babel.py [-h] [-v] [-i] [-t] [-a] [-c] [filename]
 
 positional arguments:
-  filename              Configuration filename (default: config.yaml)
+  filename              Optional config filename. (default: config.yaml)
 
-optional arguments:
-  -h, --help            Show help message and exit.
-  -v, --version         Show version and exit.
-  -!, --no-wait         Skip user input prompt (Windows only).
-  -i, --indent          Indent JSON files (overrides config).
-  -a, --append-version  Append version to output filename.
-  -c, --chance-calc     Calculate book generation chances and exit.
+options:
+  -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
+  -i, --indent          Indent output json files. Overrides config field.
+  -t, --test-tables     Add test loot tables. Overrides config field.
+  -a, --append-version  Append babel version number to output filename.
+  -c, --chance-calc     Calculate real chances of various book generations and exit.
 ```
 
 ## Using with Other Data Packs
