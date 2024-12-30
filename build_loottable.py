@@ -94,6 +94,66 @@ def buildBookEntry(book, defaultGeneration=0):
 
     return thisBook
 
+def getGenerationFunctions(config):
+    defaultGeneration = 3
+    generationChances = [
+        (2, config['copy-of-copy-chance'], False),
+        (1, config['copy-of-original-chance'], 'uncommon'),
+        (0, config['original-chance'], 'rare'),
+    ]
+    generationFunctions = []
+    for generation, generationChance, rarity in generationChances:
+        # If 1, this is the new default generation
+        if generationChance == 1:
+            defaultGeneration = generation
+            # Clear out any previous functions so they don't overwrite the new default
+            generationFunctions = []
+            if rarity:
+                generationFunctions.append({
+                    "function": "minecraft:set_components",
+                    "components": {
+                        "minecraft:rarity": rarity
+                    }
+                })
+        # Only add functions with a chance above 0
+        elif generationChance > 0:
+            if rarity:
+                generationFunctions.append({
+                    "function": "minecraft:filtered",
+                    "item_filter": {},
+                    "modifier": [
+                        {
+                            "function": "minecraft:set_book_cover",
+                            "generation": generation
+                        },
+                        {
+                            "function": "minecraft:set_components",
+                            "components": {
+                                "minecraft:rarity": rarity
+                            }
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "condition": "minecraft:random_chance",
+                            "chance": generationChance
+                        }
+                    ]
+                })
+            else:
+                generationFunctions.append({
+                    "function": "minecraft:set_book_cover",
+                    "generation": generation,
+                    "conditions": [
+                        {
+                            'condition': "random_chance",
+                            'chance': generationChance
+                        }
+                    ]
+                })
+
+    return generationFunctions, defaultGeneration
+
 def buildLootTable(config, progressBar='Creating main loot table...'):
     directory = config['books-path']
     dirlist = os.listdir(directory)
@@ -103,31 +163,7 @@ def buildLootTable(config, progressBar='Creating main loot table...'):
         raise RuntimeError("No books were found!")
 
     # Pre-create generation chance functions, and figure out default generation
-    generationChances = {
-        2: config['copy-of-copy-chance'],
-        1: config['copy-of-original-chance'],
-        0: config['original-chance']
-    }
-    generationFunctions = []
-    defaultGeneration = 3
-    for generation, generationChance in generationChances.items():
-        # If 1, this is the new default generation
-        if generationChance == 1:
-            defaultGeneration = generation
-            # Clear out any previous functions so they don't overwrite the new default
-            generationFunctions = []
-        # Only add functions with a chance above 0
-        elif generationChance > 0:
-            generationFunctions.append({
-                "function": "minecraft:set_book_cover",
-                "generation": generation,
-                "conditions": [
-                    {
-                        'condition': "random_chance",
-                        'chance': generationChance
-                    }
-                ]
-            })
+    generationFunctions, defaultGeneration = getGenerationFunctions(config)
 
     # Loop through the books directory and add them all
     entries = []
