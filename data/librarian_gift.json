@@ -13,11 +13,29 @@
               "generation": 1
             },
             {
-              "function": "minecraft:set_book_cover",
-              "generation": 0,
+              "function": "minecraft:set_components",
+              "components": {
+                  "minecraft:rarity": "uncommon"
+              }
+            },
+            {
+              "function": "minecraft:filtered",
+              "item_filter": {},
+              "modifier": [
+                {
+                  "function": "minecraft:set_book_cover",
+                  "generation": 0
+                },
+                {
+                  "function": "minecraft:set_components",
+                  "components": {
+                      "minecraft:rarity": "rare"
+                  }
+                }
+              ],
               "conditions": [
                 {
-                  "condition": "random_chance",
+                  "condition": "minecraft:random_chance",
                   "chance": 0.1
                 }
               ]

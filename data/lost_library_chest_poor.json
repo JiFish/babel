@@ -20,6 +20,12 @@
             {
               "function": "minecraft:set_book_cover",
               "generation": 3
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                  "minecraft:rarity": "common"
+              }
             }
           ]
         }
