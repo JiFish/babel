@@ -13,12 +13,14 @@ if "%1"=="" (
 :: Build windows vesion
 ::
 echo Making windows builder with pyinstaller...
+rmdir dist\ /s /q
 pyinstaller --noconfirm --onefile --console --icon babel.ico babel.py
 echo Copying additional files...
 :: Copy required directories and files
-xcopy "books" "dist\books" /E /I /Y
+xcopy "lore_books" "dist\lore_books" /E /I /Y
+xcopy "fairytale_books" "dist\fairytale_books" /E /I /Y
+xcopy "junk_books" "dist\junk_books" /E /I /Y
 xcopy "data" "dist\data" /E /I /Y
-copy "pack.png" "dist\pack.png" /Y
 copy "config*.yaml" "dist\" /Y
 copy "README.md" "dist\README.md" /Y
 copy "LICENSE.txt" "dist\LICENSE.txt" /Y
@@ -32,7 +34,7 @@ echo Windows builder done.
 :: Build python version
 ::
 echo Zipping python builder
-%ZIP_PATH% a -tzip "babel-builder-python_v%1.zip" "pack.png" "config*.yaml" "README.md" "LICENSE.txt" "books\*" "data\*" "*.py"
+%ZIP_PATH% a -tzip "babel-builder-python_v%1.zip" "config*.yaml" "README.md" "LICENSE.txt" "lore_books\*" "fairytale_books\*" "junk_books\*" "data\*" "*.py"
 echo Python builder done.
 
 
