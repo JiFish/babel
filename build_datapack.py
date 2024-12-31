@@ -82,7 +82,7 @@ def buildDatapack(config, version, extracted_data_dir):
             "supported_formats": [min_pack_format, pack_format]
         }
     }, indent=indent, ensure_ascii=False))
-    zf.write('pack.png', 'pack.png')
+    zf.write('data/pack.png', 'pack.png')
 
     loottable = buildLootTable(config)
     zf.writestr('data/babel/loot_table/books.json', getBooksJsonString(loottable, indent=indent))
