@@ -23,7 +23,7 @@ def chance_calculation(config):
 
 
 isCompiled = getattr(sys, 'frozen', False)
-version = "v2-be%s" % (' (Windows)' if isCompiled else '')
+version = "v2.0%s" % (' (Windows)' if isCompiled else '')
 minecraft_version = "1.21.4"
 
 parser = argparse.ArgumentParser()

@@ -1,4 +1,4 @@
-# Babel Book Loot v2.0-bleeding-edge
+# Babel Book Loot v2.0
 
 ![Logo](readme_images/logo.png)
 
