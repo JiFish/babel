@@ -1,4 +1,4 @@
-# Babel Book Loot v2.0
+# Babel Book Loot v2.1
 
 ![Logo](readme_images/logo.png)
 
@@ -9,7 +9,7 @@ The pack is compatible with Minecraft 1.21.4 and likely works with older version
 ![Demo](readme_images/babel_demo.webp)
 
 ## Quick Start
-1. **Download the Data Pack**: [Download babel_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel_v2.0.zip).
+1. **Download the Data Pack**: [Download babel_v2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel_v2.1.zip).
 2. **Install**: Place the downloaded `.zip` file in your Minecraft world's `datapacks` directory.
 
 ## Gameplay Features
@@ -19,11 +19,11 @@ The pack is compatible with Minecraft 1.21.4 and likely works with older version
 
 ## Pre-Customized Versions
 Additional variations of the pack offer tweaked mechanics:
-- **[babel-bookish-zombies_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-bookish-zombies_v2.0.zip)**: Zombies can drop books when killed by a player.
-- **[babel-only-chests_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-only-chests_v2.0.zip)**: Books are chest-exclusive (no fishing or raid reward).
-- **[babel-no-libraries_2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-no-libraries_v2.0.zip)**: Removes Lost Libraries.
-- **[babel-fairytales_2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-fairytales_v2.0.zip)**: Replaces lore books with public domain fairy tales.
-- **[babel-recipe_v2.0.zip](https://github.com/JiFish/babel/releases/download/v2.0/babel-recipe_v2.0.zip)**: Adds the below crafting recipe for random books.
+- **[babel-bookish-zombies_v2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel-bookish-zombies_v2.1.zip)**: Zombies can drop books when killed by a player.
+- **[babel-only-chests_v2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel-only-chests_v2.1.zip)**: Books are chest-exclusive (no fishing or raid reward).
+- **[babel-no-libraries_2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel-no-libraries_v2.1.zip)**: Removes Lost Libraries.
+- **[babel-fairytales_2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel-fairytales_v2.1.zip)**: Replaces lore books with public domain fairy tales.
+- **[babel-recipe_v2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel-recipe_v2.1.zip)**: Adds the below crafting recipe for random books.
 
 ![Using: 1 Book and Quill, 1 Soul Sand Block, 1 Chest, and 1 Emerald.](readme_images/optional_recipe.png)
 
@@ -31,8 +31,8 @@ Additional variations of the pack offer tweaked mechanics:
 The Babel Builder tool lets you customize your pack further:
 
 1. **Download the Tool**:
-   - [babel-builder-windows_v2.0.zip](https://github.com/JiFish/babel/releases) (Windows)
-   - [babel-builder-python_v2.0.zip](https://github.com/JiFish/babel/releases) (Python)
+   - [babel-builder-windows_v2.1.zip](https://github.com/JiFish/babel/releases) (Windows)
+   - [babel-builder-python_v2.1.zip](https://github.com/JiFish/babel/releases) (Python)
 2. **Run the Tool**:
    - Windows: `babel.exe`
    - Python: `python babel.py`

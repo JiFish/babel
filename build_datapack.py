@@ -62,9 +62,12 @@ def getBooksJsonString(loottable, indent=None):
 # Load the file, parse json then spit back out
 # Re-indents (or minimizes) the json as requested
 # Also checks the json is valid   
-def getFileJson(filename, indent = None):
+def getFileJson(filename, indent = None, string = True):
     with open(filename) as jsonFile:
-        return json.dumps(json.load(jsonFile), indent=indent)
+        jsonValue = json.load(jsonFile)
+    if not string:
+        return jsonValue
+    return json.dumps(jsonValue, indent=indent)
 
 
 def buildDatapack(config, version, extracted_data_dir):
@@ -118,16 +121,37 @@ def buildDatapack(config, version, extracted_data_dir):
         zf.writestr('data/babel/recipe/babel_book_recipe.json', getFileJson('data/babel_book_recipe.json', indent=indent))
     if config['add-lost-libraries']:
         print("Adding Lost Libraries to worldgen.")
-        loottable = buildLootTable({'books-path': 'junk_books/', 'copy-of-copy-chance': 0, 'copy-of-original-chance': 0, 'original-chance': 0}, 'Creating junk loot table...')
-        zf.writestr('data/babel/loot_table/junk_books.json', json.dumps(loottable, indent=indent))
+        # Loot Tables
         zf.writestr('data/babel/loot_table/lost_library_chest.json', getFileJson('data/lost_library_chest.json', indent=indent))
         zf.writestr('data/babel/loot_table/lost_library_chest_poor.json', getFileJson('data/lost_library_chest_poor.json', indent=indent))
         zf.writestr('data/babel/loot_table/lost_library_chest_good.json', getFileJson('data/lost_library_chest_good.json', indent=indent))
         zf.writestr('data/babel/loot_table/lost_library_pot.json', getFileJson('data/lost_library_pot.json', indent=indent))
-        zf.writestr('data/babel/worldgen/structure_set/lost_library_set.json', getFileJson('data/lost_library_set.json', indent=indent))
-        zf.writestr('data/babel/worldgen/template_pool/lost_library_pool.json', getFileJson('data/lost_library_pool.json', indent=indent))
-        zf.writestr('data/babel/worldgen/structure/lost_library.json', getFileJson('data/lost_library.json', indent=indent))
-        zf.write('data/lost_library.nbt', 'data/babel/structure/lost_library.nbt')
+        # Knowlege and Junk book loot tables
         knowlege_book = buildKnowledgeBooksTable(extracted_data_directory)
         zf.writestr('data/babel/loot_table/knowlege_book.json', json.dumps(knowlege_book, indent=indent))
+        loottable = buildLootTable({'books-path': 'junk_books/', 'copy-of-copy-chance': 0, 'copy-of-original-chance': 0, 'original-chance': 0}, 'Creating junk loot table...')
+        zf.writestr('data/babel/loot_table/junk_books.json', json.dumps(loottable, indent=indent))
+
+        # Add structures, set, pools, and tags
+        POOLS = ['tuff', 'stone', 'sandstone']
+        VARIANTS = 4
+        lost_library_struc = getFileJson('data/lost_library.json', string=False)
+        pool_struc = getFileJson('data/lost_library_pool.json', string=False)
+        set_struc = getFileJson('data/lost_library_set.json', string=False)
+        set_struc['structures'] = []
+        lost_library_tag = {"values": []}
+        for pool in POOLS:
+            set_struc['structures'].append({"structure": f"babel:lost_library_{pool}", "weight": 1})
+            lost_library_tag['values'].append(f"babel:lost_library_{pool}")
+            lost_library_struc['start_pool'] = f"babel:lost_library_pool_{pool}"
+            lost_library_struc['biomes'] = f"#babel:has_structure/lost_library_{pool}"
+            zf.writestr(f"data/babel/worldgen/structure/lost_library_{pool}.json", json.dumps(lost_library_struc, indent=indent))
+            for i in range(VARIANTS):
+                pool_struc['elements'][i]['element']['location'] = f"babel:lost_library_{pool}_v{i}"
+                zf.write(f"data/structure/lost_library_{pool}_v{i}.nbt", f"data/babel/structure/lost_library_{pool}_v{i}.nbt")
+            zf.writestr(f"data/babel/worldgen/template_pool/lost_library_pool_{pool}.json", json.dumps(pool_struc, indent=indent))
+            zf.writestr(f"data/babel/tags/worldgen/biome/has_structure/lost_library_{pool}.json", getFileJson(f"data/biome/lost_library_{pool}.json", indent=indent))
+        zf.writestr('data/babel/tags/worldgen/structure/lost_library.json', json.dumps(lost_library_tag, indent=indent))
+        zf.writestr('data/babel/worldgen/structure_set/lost_library_set.json', json.dumps(set_struc, indent=indent))
+        
     zf.close()

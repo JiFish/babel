@@ -2,7 +2,7 @@
   "placement": {
     "type": "minecraft:random_spread",
     "exclusion_zone": {
-      "chunk_count": 10,
+      "chunk_count": 3,
       "other_set": "minecraft:villages"
     },
     "frequency": 0.2,
@@ -13,7 +13,7 @@
   },
   "structures": [
     {
-      "structure": "babel:lost_library",
+      "structure": "babel:(placeholder)",
       "weight": 1
     }
   ]
