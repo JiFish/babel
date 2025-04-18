@@ -1,15 +1,15 @@
-# Babel Book Loot v2.1
+# Babel Book Loot v2.2
 
 ![Logo](readme_images/logo.png)
 
 Babel Book Loot is a customizable Minecraft data pack that adds over 160 pre-written lore books to various loot tables. You can expand the library by adding your own books.
 
-The pack is compatible with Minecraft 1.21.4 and likely works with older versions.
+The pack is compatible with Minecraft 1.21.5 and likely works with older versions.
 
 ![Demo](readme_images/babel_demo.webp)
 
 ## Quick Start
-1. **Download the Data Pack**: [Download babel_v2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel_v2.1.zip).
+1. **Download the Data Pack**: [Download babel_v2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2/babel_v2.2.zip).
 2. **Install**: Place the downloaded `.zip` file in your Minecraft world's `datapacks` directory.
 
 ## Gameplay Features
@@ -19,11 +19,11 @@ The pack is compatible with Minecraft 1.21.4 and likely works with older version
 
 ## Pre-Customized Versions
 Additional variations of the pack offer tweaked mechanics:
-- **[babel-bookish-zombies_v2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel-bookish-zombies_v2.1.zip)**: Zombies can drop books when killed by a player.
-- **[babel-only-chests_v2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel-only-chests_v2.1.zip)**: Books are chest-exclusive (no fishing or raid reward).
-- **[babel-no-libraries_2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel-no-libraries_v2.1.zip)**: Removes Lost Libraries.
-- **[babel-fairytales_2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel-fairytales_v2.1.zip)**: Replaces lore books with public domain fairy tales.
-- **[babel-recipe_v2.1.zip](https://github.com/JiFish/babel/releases/download/v2.1/babel-recipe_v2.1.zip)**: Adds the below crafting recipe for random books.
+- **[babel-bookish-zombies_v2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2/babel-bookish-zombies_v2.2.zip)**: Zombies can drop books when killed by a player.
+- **[babel-only-chests_v2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2/babel-only-chests_v2.2.zip)**: Books are chest-exclusive (no fishing or raid reward).
+- **[babel-no-libraries_2.1.zip](https://github.com/JiFish/babel/releases/download/v2.2/babel-no-libraries_v2.2.zip)**: Removes Lost Libraries.
+- **[babel-fairytales_2.1.zip](https://github.com/JiFish/babel/releases/download/v2.2/babel-fairytales_v2.2.zip)**: Replaces lore books with public domain fairy tales.
+- **[babel-recipe_v2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2/babel-recipe_v2.2.zip)**: Adds the below crafting recipe for random books.
 
 ![Using: 1 Book and Quill, 1 Soul Sand Block, 1 Chest, and 1 Emerald.](readme_images/optional_recipe.png)
 
@@ -31,8 +31,8 @@ Additional variations of the pack offer tweaked mechanics:
 The Babel Builder tool lets you customize your pack further:
 
 1. **Download the Tool**:
-   - [babel-builder-windows_v2.1.zip](https://github.com/JiFish/babel/releases) (Windows)
-   - [babel-builder-python_v2.1.zip](https://github.com/JiFish/babel/releases) (Python)
+   - [babel-builder-windows_v2.2.zip](https://github.com/JiFish/babel/releases) (Windows)
+   - [babel-builder-python_v2.2.zip](https://github.com/JiFish/babel/releases) (Python)
 2. **Run the Tool**:
    - Windows: `babel.exe`
    - Python: `python babel.py`
@@ -129,9 +129,9 @@ python build_loottable.py config.yaml > books.json
 - Reach out via Mastodon: [@joe@social.jifish.co.uk](https://social.jifish.co.uk/@joe).
 
 ## Licensing
-- Loot tables you generate with text you own are yours to use freely.
+- Loot tables you generate with text you own are yours to use freely. A credit is appreciated but not required.
 - Public domain books are sourced from [Project Gutenberg](https://www.gutenberg.org/).
-- Babel tool and data pack are copyright Joseph Fowler. A credit is appreciated but not required.
+- Babel tool and data pack are copyright Joseph Fowler.
 
 ## Disclaimer
 Software is provided "as is," without warranty or liability. Use at your own risk.

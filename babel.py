@@ -23,8 +23,8 @@ def chance_calculation(config):
 
 
 isCompiled = getattr(sys, 'frozen', False)
-version = "v2.1%s" % (' (Windows)' if isCompiled else '')
-minecraft_version = "1.21.4"
+version = "v2.2%s" % (' (Windows)' if isCompiled else '')
+minecraft_version = "1.21.5"
 
 parser = argparse.ArgumentParser()
 parser.add_argument('filename', help='Optional config filename. (default: %(default)s)', nargs='?', default='config.yaml')
