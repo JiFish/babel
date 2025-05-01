@@ -16,4 +16,11 @@ copy-of-copy-chance: 0.95
 copy-of-original-chance: 0.05
 original-chance: 0.003
 
+weights:
+  stronghold-library: 15
+  woodland-mansion: 5
+  village: 3
+  fishing: 1
+  zombie: 1
+
 indent-output: false

@@ -95,23 +95,35 @@ def buildDatapack(config, version, extracted_data_dir):
             zf.writestr(f"data/babel/loot_table/{name}.json", getBooksJsonString(testtable, indent=indent))
     if config['add-stronghold-loot']:
         print("Adding to Stronghold Library loot table.")
-        zf.writestr('data/minecraft/loot_table/chests/stronghold_library.json', addToLootTable('stronghold_library.json', 15, guaranteedFind=True, indent=indent))
+        zf.writestr(
+            'data/minecraft/loot_table/chests/stronghold_library.json',
+            addToLootTable('stronghold_library.json', config['weights']['stronghold-library'], guaranteedFind=True, indent=indent)
+        )
     if config['add-mansion-loot']:
         print("Adding to Woodland Mansion loot table.")
-        zf.writestr('data/minecraft/loot_table/chests/woodland_mansion.json', addToLootTable('woodland_mansion.json', 5, indent=indent))
+        zf.writestr(
+            'data/minecraft/loot_table/chests/woodland_mansion.json',
+            addToLootTable('woodland_mansion.json', config['weights']['woodland-mansion'], indent=indent)
+        )
     if config['add-village-loot']:
         print("Adding to Village loot tables.")
-        zf.writestr('data/minecraft/loot_table/chests/village/village_desert_house.json', addToLootTable('village_desert_house.json', 3, indent=indent))
-        zf.writestr('data/minecraft/loot_table/chests/village/village_plains_house.json', addToLootTable('village_plains_house.json', 3, indent=indent))
-        zf.writestr('data/minecraft/loot_table/chests/village/village_savanna_house.json', addToLootTable('village_savanna_house.json', 3, indent=indent))
-        zf.writestr('data/minecraft/loot_table/chests/village/village_snowy_house.json', addToLootTable('village_snowy_house.json', 3, indent=indent))
-        zf.writestr('data/minecraft/loot_table/chests/village/village_taiga_house.json', addToLootTable('village_taiga_house.json', 3, indent=indent))
+        for table in ['village_desert_house', 'village_savanna_house', 'village_plains_house', 'village_taiga_house', 'village_snowy_house']:
+            zf.writestr(
+                f'data/minecraft/loot_table/chests/village/{table}.json',
+                addToLootTable(f'{table}.json', config['weights']['village'], indent=indent)
+            )
     if config['add-fishing-loot']:
         print("Adding to Fishing Treasure loot table.")
-        zf.writestr('data/minecraft/loot_table/gameplay/fishing/treasure.json', addToLootTable('treasure.json', 1, quality="Waterlogged", indent=indent))
+        zf.writestr(
+            'data/minecraft/loot_table/gameplay/fishing/treasure.json',
+            addToLootTable('treasure.json', config['weights']['fishing'], quality="Waterlogged", indent=indent)
+        )
     if config['add-zombie-drop']:
         print("Adding to Zombie drop loot table.")
-        zf.writestr('data/minecraft/loot_table/entities/zombie.json', addToLootTable('zombie.json', 1, 1, indent=indent))
+        zf.writestr(
+            'data/minecraft/loot_table/entities/zombie.json',
+            addToLootTable('zombie.json', config['weights']['zombie'], 1, indent=indent)
+        )
     if config['replace-hero-of-the-village-gift']:
         print("Replacing Librarian's Hero of the village gift.")
         zf.writestr('data/minecraft/loot_table/gameplay/hero_of_the_village/librarian_gift.json', getFileJson('data/librarian_gift.json', indent=indent))

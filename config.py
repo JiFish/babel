@@ -23,6 +23,16 @@ def loadAndValidateYaml(yamlFilePath):
         'copy-of-copy-chance': float,
         'copy-of-original-chance': float,
         'original-chance': float,
+        'weights': dict,
+    }
+
+    # Define required subfields for 'weights'
+    requiredWeights = {
+        'stronghold-library': int,
+        'woodland-mansion': int,
+        'village': int,
+        'fishing': int,
+        'zombie': int,
     }
 
     # Check for unrecognized fields
@@ -46,5 +56,22 @@ def loadAndValidateYaml(yamlFilePath):
         # For float fields, ensure they are between 0 and 1
         if fieldType is float and not (0 <= value <= 1):
             raise ValueError(f"Field '{field}' must be between 0 and 1. Got {value}.")
+
+        # Validate 'weights' field
+        if field == 'weights':
+            if not isinstance(value, dict):
+                raise TypeError(f"Incorrect type for field '{field}'. Expected dict, got {type(value).__name__}.")
+
+            # Check for unrecognized subfields
+            for subfield in value:
+                if subfield not in requiredWeights:
+                    raise ValueError(f"Unrecognized subfield in 'weights': {subfield}")
+
+            # Validate required subfields
+            for subfield, subfieldType in requiredWeights.items():
+                if subfield not in value:
+                    raise ValueError(f"Missing required subfield in 'weights': {subfield}")
+                if not isinstance(value[subfield], subfieldType):
+                    raise TypeError(f"Incorrect type for subfield '{subfield}' in 'weights'. Expected {subfieldType.__name__}, got {type(value[subfield]).__name__}.")
 
     return data
