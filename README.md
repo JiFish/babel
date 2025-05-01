@@ -24,6 +24,7 @@ Additional variations of the pack offer tweaked mechanics:
 - **[babel-no-libraries_2.1.zip](https://github.com/JiFish/babel/releases/download/v2.2/babel-no-libraries_v2.2.zip)**: Removes Lost Libraries.
 - **[babel-fairytales_2.1.zip](https://github.com/JiFish/babel/releases/download/v2.2/babel-fairytales_v2.2.zip)**: Replaces lore books with public domain fairy tales.
 - **[babel-recipe_v2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2/babel-recipe_v2.2.zip)**: Adds the below crafting recipe for random books.
+- **[babel-more-drops_v2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2/babel-recipe_v2.2.zip)**: Increases book weight in loot tables significantly. Also includes zombie book drops.
 
 ![Using: 1 Book and Quill, 1 Soul Sand Block, 1 Chest, and 1 Emerald.](readme_images/optional_recipe.png)
 
@@ -89,7 +90,7 @@ Example with optional parameters:
 ### Configurable Settings
 Edit `config.yaml` to:
 - Disable specific loot drops.
-- Adjust generation chances.
+- Adjust generation chances and loot table weights.
 - Modify other pack settings.
 
 ### Full Command Options

@@ -33,5 +33,15 @@ copy-of-copy-chance: 0.95
 copy-of-original-chance: 0.05
 original-chance: 0.003
 
+# Loot table weights. Higher numbers mean more likely to be chosen.
+# Keep in mind these values are relative to others from the same loot table,
+# so the same number can have different effects for each.
+weights:
+  stronghold-library: 15
+  woodland-mansion: 5
+  village: 3
+  fishing: 1
+  zombie: 1
+
 # Indent output json files
 indent-output: false
