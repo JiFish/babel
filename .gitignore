@@ -136,3 +136,6 @@ dmypy.json
 
 # Babel extracted minecraft files
 data_extracted/
+
+# VS Code settings
+.vscode/
