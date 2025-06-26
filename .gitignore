@@ -139,3 +139,15 @@ data_extracted/
 
 # VS Code settings
 .vscode/
+
+# Configuration files
+*.yaml
+
+# Shipped configuration files
+!config.yaml
+!config_bookish_zombies.yaml
+!config_fairytales.yaml
+!config_more_drops.yaml
+!config_no_libraries.yaml
+!config_only_chests.yaml
+!config_with_recipe.yaml
