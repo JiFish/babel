@@ -13,7 +13,7 @@ except ImportError:
     compression = zipfile.ZIP_STORED
 
 min_pack_format = 57
-pack_format = 71
+pack_format = 80
 
 extracted_data_directory = None
 
