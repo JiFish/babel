@@ -2,6 +2,9 @@ import json
 import copy
 from glob import glob
 from progress_bar import printProgressBar
+import argparse
+import os
+import sys
 
 item_template = {
     "type": "minecraft:item",
@@ -76,7 +79,7 @@ def buildKnowledgeBooksTable(extracted_data_directory):
     """Creates the knowledge books loot table."""
     recipes = glob(f"{extracted_data_directory}/base_recipe/*.json")
     newpool = process_recipes(recipes)
-    print(f"{len(newpool)} knowlege books created.")
+    print(f"{len(newpool)} knowledge books created.")
     return {
         "pools": [
             {
@@ -85,3 +88,16 @@ def buildKnowledgeBooksTable(extracted_data_directory):
             }
         ]
     }
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Build knowledge books loot table.")
+    parser.add_argument("minecraft_version", help="Minecraft version (e.g., 1.21.5)")
+    args = parser.parse_args()
+
+    extracted_data_directory = f"data_extracted/{args.minecraft_version}"
+    if not os.path.isdir(extracted_data_directory):
+        print("no extracted data for that version. Run babel.py to extract loot tables first.")
+        sys.exit(1)
+
+    loot_table = buildKnowledgeBooksTable(extracted_data_directory)
+    print(json.dumps(loot_table, indent=2))
