@@ -1,28 +1,8 @@
 # Outputted data pack file
 output-filename: babel-more-drops.zip
-# Path containing the book json / yaml files
-books-path: lore_books
-
-add-crafting-recipe: false
-
-add-fishing-loot: true
-add-village-loot: true
-add-mansion-loot: true
-add-stronghold-loot: true
-add-zombie-drop: true
-replace-hero-of-the-village-gift: true
-add-lost-libraries: true
-add-metabox: false
-
-copy-of-copy-chance: 0.95
-copy-of-original-chance: 0.05
-original-chance: 0.003
-
 weights:
   stronghold-library: 60
   woodland-mansion: 20
   village: 12
   fishing: 4
   zombie: 4
-
-indent-output: false

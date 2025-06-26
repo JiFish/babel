@@ -1,11 +1,8 @@
 import yaml
+import os
 
 
 def loadAndValidateYaml(yamlFilePath):
-    # Load the YAML file
-    with open(yamlFilePath, 'r') as file:
-        data = yaml.safe_load(file)
-
     # Define the required fields and their types
     requiredFields = {
         'output-filename': str,
@@ -34,6 +31,25 @@ def loadAndValidateYaml(yamlFilePath):
         'fishing': int,
         'zombie': int,
     }
+
+    # Always load config.yaml as the base config
+    base_config_path = os.path.join(os.path.dirname(yamlFilePath), "config.yaml")
+    if not os.path.isfile(base_config_path):
+        raise FileNotFoundError(f"Base config file '{base_config_path}' not found.")
+
+    with open(base_config_path, 'r') as file:
+        base_data = yaml.safe_load(file) or {}
+
+    # If loading config.yaml itself, treat as before (no defaults)
+    if os.path.abspath(yamlFilePath) == os.path.abspath(base_config_path):
+        with open(yamlFilePath, 'r') as file:
+            data = yaml.safe_load(file) or {}
+    else:
+        # Overlay user config on top of base config
+        with open(yamlFilePath, 'r') as file:
+            user_data = yaml.safe_load(file) or {}
+        data = base_data.copy()
+        data.update(user_data)
 
     # Check for unrecognized fields
     for field in data:
