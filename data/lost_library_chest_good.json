@@ -86,7 +86,6 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "minecraft:knowledge_book",
           "value": "babel:knowlege_book"
         }
       ]
