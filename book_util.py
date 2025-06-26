@@ -1,7 +1,9 @@
+# DEVELOPER TOOL
+# Splits or combines JSON files containing book data.
+
 import os
 import json
 import argparse
-
 
 def save_dicts_to_files(json_data, output_dir="lore_books"):
     """
