@@ -88,10 +88,17 @@ Example with optional parameters:
 ```
 
 ### Configurable Settings
-Edit `config.yaml` to:
+Create your own config to:
 - Disable specific loot drops.
 - Adjust generation chances and loot table weights.
 - Modify other pack settings.
+
+Steps:
+- Create `my_config.yaml`, and open in a text editor.
+- Open `config.yaml`, and type any settings you want to change in to `my_config.yaml`.
+- For example, add `output-filename: custom-babel.zip`.
+- For any setting you do not specify, the value in `config.yaml` will be used as a fallback. See the other yaml files for examples.
+- Run your config with `python babel.py my_config.yaml`.
 
 ### Full Command Options
 ```
