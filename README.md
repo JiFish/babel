@@ -21,8 +21,8 @@ The pack is compatible with Minecraft 1.21.6 and likely works with older version
 Additional variations of the pack offer tweaked mechanics:
 - **[babel-bookish-zombies_v2.2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2.2/babel-bookish-zombies_v2.2.2.zip)**: Zombies can drop books when killed by a player.
 - **[babel-only-chests_v2.2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2.2/babel-only-chests_v2.2.2.zip)**: Books are chest-exclusive (no fishing or raid reward).
-- **[babel-no-libraries_2.1.zip](https://github.com/JiFish/babel/releases/download/v2.2.2/babel-no-libraries_v2.2.2.zip)**: Removes Lost Libraries.
-- **[babel-fairytales_2.1.zip](https://github.com/JiFish/babel/releases/download/v2.2.2/babel-fairytales_v2.2.2.zip)**: Replaces lore books with public domain fairy tales.
+- **[babel-no-libraries_2.2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2.2/babel-no-libraries_v2.2.2.zip)**: Removes Lost Libraries.
+- **[babel-fairytales_2.2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2.2/babel-fairytales_v2.2.2.zip)**: Replaces lore books with public domain fairy tales.
 - **[babel-recipe_v2.2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2.2/babel-recipe_v2.2.2.zip)**: Adds the below crafting recipe for random books.
 - **[babel-more-drops_v2.2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2.2/babel-more-drops_v2.2.2.zip)**: Increases book weight in loot tables significantly. Also includes zombie book drops.
 
