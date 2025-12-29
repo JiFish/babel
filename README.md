@@ -17,6 +17,13 @@ The pack is compatible with Minecraft 1.21.6 and likely works with older version
 - **Books to be found**: Includes lore, mechanics, fiction, and more, written by "in-universe" authors.
 - **Book Rarity**: You'll normally find books that are a "copy of a copy." But you'll rarely find books of other types.
 
+### Testing
+
+Books are supposed to be quite rare. If you want to test the data pack is installed correctly, you can try the following commands:
+
+- Give yourself a random book: `/loot give @p loot babel:books`
+- Find the nearest library (in a fresh world or area): `/locate structure babel:lost_library`
+
 ## Pre-Customized Versions
 Additional variations of the pack offer tweaked mechanics:
 - **[babel-bookish-zombies_v2.2.2.zip](https://github.com/JiFish/babel/releases/download/v2.2.2/babel-bookish-zombies_v2.2.2.zip)**: Zombies can drop books when killed by a player.
