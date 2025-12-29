@@ -13,7 +13,7 @@ except ImportError:
     compression = zipfile.ZIP_STORED
 
 min_pack_format = 57
-pack_format = 88
+pack_format = 94
 
 extracted_data_directory = None
 
@@ -82,7 +82,9 @@ def buildDatapack(config, version, extracted_data_dir):
         "pack": {
             "description": version + ". Adds pre-written books to loot. https://github.com/JiFish/babel",
             "pack_format": pack_format,
-            "supported_formats": [min_pack_format, pack_format]
+            "supported_formats": [min_pack_format,  pack_format],
+            "min_format": min_pack_format,
+            "max_format": pack_format,
         }
     }, indent=indent, ensure_ascii=False))
     zf.write('data/pack.png', 'pack.png')
