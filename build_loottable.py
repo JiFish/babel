@@ -96,10 +96,12 @@ def buildBookEntry(book, defaultGeneration=0):
 
 def getGenerationFunctions(config):
     defaultGeneration = 3
+    # Note: I have pulled Rarity tagging since using filtered to apply multiple modifiers
+    #       has stopped working. Maybe re-apply this later. 
     generationChances = [
         (2, config['copy-of-copy-chance'], False),
-        (1, config['copy-of-original-chance'], 'uncommon'),
-        (0, config['original-chance'], 'rare'),
+        (1, config['copy-of-original-chance'], False),
+        (0, config['original-chance'], False),
     ]
     generationFunctions = []
     for generation, generationChance, rarity in generationChances:
@@ -120,7 +122,9 @@ def getGenerationFunctions(config):
             if rarity:
                 generationFunctions.append({
                     "function": "minecraft:filtered",
-                    "item_filter": {},
+                    "item_filter": {
+                        "items": ["minecraft:written_book"]
+                    },
                     "modifier": [
                         {
                             "function": "minecraft:set_book_cover",
