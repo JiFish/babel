@@ -9,9 +9,6 @@ def loadAndValidateYaml(yamlFilePath):
         'books-path': str,
         'add-crafting-recipe': bool,
         'add-fishing-loot': bool,
-        'add-village-loot': bool,
-        'add-mansion-loot': bool,
-        'add-stronghold-loot': bool,
         'add-zombie-drop': bool,
         'add-metabox': bool,
         'replace-hero-of-the-village-gift': bool,
@@ -21,13 +18,12 @@ def loadAndValidateYaml(yamlFilePath):
         'copy-of-original-chance': float,
         'original-chance': float,
         'weights': dict,
+        'chest-loot': dict,
+        'guaranteed-find': list,
     }
 
     # Define required subfields for 'weights'
     requiredWeights = {
-        'stronghold-library': int,
-        'woodland-mansion': int,
-        'village': int,
         'fishing': int,
         'zombie': int,
     }
