@@ -1,6 +1,6 @@
 import os
 import platform
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import zipfile
 from progress_bar import printProgressBar
 
@@ -45,8 +45,8 @@ def extract_files_from_jar(jar_path: Path, sources, destination: Path, title) ->
 
     Args:
         jar_path (Path): Path to the .jar file.
-        source_pattern (str): The file or pattern to extract (e.g., "data/loot_tables/wool.json" or "data/loot_tables/*").
-        destination (Path): The destination directory to extract files to.
+        sources (str | list): File, list of files, or wildcard pattern (e.g. "foo/*").
+        destination (Path): Directory to extract files to.
 
     Returns:
         None
@@ -56,32 +56,50 @@ def extract_files_from_jar(jar_path: Path, sources, destination: Path, title) ->
 
     destination.mkdir(parents=True, exist_ok=True)
 
-    with zipfile.ZipFile(jar_path, 'r') as jar:
-        # List of all files in the jar
+    with zipfile.ZipFile(jar_path, "r") as jar:
         jar_files = jar.namelist()
 
-        if type(sources) == list:
-            # Handle list extraction
-            files_to_extract = sources
-        elif sources.endswith("/*"):
-            # Handle wildcard extraction
-            base_pattern = sources[:-2]
-            files_to_extract = [f for f in jar_files if f.startswith(base_pattern)]
+        strip_prefix = None
+
+        if isinstance(sources, list):
+            files_to_extract = [
+                f for f in sources if f in jar_files and not f.endswith("/")
+            ]
+
+        elif isinstance(sources, str) and sources.endswith("/*"):
+            base_dir = sources[:-2].strip("/")
+            prefix = base_dir + "/"
+
+            files_to_extract = [
+                f for f in jar_files
+                if f.startswith(prefix) and not f.endswith("/")
+            ]
+
+            strip_prefix = prefix
+
         else:
-            # Handle single file extraction
-            files_to_extract = [sources]
+            files_to_extract = [
+                sources
+            ] if sources in jar_files and not sources.endswith("/") else []
 
         if not files_to_extract:
             print(f"No files matching '{sources}' found in {jar_path}.")
             return
 
         totalfiles = len(files_to_extract)
-        i = 0
-        for file in files_to_extract:
-            i += 1
-            target_path = destination / Path(file).name
+
+        for i, file in enumerate(files_to_extract, start=1):
+
+            if strip_prefix and file.startswith(strip_prefix):
+                rel_posix = PurePosixPath(file[len(strip_prefix):])
+                target_path = destination / Path(*rel_posix.parts)
+            else:
+                target_path = destination / Path(file).name
+
+            target_path.parent.mkdir(parents=True, exist_ok=True)
+
             with jar.open(file) as source_file:
-                with open(target_path, 'wb') as target_file:
+                with open(target_path, "wb") as target_file:
                     target_file.write(source_file.read())
 
             printProgressBar(i, totalfiles, prefix=title, length=40, decimals=0)
@@ -89,7 +107,7 @@ def extract_files_from_jar(jar_path: Path, sources, destination: Path, title) ->
 
 def extractFilesFromJar(minecraft_version, include_recipes):
     checkPath = ("/base_recipe" if include_recipes else "/base_loot_tables")
-    if Path(f"data_extracted/{minecraft_version}/{checkPath}").exists():
+    if Path(f"data_cache/{minecraft_version}/{checkPath}").exists():
         print(f"Minercaft {minecraft_version} files already extracted. Skipping...\n")
         return
 
@@ -97,22 +115,16 @@ def extractFilesFromJar(minecraft_version, include_recipes):
     print(f"Found Minecraft {minecraft_version} jar file: {jar_path}")
 
     if include_recipes:
-        destination = Path(f"data_extracted/{minecraft_version}/base_recipe")
+        destination = Path(f"data_cache/{minecraft_version}/base_recipe")
         source_pattern = 'data/minecraft/recipe/*'
         extract_files_from_jar(jar_path, source_pattern, destination, "Extracting recipies...")
 
-    destination = Path(f"data_extracted/{minecraft_version}/base_loot_tables")
+    destination = Path(f"data_cache/{minecraft_version}/base_loot_tables")
     sources = [
         'data/minecraft/loot_table/gameplay/fishing/treasure.json',
         'data/minecraft/loot_table/entities/zombie.json',
-        'data/minecraft/loot_table/chests/stronghold_library.json',
-        'data/minecraft/loot_table/chests/woodland_mansion.json',
-        'data/minecraft/loot_table/chests/village/village_desert_house.json',
-        'data/minecraft/loot_table/chests/village/village_plains_house.json',
-        'data/minecraft/loot_table/chests/village/village_savanna_house.json',
-        'data/minecraft/loot_table/chests/village/village_snowy_house.json',
-        'data/minecraft/loot_table/chests/village/village_taiga_house.json',
     ]
     extract_files_from_jar(jar_path, sources, destination, "Extracting base loot tables...")
+    extract_files_from_jar(jar_path, "data/minecraft/loot_table/chests/*", destination, "Extracting base loot tables...")
 
     print("")

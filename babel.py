@@ -76,7 +76,7 @@ try:
         extractFilesFromJar(minecraft_version, config['add-lost-libraries'])
 
         print("Building data pack...")
-        buildDatapack(config, version, f"data_extracted/{minecraft_version}")
+        buildDatapack(config, version, f"data_cache/{minecraft_version}")
         print("Data pack build complete!\n\nCopy %s to your world's 'datapacks' directory." % config['output-filename'])
 
 except Exception as e:

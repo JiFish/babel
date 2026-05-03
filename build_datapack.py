@@ -4,6 +4,7 @@ import zipfile
 import json
 from build_loottable import buildLootTable, buildTestLootTables
 from build_knowlege_books import buildKnowledgeBooksTable
+from pathlib import Path
 
 # Use zlib if we have it
 try:
@@ -16,7 +17,6 @@ min_pack_format = 57
 pack_format = 94
 
 extracted_data_directory = None
-
 
 def addToLootTable(lootfilename, weight=1, pool=0, guaranteedFind=False, quality=False, indent=None):
     with open(f"{extracted_data_directory}/base_loot_tables/{lootfilename}", 'r') as lootfile:
@@ -92,28 +92,31 @@ def buildDatapack(config, version, extracted_data_dir):
     loottable = buildLootTable(config)
     zf.writestr('data/babel/loot_table/books.json', getBooksJsonString(loottable, indent=indent))
 
+    # Chest loot
+    for loot_name in config['chest-loot']:
+        if Path(f"{extracted_data_directory}/base_loot_tables/{loot_name}.json").is_file() == False:
+            print(f"{loot_name}: Unrecognised Chest Loot")
+            continue
+
+        weight = config['chest-loot'][loot_name]
+        if weight == 0:
+            continue
+
+        print(f"Adding to {loot_name} loot table.")
+        guaranteedFind = loot_name in config['guaranteed-find']
+        zf.writestr(
+            f"data/minecraft/loot_table/chests/{loot_name}.json",
+            addToLootTable(
+                f"{loot_name}.json",
+                weight=weight,
+                guaranteedFind=guaranteedFind,
+                indent=indent
+            )
+        )
+
     if config['add-metabox']:
         for name, testtable in buildTestLootTables(config).items():
             zf.writestr(f"data/babel/loot_table/{name}.json", getBooksJsonString(testtable, indent=indent))
-    if config['add-stronghold-loot']:
-        print("Adding to Stronghold Library loot table.")
-        zf.writestr(
-            'data/minecraft/loot_table/chests/stronghold_library.json',
-            addToLootTable('stronghold_library.json', config['weights']['stronghold-library'], guaranteedFind=True, indent=indent)
-        )
-    if config['add-mansion-loot']:
-        print("Adding to Woodland Mansion loot table.")
-        zf.writestr(
-            'data/minecraft/loot_table/chests/woodland_mansion.json',
-            addToLootTable('woodland_mansion.json', config['weights']['woodland-mansion'], indent=indent)
-        )
-    if config['add-village-loot']:
-        print("Adding to Village loot tables.")
-        for table in ['village_desert_house', 'village_savanna_house', 'village_plains_house', 'village_taiga_house', 'village_snowy_house']:
-            zf.writestr(
-                f'data/minecraft/loot_table/chests/village/{table}.json',
-                addToLootTable(f'{table}.json', config['weights']['village'], indent=indent)
-            )
     if config['add-fishing-loot']:
         print("Adding to Fishing Treasure loot table.")
         zf.writestr(

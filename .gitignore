@@ -134,7 +134,8 @@ dmypy.json
 # Babel output zips
 *.zip
 
-# Babel extracted minecraft files
+# Babel cached Minecraft files
+data_cache/
 data_extracted/
 
 # VS Code settings

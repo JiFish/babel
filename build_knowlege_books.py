@@ -94,7 +94,7 @@ if __name__ == "__main__":
     parser.add_argument("minecraft_version", help="Minecraft version (e.g., 1.21.5)")
     args = parser.parse_args()
 
-    extracted_data_directory = f"data_extracted/{args.minecraft_version}"
+    extracted_data_directory = f"data_cache/{args.minecraft_version}"
     if not os.path.isdir(extracted_data_directory):
         print("no extracted data for that version. Run babel.py to extract loot tables first.")
         sys.exit(1)

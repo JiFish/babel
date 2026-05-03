@@ -10,12 +10,6 @@ add-crafting-recipe: false
 # Find pre-written books while fishing
 # Fished books have the special lore text "Waterlogged"
 add-fishing-loot: true
-# Find pre-written books in village chests
-add-village-loot: true
-# Find pre-written books in Woodland Mansions
-add-mansion-loot: true
-# Find pre-written books in Stronghold Libraries
-add-stronghold-loot: true
 # Zombies rarely drop pre-written books, if killed by a player
 add-zombie-drop: false
 # If you are hero of the village, a librarian may gift you a pre-written book
@@ -37,11 +31,73 @@ original-chance: 0.003
 # Keep in mind these values are relative to others from the same loot table,
 # so the same number can have different effects for each.
 weights:
-  stronghold-library: 15
-  woodland-mansion: 5
-  village: 3
   fishing: 1
   zombie: 1
+
+# Chest loot weights. See above for how these numbers work.
+chest-loot:
+  abandoned_mineshaft: 0
+  ancient_city: 0
+  ancient_city_ice_box: 0
+  bastion_bridge: 0
+  bastion_hoglin_stable: 0
+  bastion_other: 0
+  bastion_treasure: 0
+  buried_treasure: 0
+  desert_pyramid: 0
+  end_city_treasure: 0
+  igloo_chest: 0
+  jungle_temple: 0
+  jungle_temple_dispenser: 0
+  nether_bridge: 0
+  pillager_outpost: 0
+  ruined_portal: 0
+  shipwreck_map: 0
+  shipwreck_supply: 0
+  shipwreck_treasure: 0
+  simple_dungeon: 0
+  spawn_bonus_chest: 0
+  stronghold_corridor: 0
+  stronghold_crossing: 0
+  stronghold_library: 15
+  treasure: 0
+  underwater_ruin_big: 0
+  underwater_ruin_small: 0
+  woodland_mansion: 5
+  zombie: 0
+  trial_chambers\corridor: 0
+  trial_chambers\entrance: 0
+  trial_chambers\intersection: 0
+  trial_chambers\intersection_barrel: 0
+  trial_chambers\reward: 0
+  trial_chambers\reward_common: 0
+  trial_chambers\reward_ominous: 0
+  trial_chambers\reward_ominous_common: 0
+  trial_chambers\reward_ominous_rare: 0
+  trial_chambers\reward_ominous_unique: 0
+  trial_chambers\reward_rare: 0
+  trial_chambers\reward_unique: 0
+  trial_chambers\supply: 0
+  village\village_armorer: 0
+  village\village_butcher: 0
+  village\village_cartographer: 0
+  village\village_desert_house: 3
+  village\village_fisher: 0
+  village\village_fletcher: 0
+  village\village_mason: 0
+  village\village_plains_house: 3
+  village\village_savanna_house: 3
+  village\village_shepherd: 0
+  village\village_snowy_house: 3
+  village\village_taiga_house: 3
+  village\village_tannery: 0
+  village\village_temple: 0
+  village\village_toolsmith: 0
+  village\village_weaponsmith: 0
+
+# These loot tables will always generate one book, in addition to the above chance.
+guaranteed-find:
+  - stronghold_library
 
 # Indent output json files
 indent-output: false
