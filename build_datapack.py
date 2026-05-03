@@ -105,7 +105,7 @@ def buildDatapack(config, version, extracted_data_dir):
         print(f"Adding to {loot_name} loot table.")
         guaranteedFind = loot_name in config['guaranteed-find']
         zf.writestr(
-            f"data/minecraft/loot_table/chest/{loot_name}.json",
+            f"data/minecraft/loot_table/chests/{loot_name}.json",
             addToLootTable(
                 f"{loot_name}.json",
                 weight=weight,
