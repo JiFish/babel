@@ -34,6 +34,7 @@ weights:
   fishing: 1
   zombie: 1
 
+# Chest loot weights. See above for how these numbers work.
 chest-loot:
   abandoned_mineshaft: 0
   ancient_city: 0
@@ -94,6 +95,7 @@ chest-loot:
   village\village_toolsmith: 0
   village\village_weaponsmith: 0
 
+# These loot tables will always generate one book, in addition to the above chance.
 guaranteed-find:
   - stronghold_library
 
