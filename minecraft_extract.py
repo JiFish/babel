@@ -107,7 +107,7 @@ def extract_files_from_jar(jar_path: Path, sources, destination: Path, title) ->
 
 def extractFilesFromJar(minecraft_version, include_recipes):
     checkPath = ("/base_recipe" if include_recipes else "/base_loot_tables")
-    if Path(f"data_extracted/{minecraft_version}/{checkPath}").exists():
+    if Path(f"data_cache/{minecraft_version}/{checkPath}").exists():
         print(f"Minercaft {minecraft_version} files already extracted. Skipping...\n")
         return
 
@@ -115,11 +115,11 @@ def extractFilesFromJar(minecraft_version, include_recipes):
     print(f"Found Minecraft {minecraft_version} jar file: {jar_path}")
 
     if include_recipes:
-        destination = Path(f"data_extracted/{minecraft_version}/base_recipe")
+        destination = Path(f"data_cache/{minecraft_version}/base_recipe")
         source_pattern = 'data/minecraft/recipe/*'
         extract_files_from_jar(jar_path, source_pattern, destination, "Extracting recipies...")
 
-    destination = Path(f"data_extracted/{minecraft_version}/base_loot_tables")
+    destination = Path(f"data_cache/{minecraft_version}/base_loot_tables")
     sources = [
         'data/minecraft/loot_table/gameplay/fishing/treasure.json',
         'data/minecraft/loot_table/entities/zombie.json',
